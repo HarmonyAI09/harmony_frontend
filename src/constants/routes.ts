@@ -16,3 +16,7 @@ export enum MAIN_ROUTES {
   ROOT = 'main',
   HARMONY = 'harmony',
 }
+
+export enum ALL_ROUTES {
+  ROOT = '*',
+}

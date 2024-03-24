@@ -1,0 +1,15 @@
+.root {
+  .content {
+    @apply flex flex-col pt-[64px];
+  }
+}
+
+.authLayout {
+  @apply h-screen flex flex-col;
+  .content {
+    @apply flex flex-col h-full;
+    .outlet {
+      @apply flex items-center justify-center grow;
+    }
+  }
+}

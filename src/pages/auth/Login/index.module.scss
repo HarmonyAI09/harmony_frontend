@@ -1,0 +1,21 @@
+.root {
+  @apply flex flex-col;
+  > h1 {
+    @apply font-bold text-5xl mb-6 text-center;
+  }
+  > p {
+    @apply text-xl mb-6 text-center;
+  }
+
+  .form {
+    @apply flex flex-col gap-y-3 mb-6;
+  }
+
+  .signupLink {
+    @apply text-base text-center;
+
+    > a {
+      @apply ml-2 underline;
+    }
+  }
+}

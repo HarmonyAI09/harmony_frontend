@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  @apply font-Poppins box-border;
+}
+
+::-webkit-scrollbar {
+  @apply w-[8px] bg-gray-200;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-600 rounded-full;
+}

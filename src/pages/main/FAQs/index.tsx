@@ -12,7 +12,7 @@ interface IQAItem {
 
 const QAItems: IQAItem[] = [
   {
-    question: 'How does Harmony work?',
+    question: 'What photo quality is recommended when using Harmony?',
     answer: `Photo distortion: Being too close to your camera can warp your features and drastically alter your score, usually for the worse. A 26mm camera lens (minimum on most phones) should be fine assuming you stand back about 3-6 feet and use a self-timer. We generally caution against using selfies.
     The best camera lenses to ensure maximum accuracy are approximately 85mm. Zooming  into a mirror with your phone's back camera or using the self timer erases over 90% of lens distortion.
     Photo quality:  Blurry photos can lead to imprecise landmark placement which will throw off your score.

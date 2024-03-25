@@ -1,0 +1,10 @@
+.root {
+  @apply flex gap-x-2 py-1 px-2 rounded-full bg-secondary;
+
+  > li {
+    @apply text-black font-medium text-base text-primary lg:text-lg cursor-pointer py-0.5 px-3.5 rounded-full hover:text-secondary hover:bg-primary transition duration-300;
+  }
+  > li.activeItem {
+    @apply text-secondary bg-secondary;
+  }
+}

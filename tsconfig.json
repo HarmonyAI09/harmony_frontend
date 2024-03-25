@@ -19,10 +19,11 @@
     "paths": {
       "@/*": ["*"],
       "@/assets": ["assets/*"],
-      "@/constants/*": ["constants/*"],
       "@/components/*": ["components/*"],
+      "@/constants/*": ["constants/*"],
+      "@/interfaces/*": ["interfaces/*"],
+      "@/layout/*": ["layout/*"],
       "@/pages/*": ["pages/*"],
-      "@/layouts/*": ["layouts/*"],
       "@/routes/*": ["routes/*"],
       "@/redux/*": ["redux/*"]
     }

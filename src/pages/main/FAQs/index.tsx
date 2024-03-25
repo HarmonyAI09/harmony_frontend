@@ -84,7 +84,9 @@ function FAQs() {
           <p className={classes.statement}>
             Contact our support team for further assistance.
           </p>
-          <Button variant="outlined">Contact</Button>
+          <Button variant="contained" color="success">
+            Contact
+          </Button>
         </div>
       </div>
     </div>

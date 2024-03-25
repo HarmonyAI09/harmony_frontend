@@ -1,21 +1,25 @@
 .root {
-  @apply flex flex-col;
+  @apply flex flex-col my-auto;
   > h1 {
-    @apply font-bold text-5xl mb-6 text-center;
+    @apply font-bold text-4xl xl:text-5xl mb-8 text-center;
   }
   > p {
-    @apply text-xl mb-6 text-center;
+    @apply text-lg xl:text-xl mb-4 text-center text-secondary;
   }
 
   .form {
-    @apply flex flex-col gap-y-3 mb-6;
+    @apply flex flex-col gap-y-4 mb-6;
+
+    .buttons {
+      @apply flex flex-col gap-y-2;
+    }
   }
 
   .signupLink {
-    @apply text-base text-center;
+    @apply text-base text-center text-primary;
 
     > a {
-      @apply ml-2 underline;
+      @apply ml-2 underline text-secondary;
     }
   }
 }

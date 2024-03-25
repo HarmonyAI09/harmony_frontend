@@ -1,8 +1,8 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 
-import Header from '@/layouts/auth/Header';
-import Footer from '@/layouts/auth/Footer';
+import Header from '@/layout/Header';
+import Footer from '@/layout/Footer';
 import { AUTH_ROUTES } from '@/constants/routes';
 
 import classes from './index.module.scss';

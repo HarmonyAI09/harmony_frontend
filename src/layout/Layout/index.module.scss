@@ -1,0 +1,16 @@
+.root {
+  @apply bg-primary;
+  .content {
+    @apply flex flex-col pt-[64px] lg:pt-[72px] xl:pt-[80px];
+  }
+}
+
+.authLayout {
+  @apply h-screen;
+  .content {
+    @apply h-full flex flex-col;
+    .outlet {
+      @apply flex justify-center grow overflow-y-auto;
+    }
+  }
+}

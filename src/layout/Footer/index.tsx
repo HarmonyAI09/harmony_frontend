@@ -36,7 +36,7 @@ function Footer() {
       </div>
       <div className={classes.divider} />
       <div className={classes.secondary}>
-        <p className={classes.reversed}>
+        <p className={classes.reserved}>
           &copy; 2024 Relume. All rights reserved.
         </p>
         <div className={classes.links}>

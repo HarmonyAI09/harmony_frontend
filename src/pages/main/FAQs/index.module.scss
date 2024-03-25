@@ -1,7 +1,7 @@
 .root {
   @apply w-full overflow-y-auto;
   .header {
-    @apply bg-black py-24 flex flex-col gap-y-6 w-full text-white px-8;
+    @apply bg-black py-24 flex flex-col gap-y-6 w-full text-primary px-8;
 
     > h1 {
       @apply text-4xl;

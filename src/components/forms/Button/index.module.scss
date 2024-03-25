@@ -3,7 +3,7 @@
 }
 
 .contained {
-  @apply border-none bg-black text-white;
+  @apply border-none bg-secondary text-primary;
 }
 
 .outlined {
@@ -12,4 +12,16 @@
 
 .text {
   @apply border-none text-black;
+}
+
+.contained.primary {
+  @apply bg-primary text-primary;
+}
+
+.contained.secondary {
+  @apply bg-secondary text-primary;
+}
+
+.contained.success {
+  @apply bg-success text-primary;
 }

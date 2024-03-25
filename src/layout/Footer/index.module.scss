@@ -1,0 +1,29 @@
+.root {
+  @apply px-4 sm:px-8 py-2.5;
+
+  .primary {
+    @apply flex justify-between items-center h-16 lg:h-[72px] xl:h-20 py-2.5;
+
+    .links {
+      @apply flex gap-x-4;
+      svg {
+        @apply text-xl fill-secondary;
+      }
+    }
+  }
+
+  .divider {
+    @apply h-[1.25px] bg-secondary w-full;
+  }
+
+  .secondary {
+    @apply flex items-center justify-center text-sm py-4 gap-x-4 text-center;
+
+    .links {
+      @apply flex gap-x-4;
+      > a {
+        @apply underline text-secondary;
+      }
+    }
+  }
+}

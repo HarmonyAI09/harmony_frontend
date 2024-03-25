@@ -17,11 +17,15 @@ function Register() {
         <Input name="name" label="Name" required />
         <Input name="email" label="Email" required />
         <Input name="password" type="password" label="Password" required />
-        <Button variant="contained">Sign Up</Button>
-        <Button variant="outlined">
-          <img alt="Google Button icon" src={GoogleIcon} />
-          Sign Up with Google
-        </Button>
+        <div className={classes.buttons}>
+          <Button variant="contained" color="secondary">
+            Sign Up
+          </Button>
+          <Button variant="outlined">
+            <img alt="Google Button icon" src={GoogleIcon} />
+            Sign Up with Google
+          </Button>
+        </div>
       </div>
       <p className={classes.signupLink}>
         Already have an account?

@@ -2,11 +2,11 @@
   .label {
     @apply flex justify-between text-sm mb-0.5;
     > a {
-      @apply underline;
+      @apply underline text-secondary;
     }
   }
 
   input {
-    @apply outline-none w-full border-1 border-black py-2 px-3;
+    @apply outline-none w-full border-1 border-black py-2 px-3 text-black;
   }
 }

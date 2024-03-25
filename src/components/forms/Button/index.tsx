@@ -1,20 +1,25 @@
+import React, { ComponentProps } from 'react';
 import clsx from 'clsx';
 
 import classes from './index.module.scss';
 
 type VariantType = 'contained' | 'outlined' | 'text';
+type ColorType = 'primary' | 'secondary' | 'success';
 
-interface IButtonProps {
+type ButtonProps = ComponentProps<'button'> & {
   children?: React.ReactNode;
   variant?: VariantType;
+  color?: ColorType;
   className?: string;
-}
+};
 
 function Button({
   children,
   variant = 'contained',
+  color = 'primary',
   className = '',
-}: IButtonProps) {
+  onClick = () => {},
+}: ButtonProps) {
   const variantClassName =
     variant === 'contained'
       ? classes.contained
@@ -22,8 +27,25 @@ function Button({
       ? classes.outlined
       : classes.text;
 
+  const colorClassName =
+    color === 'primary'
+      ? classes.primary
+      : color === 'secondary'
+      ? classes.secondary
+      : color === 'success'
+      ? classes.success
+      : '';
+
   return (
-    <button className={clsx(classes.root, variantClassName, className)}>
+    <button
+      onClick={onClick}
+      className={clsx(
+        classes.root,
+        variantClassName,
+        colorClassName,
+        className
+      )}
+    >
       {children}
     </button>
   );

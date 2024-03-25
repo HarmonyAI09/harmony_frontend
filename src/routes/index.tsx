@@ -1,47 +1,74 @@
-import { Navigate, RouteObject, useRoutes } from 'react-router-dom';
+import { useMemo } from 'react';
+import { Navigate, Outlet, RouteObject, useRoutes } from 'react-router-dom';
 
-import AuthLayout from '@/layouts/auth/Layout';
+import { ALL_ROUTES, AUTH_ROUTES, MAIN_ROUTES } from '@/constants/routes';
+import Layout from '@/layout/Layout';
+import FAQs from '@/pages/main/FAQs';
 import Login from '@/pages/auth/Login';
 import Register from '@/pages/auth/Register';
-import FAQs from '@/pages/auth//FAQs';
+import Harmony from '@/pages/main/Harmony';
+import { useAppSelector } from '@/redux/store';
 
-import {
-  AUTH_ROUTES,
-  HOME_ROUTES,
-  MAIN_ROUTES,
-  ALL_ROUTES,
-} from '@/constants/routes';
-
-const routes: RouteObject[] = [
+const authRoutes: RouteObject[] = [
   {
     path: AUTH_ROUTES.ROOT,
-    element: <AuthLayout />,
+    element: <Outlet />,
     children: [
       {
         index: true,
         element: <Navigate to={AUTH_ROUTES.LOGIN} />,
       },
-      { path: AUTH_ROUTES.LOGIN, element: <Login /> },
-      { path: AUTH_ROUTES.REGISTER, element: <Register /> },
-      { path: AUTH_ROUTES.FAQS, element: <FAQs /> },
+      {
+        path: AUTH_ROUTES.LOGIN,
+        element: <Login />,
+      },
+      {
+        path: AUTH_ROUTES.REGISTER,
+        element: <Register />,
+      },
     ],
   },
+];
+
+const mainRoutes: RouteObject[] = [
   {
-    path: HOME_ROUTES.ROOT,
-    element: <></>,
-    children: [],
+    path: MAIN_ROUTES.ABOUT,
+    element: <>About</>,
   },
   {
-    path: MAIN_ROUTES.ROOT,
-    element: <></>,
-    children: [],
+    path: MAIN_ROUTES.FAQS,
+    element: <FAQs />,
+  },
+  {
+    path: MAIN_ROUTES.HARMONY,
+    element: <Harmony />,
   },
   {
     path: ALL_ROUTES.ROOT,
-    element: <Navigate to={`${AUTH_ROUTES.ROOT}`} />,
+    element: <Navigate to={AUTH_ROUTES.ROOT} />,
   },
 ];
 
 export default function Routes() {
+  const isLogin = useAppSelector(state => state.auth.isLogin);
+  const routes: RouteObject[] = useMemo(
+    () => [
+      {
+        path: ALL_ROUTES.ROOT,
+        element: <Layout />,
+        children: [
+          ...(isLogin ? mainRoutes : authRoutes),
+          {
+            path: ALL_ROUTES.ROOT,
+            element: (
+              <Navigate to={isLogin ? MAIN_ROUTES.HARMONY : AUTH_ROUTES.ROOT} />
+            ),
+          },
+        ],
+      },
+    ],
+    [isLogin]
+  );
+
   return useRoutes(routes);
 }

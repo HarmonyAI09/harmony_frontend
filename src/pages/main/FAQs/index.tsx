@@ -79,19 +79,19 @@ const QAItems: IQAItem[] = [
         },
         {
           paragraph:
-            'You can think of your harmony score as a rating of your face’s baseline, or foundation. It is how attractive the blank canvas of your face is, including your  bone structure and soft tissue as well (e.g., lips).',
+            'You can think of your harmony score as a rating of your face’s baseline, or foundation. It is how attractive the blank canvas of your face is, including your  bone structure and soft tissue (e.g., lips).',
         },
         {
           paragraph:
-            'Your harmony score does not factor in things like your skin color, hair color, blemishes, or acne. Those features sit on top of your face’s baseline and they certainly do affect facial attractiveness. An example would be if you submitted a photo with long hair vs. short hair – your harmony score should be identical  if the photo is taken under the same conditions. However, you may look better with longer hair.',
+            'Your harmony score does not factor in things like hair color, eyebrow color, or skin quality. Those features sit on top of your face’s baseline and they certainly do influence facial attractiveness. For instance,  if you submitted a photo with long hair vs. short hair, your harmony score should be identical  if the photos are taken under the same conditions. However, you may look better with longer hair.',
         },
         {
           paragraph:
-            'Usually your harmony score will be tightly correlated to your overall facial attractiveness, but this may not always be the case. For example, if you have severe acne or lacking eyebrows, your perceived attractiveness may be lower than your harmony score.',
+            'Harmony scores are  usually tightly correlated to overall facial attractiveness, but this may not always be the case. For example, if you have severe acne or faint eyebrows, your perceived attractiveness may be lower than your harmony score.',
         },
         {
           paragraph:
-            'Your harmony score should closely follow a normal distribution of rarity. Getting above a 90% is exceedingly rare and most people lie between 35-65%. 100% represents the idealized standard of facial harmony.',
+            'Your harmony score should roughly follow a normal distribution of rarity. Getting above a 90% is exceedingly rare and most people lie between 35-65%. 100% represents the idealized standard of facial harmony.',
         },
       ],
     },
@@ -106,7 +106,7 @@ const QAItems: IQAItem[] = [
         },
         {
           paragraph:
-            'This information can also be helpful in a clinical setting. You can alter your features through Photoshop and compare the harmony score before and after to see if a given operation will yield an overall positive result to your appearance. Remember that changing one feature does not always affect your face in isolation; making your nose smaller can throw off your overall facial balance in ways you may not anticipate. This is where Harmony comes in.',
+            'This information can also be helpful in a clinical setting. You can alter your features through Photoshop and compare the harmony score before and after to see if a given cosmetic operation will yield an overall positive result to your appearance. Remember that changing one feature does not always affect your face in isolation; making your nose smaller can throw off your overall facial balance in ways you may not have anticipated. This is where Harmony comes in.',
         },
         {
           paragraph:
@@ -119,14 +119,14 @@ const QAItems: IQAItem[] = [
     question: 'How does Harmony work?',
     answer: {
       paragraph:
-        'Harmony uses advanced machine learning algorithms to analyze your facial features and provide feedback on your attractiveness. It takes into account various factors such as symmetry, facial proportions, and skin condition.',
+        'Harmony uses advanced machine learning algorithms and applied geometry to analyze your facial features and provide feedback on your attractiveness.',
     },
   },
   {
     question: 'How accurate are the results?',
     answer: {
       paragraph:
-        "While Harmony strives to provide accurate feedback, it's important to remember that beauty still has subjective components. The results should be taken as suggestions for improvement rather than definitive judgments. As we further improve our models and integrate other features, we hope to create a tool that can assess facial attractiveness as accurately as possible.",
+        "While Harmony strives to provide accurate feedback, it's important to remember that beauty still has subjective components. The results should be taken as suggestions for improvement rather than definitive judgments. As we further improve our models and integrate other features, we hope to create a tool that can assess facial attractiveness as accurately as possible. In its beta, Harmony does not encompass every factor relating to facial attractiveness. We will constantly strive to innovate and add features to make our service as accurate as possible.",
     },
   },
   {

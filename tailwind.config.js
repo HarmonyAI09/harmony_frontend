@@ -20,10 +20,37 @@ export default {
         secondary: '#a4c8ff',
         dark: '#0c121c',
       },
+      borderColor: {
+        primary: '#fbfcfc',
+        secondary: '#a4c8ff',
+        dark: '#0c121c',
+      },
+      ringColor: {
+        primary: '#fbfcfc',
+        secondary: '#a4c8ff',
+        dark: '#0c121c',
+      },
+      ringOffsetColor: {
+        primary: '#121626',
+        secondary: '#242c48',
+        bright: '#a4c8ff',
+        success: '#763edd',
+      },
       fill: {
         primary: '#fbfcfc',
         secondary: '#a4c8ff',
         dark: '#0c121c',
+      },
+      stroke: {
+        primary: '#fbfcfc',
+        secondary: '#a4c8ff',
+        dark: '#0c121c',
+      },
+      minWidth: {
+        screen: '100vw',
+      },
+      minHeight: {
+        screen: '100vh',
       },
     },
   },

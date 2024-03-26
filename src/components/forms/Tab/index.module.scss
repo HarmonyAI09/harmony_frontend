@@ -1,0 +1,7 @@
+.root {
+  @apply px-2 py-1 border-1 border-primary hover:border-secondary cursor-pointer transition duration-300 delay-300;
+}
+
+.active {
+  @apply border-secondary;
+}

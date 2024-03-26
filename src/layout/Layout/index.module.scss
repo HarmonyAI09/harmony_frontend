@@ -1,16 +1,21 @@
 .root {
-  @apply bg-primary;
+  @apply bg-primary min-h-screen;
   .content {
     @apply flex flex-col pt-[64px] lg:pt-[72px] xl:pt-[80px];
   }
 }
 
-.authLayout {
+.authLayout,
+.mainLayout {
   @apply h-screen;
-  .content {
+  > .content {
     @apply h-full flex flex-col;
-    .outlet {
-      @apply flex justify-center grow overflow-y-auto;
+    > .outlet {
+      @apply grow overflow-y-auto;
     }
   }
+}
+
+.authLayout .outlet {
+  @apply flex justify-center overflow-y-auto;
 }

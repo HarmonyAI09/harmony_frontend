@@ -1,0 +1,14 @@
+.root {
+  @apply bg-primary flex items-center gap-x-4 px-4 py-2 rounded-sm border-dark border-1 hover:border-secondary cursor-pointer transition;
+
+  .slide {
+    @apply rounded-full overflow-hidden size-12 shrink-0;
+  }
+
+  .profile {
+    @apply text-sm;
+    > .gender {
+      @apply text-xs rounded-full bg-success px-2;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+.root {
+  @apply mx-auto max-w-[640px] grid grid-cols-2 gap-8 py-8;
+
+  .template {
+    @apply aspect-square overflow-hidden border-2 border-dark;
+    > .buttons {
+      > span {
+        @apply rounded-md size-6 bg-success;
+      }
+    }
+  }
+}

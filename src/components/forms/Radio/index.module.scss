@@ -1,0 +1,13 @@
+.root {
+  @apply flex items-center gap-x-3;
+
+  > span {
+    @apply rounded-full size-2 ring-2 ring-offset-2 ring-secondary ring-offset-primary cursor-pointer;
+  }
+  > span.active {
+    @apply bg-bright;
+  }
+  > label {
+    @apply cursor-pointer;
+  }
+}

@@ -1,0 +1,35 @@
+.root {
+  @apply flex flex-col gap-y-4;
+  .requirements,
+  .notes {
+    @apply flex flex-col gap-y-2.5;
+    > .header {
+      @apply flex gap-x-2.5 items-center;
+      > span {
+        @apply size-8 rounded-full shrink-0 bg-primary flex items-center justify-center;
+        > svg {
+          @apply text-xl;
+        }
+      }
+      > p {
+        @apply flex items-center gap-x-0.5;
+
+        > span {
+          @apply text-xs;
+        }
+      }
+    }
+    > .content {
+      @apply text-sm px-1;
+      > p {
+        @apply flex;
+        > svg {
+          @apply shrink-0 transform translate-y-0.5 mr-1;
+        }
+      }
+      > .itemNoTick {
+        @apply mb-0.5;
+      }
+    }
+  }
+}

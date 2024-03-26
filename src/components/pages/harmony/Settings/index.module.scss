@@ -1,0 +1,30 @@
+.root {
+  @apply flex flex-col gap-y-2;
+  .gender,
+  .ethnicity,
+  .analyze {
+    @apply flex flex-col gap-y-2.5;
+    > .header {
+      @apply flex gap-x-2.5 items-center;
+      > span {
+        @apply size-8 rounded-full shrink-0 bg-primary flex items-center justify-center;
+        > svg {
+          @apply text-xl;
+        }
+      }
+      > p {
+        @apply flex items-center gap-x-0.5;
+
+        > span {
+          @apply text-xs;
+        }
+      }
+    }
+    > .radioGroup {
+      @apply px-4 flex flex-col gap-y-0.5;
+    }
+  }
+  .divider {
+    @apply h-0.5 bg-secondary;
+  }
+}

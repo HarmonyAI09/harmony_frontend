@@ -5,6 +5,6 @@
     @apply text-black font-medium text-base text-primary lg:text-lg cursor-pointer py-0.5 px-3.5 rounded-full hover:text-secondary hover:bg-primary transition duration-300;
   }
   > li.activeItem {
-    @apply text-secondary bg-secondary;
+    @apply text-secondary bg-primary;
   }
 }

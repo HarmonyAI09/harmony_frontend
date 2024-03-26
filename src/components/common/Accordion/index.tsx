@@ -5,7 +5,7 @@ import classes from './index.module.scss';
 interface IAccordionProps {
   active?: boolean;
   header: string;
-  body: string;
+  body: React.ReactNode;
   onClick?: () => void;
 }
 
@@ -16,11 +16,7 @@ function Accordion({ active, header, body, onClick }: IAccordionProps) {
         <p>{header}</p>
         <span>{active ? <FaChevronUp /> : <FaChevronDown />}</span>
       </div>
-      {active && (
-        <div className={classes.body}>
-          <p>{body}</p>
-        </div>
-      )}
+      {active && <div className={classes.body}>{body}</div>}
     </div>
   );
 }

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 * {
-  @apply font-Poppins box-border;
+  @apply font-Poppins box-border text-primary;
 }
 
 ::-webkit-scrollbar {

@@ -103,6 +103,10 @@ function ImageUploader({ type = 'front' }: IImageUploaderProps) {
           util={'crop'}
           imageCropAspectRatio={1}
           onProcess={onImageCrop}
+          cropEnableImageSelection = {false}
+          previewUpscale={true}
+          enableTransparencyGrid={true}
+          enableCanvasAlpha={true}
         />
       )}
     </div>

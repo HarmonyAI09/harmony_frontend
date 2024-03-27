@@ -1,0 +1,23 @@
+.screen {
+  @apply h-screen w-screen fixed top-0 left-0 flex items-center justify-center hidden backdrop-blur-md z-[500];
+}
+
+.root {
+  @apply flex flex-col max-w-screen-lg h-fit w-full h-4/5;
+  > .header {
+    @apply bg-secondary relative;
+    > span.close {
+      @apply absolute top-1 right-1 size-8 rounded-full bg-success flex items-center justify-center;
+      > svg {
+        @apply text-xl fill-primary;
+      }
+    }
+  }
+  > .body {
+    @apply bg-primary grow;
+  }
+}
+
+.visible {
+  @apply flex;
+}

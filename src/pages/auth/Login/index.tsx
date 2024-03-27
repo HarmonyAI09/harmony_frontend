@@ -41,7 +41,7 @@ function Login() {
           >
             Log In
           </Button>
-          <Button variant="outlined">
+          <Button variant="contained" color="white">
             <img alt="Google Button icon" src={GoogleIcon} />
             Log in with Google
           </Button>

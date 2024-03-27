@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import classes from './index.module.scss';
 
 type VariantType = 'contained' | 'outlined' | 'text';
-type ColorType = 'primary' | 'secondary' | 'success';
+type ColorType = 'primary' | 'secondary' | 'success' | 'black' | 'white';
 
 type ButtonProps = ComponentProps<'button'> & {
   children?: React.ReactNode;
@@ -34,6 +34,10 @@ function Button({
       ? classes.secondary
       : color === 'success'
       ? classes.success
+      : color === 'black'
+      ? classes.black
+      : color === 'white'
+      ? classes.white
       : '';
 
   return (

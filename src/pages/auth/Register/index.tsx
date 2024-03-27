@@ -21,7 +21,7 @@ function Register() {
           <Button variant="contained" color="secondary">
             Sign Up
           </Button>
-          <Button variant="outlined">
+          <Button variant="contained" color="white">
             <img alt="Google Button icon" src={GoogleIcon} />
             Sign Up with Google
           </Button>

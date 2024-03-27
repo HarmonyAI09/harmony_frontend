@@ -1,11 +1,12 @@
+import ImageUploader from '@/components/pages/harmony/ImageUploader';
+
 import FrontImageSrc from '@/assets/images/templates/front.jpg';
 import SideImageSrc from '@/assets/images/templates/side.jpg';
-import FrontPlaceholderSrc from '@/assets/images/templates/front_placeholder.jpg';
-import SidePlaceholderSrc from '@/assets/images/templates/side_placeholder.jpg';
 
 import classes from './index.module.scss';
 
 function Workspace() {
+  // const [isUploadDialog, openUploadDialog] = useState(false);
   return (
     <div className={classes.root}>
       <div className={classes.template}>
@@ -14,20 +15,15 @@ function Workspace() {
       <div className={classes.template}>
         <img src={SideImageSrc} alt="Side image" />
       </div>
-      <div className={classes.template}>
-        <img src={FrontPlaceholderSrc} alt="Front placeholder" />
-        <div className={classes.buttons}>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-      <div className={classes.template}>
-        <img src={SidePlaceholderSrc} alt="Side placeholder" />
-        <div className={classes.buttons}>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
+
+      <ImageUploader type="front" />
+      <ImageUploader type="side" />
+      {/* <Dialog
+        open={isUploadDialog}
+        onClose={() => openUploadDialog(false)}
+        header={<></>}
+        body={}
+      /> */}
     </div>
   );
 }

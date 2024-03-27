@@ -19,10 +19,12 @@ export default {
         primary: '#fbfcfc',
         secondary: '#a4c8ff',
         dark: '#0c121c',
+        success: '#763edd',
       },
       borderColor: {
         primary: '#fbfcfc',
         secondary: '#a4c8ff',
+        success: '#763edd',
         dark: '#0c121c',
       },
       ringColor: {

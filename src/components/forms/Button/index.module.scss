@@ -7,7 +7,7 @@
 }
 
 .outlined {
-  @apply border-1 bg-white text-black border-black;
+  @apply border-1 text-black border-black;
 }
 
 .text {
@@ -24,4 +24,24 @@
 
 .contained.success {
   @apply bg-success text-primary;
+}
+
+.contained.white {
+  @apply bg-white text-dark;
+}
+
+.contained.black {
+  @apply bg-black text-primary;
+}
+
+.outlined.primary {
+  @apply border-primary text-primary;
+}
+
+.outlined.secondary {
+  @apply border-secondary text-secondary;
+}
+
+.outlined.success {
+  @apply border-success text-success;
 }

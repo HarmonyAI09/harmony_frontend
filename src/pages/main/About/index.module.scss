@@ -1,0 +1,208 @@
+.root {
+  .container {
+    @apply max-w-screen-lg 2xl:max-w-screen-xl mx-auto px-8 pt-12 pb-8;
+  }
+  .blackback {
+    @apply bg-black;
+  }
+  .analysis {
+    @apply flex gap-x-8 items-center;
+    > .text {
+      @apply basis-[450px] shrink-0;
+      > .title {
+        @apply text-4xl leading-[40px] lg:text-5xl text-primary mb-2 lg:leading-[60px];
+      }
+    }
+    > .video {
+      @apply grow;
+    }
+  }
+  .harness {
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-8 place-items-center;
+    > p {
+      @apply text-4xl leading-[40px] lg:text-5xl lg:leading-[60px];
+    }
+    > .animation {
+      @apply bg-secondary aspect-square w-full relative flex items-center justify-center;
+      > div {
+        @apply rounded-xl px-8 py-4 bg-primary;
+        > span {
+          @apply size-12 flex items-center justify-center rounded-full bg-bright cursor-pointer;
+          > svg {
+            @apply text-xl;
+          }
+        }
+      }
+    }
+  }
+  .streamline {
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-8 place-items-center;
+    > .assessments {
+    }
+    > .instructions {
+      > p.primaryheader {
+        @apply text-4xl font-medium mb-4;
+      }
+      > p.primarybody {
+        @apply text-lg mb-8;
+      }
+      > .secondarypanel {
+        @apply grid grid-cols-1 lg:grid-cols-2;
+        > div {
+          p.header {
+            @apply text-[20px] leading-[24px] font-medium mb-2;
+          }
+          p.body {
+            @apply text-base;
+          }
+        }
+      }
+    }
+  }
+  .cost {
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-4 place-items-center place-content-center mb-16;
+    > .text {
+      > .title {
+        @apply text-4xl leading-[40px] lg:text-5xl mb-4 lg:leading-[60px];
+      }
+    }
+  }
+  .facials {
+    > .title {
+      @apply text-4xl lg:text-5xl mb-8 text-center;
+    }
+    > .assessments {
+      @apply flex flex-col gap-y-4 gap-x-10 justify-between items-center lg:flex-row lg:items-start;
+      > .assess {
+        @apply bg-secondary px-6 pt-8 pb-4 max-w-[300px] flex flex-col items-center gap-y-6;
+        > span {
+          @apply size-14 flex items-center justify-center bg-primary rounded-full text-4xl;
+          > svg {
+            @apply fill-secondary;
+          }
+        }
+        > p {
+          @apply text-center m-0;
+        }
+      }
+    }
+  }
+  .betatest {
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-8 place-items-center mb-16;
+    > .text {
+      > .title {
+        @apply text-4xl lg:text-5xl mb-4;
+      }
+      > ul {
+        @apply flex flex-col gap-y-0.5;
+      }
+      > ul.primarylist {
+        @apply mb-4;
+      }
+      > ul.secondarylist {
+        @apply mt-2;
+        > li {
+          @apply flex gap-x-1;
+          > svg {
+            @apply transform translate-y-1;
+          }
+        }
+      }
+    }
+    > .picture {
+      @apply flex items-center justify-center;
+      > img {
+        @apply max-h-[450px];
+      }
+      > .arriving {
+        @apply absolute flex flex-col items-center;
+        > span {
+          @apply size-12 flex items-center justify-center rounded-full bg-primary mb-2;
+        }
+        > p {
+          @apply max-w-40 text-center text-primary font-medium;
+        }
+      }
+    }
+  }
+  .visit {
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8;
+    > .blog {
+      > p.title {
+        @apply text-4xl mb-4;
+      }
+      > a {
+        @apply text-secondary underline;
+      }
+    }
+    > .steps {
+      @apply flex gap-2 justify-between;
+      > div {
+        @apply bg-secondary px-6 py-4 flex flex-col items-center gap-4;
+        > p {
+          @apply text-primary font-medium text-center;
+        }
+        > span {
+          @apply size-12 rounded-full bg-primary flex items-center justify-center;
+          > svg {
+            @apply text-4xl fill-secondary stroke-secondary;
+          }
+          > svg.landmark {
+            @apply text-2xl;
+          }
+        }
+      }
+    }
+  }
+  .pricing {
+    @apply flex flex-col items-center;
+    > p.title {
+      @apply text-4xl lg:text-5xl mb-2;
+    }
+    > p.subtitle {
+      @apply text-secondary mb-8 text-center;
+    }
+    > .plans {
+      @apply flex justify-center gap-8 flex-wrap;
+      > div {
+        @apply max-w-96 shrink-0 bg-secondary p-8;
+        > .name {
+          @apply mb-4;
+        }
+        > .price {
+          @apply text-4xl mb-3.5;
+          > span {
+            @apply text-sm;
+          }
+        }
+        > ul {
+          @apply flex flex-col gap-y-1.5 mb-4;
+          > li {
+            @apply flex gap-x-2;
+            > svg {
+              @apply shrink-0;
+            }
+          }
+        }
+        > .freeBtn,
+        > .proBtn {
+          @apply w-full;
+        }
+      }
+      > div.free {
+        @apply self-end;
+      }
+    }
+  }
+  .b2b {
+    > .title {
+      @apply text-4xl mb-4;
+    }
+    > .sender {
+      @apply text-right text-secondary;
+    }
+  }
+  .emphasize {
+    @apply text-secondary;
+  }
+}

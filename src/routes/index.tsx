@@ -3,6 +3,7 @@ import { Navigate, Outlet, RouteObject, useRoutes } from 'react-router-dom';
 
 import { ALL_ROUTES, AUTH_ROUTES, MAIN_ROUTES } from '@/constants/routes';
 import Layout from '@/layout/Layout';
+import About from '@/pages/main/About';
 import FAQs from '@/pages/main/FAQs';
 import Login from '@/pages/auth/Login';
 import Register from '@/pages/auth/Register';
@@ -33,7 +34,7 @@ const authRoutes: RouteObject[] = [
 const mainRoutes: RouteObject[] = [
   {
     path: MAIN_ROUTES.ABOUT,
-    element: <>About</>,
+    element: <About />,
   },
   {
     path: MAIN_ROUTES.FAQS,

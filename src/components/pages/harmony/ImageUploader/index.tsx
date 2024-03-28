@@ -1,5 +1,6 @@
 import { ChangeEvent, useMemo, useRef, useState } from 'react';
 import { BiCloudUpload } from 'react-icons/bi';
+import { TbFaceId } from "react-icons/tb";
 import { PinturaEditor } from '@pqina/react-pintura';
 import {
   // editor
@@ -30,6 +31,7 @@ import FrontPlaceholderSrc from '@/assets/images/templates/front_placeholder.jpg
 import SidePlaceholderSrc from '@/assets/images/templates/side_placeholder.jpg';
 import classes from './index.module.scss';
 import '@pqina/pintura/pintura.css';
+import Dialog from '@/components/forms/Dialog';
 
 setPlugins(plugin_crop);
 
@@ -56,6 +58,7 @@ interface IImageUploaderProps {
 
 function ImageUploader({ type = 'front' }: IImageUploaderProps) {
   const [isEditing, setIsEditing] = useState(false);
+  const [isMapping, openMappingDialog] = useState(false);
   const [fileSrc, setFileSrc] = useState<string>('');
   const [resSrc, setResSrc] = useState<string>('');
   const editorRef = useRef<PinturaEditor>(null);
@@ -80,16 +83,18 @@ function ImageUploader({ type = 'front' }: IImageUploaderProps) {
     <div className={classes.root}>
       <img
         src={resSrc || placeholderSrc}
-        alt="Front placeholder"
+        alt={`${type}placeholder`}
         hidden={isEditing}
       />
       <div className={classes.buttons}>
-        <label htmlFor="front-image-upload-input">
+        <label htmlFor={`${type}-image-upload-input`}>
           <BiCloudUpload />
         </label>
-        <span></span>
+        <span onClick={() => openMappingDialog(true)}>
+          <TbFaceId />
+        </span>
         <input
-          id="front-image-upload-input"
+          id={`${type}-image-upload-input`}
           type="file"
           onChange={onFileChange}
           hidden
@@ -103,12 +108,18 @@ function ImageUploader({ type = 'front' }: IImageUploaderProps) {
           util={'crop'}
           imageCropAspectRatio={1}
           onProcess={onImageCrop}
-          cropEnableImageSelection = {false}
+          cropEnableImageSelection={false}
           previewUpscale={true}
           enableTransparencyGrid={true}
           enableCanvasAlpha={true}
         />
       )}
+      <Dialog
+        open={isMapping}
+        onClose={() => openMappingDialog(false)}
+        header={<></>}
+        body={<></>}
+      />
     </div>
   );
 }

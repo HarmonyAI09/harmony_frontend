@@ -3,7 +3,7 @@
 }
 
 .root {
-  @apply flex flex-col max-w-screen-lg h-fit w-full h-4/5;
+  @apply flex flex-col max-w-screen-lg h-fit w-full h-4/5 rounded-md;
   > .header {
     @apply bg-secondary relative;
     > span.close {

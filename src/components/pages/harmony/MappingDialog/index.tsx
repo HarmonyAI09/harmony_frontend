@@ -1,13 +1,7 @@
-import {
-  DragEvent,
-  DragEventHandler,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { DragEvent, useEffect, useMemo, useRef, useState } from 'react';
+import clsx from 'clsx';
 
-import { SERVER_URI } from '@/config';
+import { MODEL_IMAGE_WIDTH, SERVER_URI } from '@/config';
 import { SAMPLE_LANDMARKS } from '@/constants/landmark';
 import Dialog from '@/components/forms/Dialog';
 
@@ -25,43 +19,57 @@ function MappingDialog({ open = false, onClose, type }: IMappingDialogProps) {
   const rawImageUri = `${SERVER_URI}/img/sample/f`;
 
   const [imgWidth, setImgWidth] = useState(0);
-  // const [dragIndex, setDragIndex] = useState(-1);
-  // const [dragOrder, setDragOrder] = useState(-1);
+  const [cursor, setCursor] = useState<{ x: number; y: number }>({
+    x: -100,
+    y: -100,
+  });
   const [mappingPoints, setMappingPoints] = useState<any[]>([]);
+  const [isDragging, setIsDragging] = useState(false);
+
+  const imageRef = useRef<HTMLDivElement>(null);
+  const dragIndex = useRef<number>(-1);
+  const dragOrder = useRef<number>(-1);
 
   const pointModelSrc = useMemo(
     () => (type === 'front' ? FrontPointModelSrc : SidePointModelSrc),
     [type]
   );
-  const imageRef = useRef<HTMLDivElement>(null);
-  const dragIndex = useRef<number>(-1);
-  const dragOrder = useRef<number>(-1);
+
+  const matchPoint = useMemo(() => {
+    if (dragIndex.current === -1 || dragOrder.current === -1) return null;
+    const point = SAMPLE_LANDMARKS[dragIndex.current + 1][dragOrder.current];
+    return { x: (point.x * imgWidth) / 800, y: (point.y * imgWidth) / 800 };
+  }, [dragIndex.current, dragOrder.current, mappingPoints]);
 
   const isSamePt = (first: any, second: any) => {
-    console.log('Pts', first, second);
     if (!first || !second) return false;
     return first.x === second.x && first.y === second.y;
   };
 
-  const onMarkDragStart = (ptIndex: number, order: number) => () => {
-    console.log('Mark index-------------', ptIndex, order);
-    dragIndex.current = ptIndex;
-    dragOrder.current = order;
-  };
+  const onMarkDragStart =
+    (ptIndex: number, order: number) => (e: DragEvent<HTMLSpanElement>) => {
+      dragIndex.current = ptIndex;
+      dragOrder.current = order;
+      setIsDragging(true);
+    };
 
   const onMarkDragEnd = (ptIndex: number) => () => {
-    if (dragIndex.current === ptIndex) return;
+    if (ptIndex !== dragIndex.current) return;
     dragIndex.current = -1;
     dragOrder.current = -1;
+    setIsDragging(false);
   };
 
-  const onMarkDraging = (e: DragEvent<HTMLSpanElement>) => {
+  const onMarkDraging = (e: any) => {
     if (dragIndex.current === -1) return;
     if (!e.clientX && !e.clientY) return;
+
     const offsetX = imageRef.current?.offsetLeft || 0,
       offsetY = imageRef.current?.offsetTop || 0;
     const pageX = e.clientX - offsetX,
       pageY = e.clientY - offsetY;
+
+    setCursor({ x: pageX, y: pageY });
     setMappingPoints(
       mappingPoints.map((landmarks: any[], index: number) =>
         index === dragIndex.current
@@ -87,9 +95,8 @@ function MappingDialog({ open = false, onClose, type }: IMappingDialogProps) {
 
   useEffect(() => {
     if (!imgWidth) return;
-    console.log('array loading effect');
     setMappingPoints(
-      SAMPLE_LANDMARKS.slice(1, 29).map((landmarks: any[]) => {
+      SAMPLE_LANDMARKS.slice(1, 30).map((landmarks: any[]) => {
         return landmarks.map((landmark: any) => ({
           x: Math.floor((landmark.x * imgWidth) / 800),
           y: Math.floor((landmark.y * imgWidth) / 800),
@@ -107,6 +114,15 @@ function MappingDialog({ open = false, onClose, type }: IMappingDialogProps) {
         <div className={classes.images}>
           <div className={classes.model}>
             <img src={pointModelSrc} />
+            {matchPoint && (
+              <span
+                className={classes.landmark}
+                style={{
+                  left: matchPoint.x,
+                  top: matchPoint.y,
+                }}
+              />
+            )}
           </div>
           <div className={classes.real} ref={imageRef}>
             <img src={rawImageUri} alt="Default model image" />
@@ -134,6 +150,22 @@ function MappingDialog({ open = false, onClose, type }: IMappingDialogProps) {
                 )}
               </>
             ))}
+            <div
+              className={clsx(classes.magnifier, {
+                [classes.invisible]: !isDragging,
+              })}
+              style={{
+                backgroundImage: `url(${rawImageUri})`,
+                backgroundPositionX:
+                  -(cursor.x * MODEL_IMAGE_WIDTH) / imgWidth + 32,
+                backgroundPositionY:
+                  -(cursor.y * MODEL_IMAGE_WIDTH) / imgWidth + 32,
+                left: cursor.x,
+                top: cursor.y,
+              }}
+            >
+              <span />
+            </div>
           </div>
         </div>
       }

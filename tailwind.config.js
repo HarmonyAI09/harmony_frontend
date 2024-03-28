@@ -26,6 +26,7 @@ export default {
         secondary: '#a4c8ff',
         success: '#763edd',
         dark: '#0c121c',
+        darkblue: '#242c48',
       },
       ringColor: {
         primary: '#fbfcfc',

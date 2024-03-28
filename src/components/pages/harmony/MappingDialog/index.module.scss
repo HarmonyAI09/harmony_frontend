@@ -1,13 +1,29 @@
 .images {
   @apply grid grid-cols-2 gap-8 place-items-center h-full;
 
+  > .model {
+    @apply relative select-none;
+    > .landmark {
+      @apply absolute bg-blue-500 size-2 rounded-full;
+    }
+  }
   > .real {
     @apply relative select-none;
     > img {
       @apply select-none;
     }
     > .landmark {
-      @apply absolute flex gap-x-0.5 size-1 rounded-full bg-red-500;
+      @apply absolute size-1 rounded-full bg-red-500 cursor-pointer;
+    }
+    > .magnifier {
+      @apply absolute left-0 top-0 size-16 transform -translate-x-1/2 -translate-y-1/2 rounded-full border-1 border-darkblue flex items-center justify-center cursor-pointer;
+
+      > span {
+        @apply bg-red-500 size-1 rounded-full;
+      }
+    }
+    > .magnifier.invisible {
+      @apply hidden;
     }
   }
 }

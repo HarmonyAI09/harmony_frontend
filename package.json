@@ -21,6 +21,7 @@
     "@mui/material": "^5.14.8",
     "@pqina/react-pintura": "^9.0.3",
     "@reduxjs/toolkit": "^1.9.5",
+    "axios": "^1.6.8",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.22",
     "react": "^18.2.0",

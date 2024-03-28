@@ -6,7 +6,6 @@ import SideImageSrc from '@/assets/images/templates/side.jpg';
 import classes from './index.module.scss';
 
 function Workspace() {
-  // const [isUploadDialog, openUploadDialog] = useState(false);
   return (
     <div className={classes.root}>
       <div className={classes.template}>
@@ -18,12 +17,6 @@ function Workspace() {
 
       <ImageUploader type="front" />
       <ImageUploader type="side" />
-      {/* <Dialog
-        open={isUploadDialog}
-        onClose={() => openUploadDialog(false)}
-        header={<></>}
-        body={}
-      /> */}
     </div>
   );
 }

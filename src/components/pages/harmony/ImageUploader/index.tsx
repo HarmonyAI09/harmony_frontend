@@ -1,6 +1,6 @@
 import { ChangeEvent, useMemo, useRef, useState } from 'react';
 import { BiCloudUpload } from 'react-icons/bi';
-import { TbFaceId } from "react-icons/tb";
+import { TbFaceId } from 'react-icons/tb';
 import { PinturaEditor } from '@pqina/react-pintura';
 import {
   // editor
@@ -27,11 +27,13 @@ import {
   PinturaDefaultImageWriterResult,
 } from '@pqina/pintura';
 
+import Dialog from '@/components/forms/Dialog';
+
 import FrontPlaceholderSrc from '@/assets/images/templates/front_placeholder.jpg';
 import SidePlaceholderSrc from '@/assets/images/templates/side_placeholder.jpg';
 import classes from './index.module.scss';
 import '@pqina/pintura/pintura.css';
-import Dialog from '@/components/forms/Dialog';
+import MappingDialog from '../MappingDialog';
 
 setPlugins(plugin_crop);
 
@@ -61,6 +63,7 @@ function ImageUploader({ type = 'front' }: IImageUploaderProps) {
   const [isMapping, openMappingDialog] = useState(false);
   const [fileSrc, setFileSrc] = useState<string>('');
   const [resSrc, setResSrc] = useState<string>('');
+  // const [resBin, setResBin] = useState<File | null>(null);
   const editorRef = useRef<PinturaEditor>(null);
 
   const placeholderSrc = useMemo(
@@ -68,15 +71,22 @@ function ImageUploader({ type = 'front' }: IImageUploaderProps) {
     [type]
   );
 
+  const onMappingClick = () => {
+    openMappingDialog(true);
+    // @todo
+    // Upload Request
+  };
+
+  const onImageCrop = (res: PinturaDefaultImageWriterResult) => {
+    // setResBin(res.dest);
+    setResSrc(URL.createObjectURL(res.dest));
+    setIsEditing(false);
+  };
+
   const onFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || !e.target.files.length) return;
     setFileSrc(URL.createObjectURL(e.target.files[0]));
     setIsEditing(true);
-  };
-
-  const onImageCrop = (res: PinturaDefaultImageWriterResult) => {
-    setResSrc(URL.createObjectURL(res.dest));
-    setIsEditing(false);
   };
 
   return (
@@ -90,7 +100,7 @@ function ImageUploader({ type = 'front' }: IImageUploaderProps) {
         <label htmlFor={`${type}-image-upload-input`}>
           <BiCloudUpload />
         </label>
-        <span onClick={() => openMappingDialog(true)}>
+        <span onClick={onMappingClick}>
           <TbFaceId />
         </span>
         <input
@@ -114,11 +124,18 @@ function ImageUploader({ type = 'front' }: IImageUploaderProps) {
           enableCanvasAlpha={true}
         />
       )}
-      <Dialog
+      {/* <Dialog
         open={isMapping}
         onClose={() => openMappingDialog(false)}
         header={<></>}
-        body={<></>}
+        body={
+          
+        }
+      /> */}
+      <MappingDialog
+        open={isMapping}
+        onClose={() => openMappingDialog(false)}
+        type={type}
       />
     </div>
   );

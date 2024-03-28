@@ -1,0 +1,17 @@
+.images {
+  @apply grid grid-cols-2 gap-8 place-items-center h-full;
+
+  > .real {
+    @apply relative select-none;
+    > img {
+      @apply select-none;
+    }
+    > .landmark {
+      @apply absolute flex gap-x-0.5 size-1 rounded-full bg-red-500;
+    }
+  }
+}
+
+.dlgTitle {
+  @apply text-3xl;
+}

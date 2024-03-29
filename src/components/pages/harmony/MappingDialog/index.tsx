@@ -10,6 +10,7 @@ import { updateFrontPoints, updateSidePoints } from '@/redux/reducers/setting';
 import FrontPointModelSrc from '@/assets/images/points/front.jpg';
 import SidePointModelSrc from '@/assets/images/points/side.jpg';
 import classes from './index.module.scss';
+import HttpService from '@/services/HttpService';
 
 interface IMappingDialogProps {
   open: Boolean;
@@ -39,7 +40,7 @@ function MappingDialog({ open = false, onClose, type }: IMappingDialogProps) {
   );
 
   const modelImageSrc = useMemo(
-    () => `${SERVER_URI}/img/${profileID}/${type === 'front' ? 'f' : 's'}`,
+    () => `${SERVER_URI}/img/${profileID}/${type.slice(0, 1)}`,
     [profileID]
   );
 
@@ -105,6 +106,12 @@ function MappingDialog({ open = false, onClose, type }: IMappingDialogProps) {
       dispatch(updateFrontPoints(mappingPoints));
     } else {
       setImgWidth(imageRef.current.clientWidth);
+      if (!profileID) return;
+      HttpService.post(`/auto/${type.slice(0, 1)}/${profileID}`, {}).then(
+        response => {
+          // dispatch(type === 'front' ? updateFrontPoints(response))
+        }
+      );
     }
   }, [open]);
 

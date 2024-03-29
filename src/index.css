@@ -7,7 +7,7 @@
 }
 
 ::-webkit-scrollbar {
-  @apply w-[8px] bg-gray-200;
+  @apply w-[8px] h-[8px] bg-gray-200;
 }
 
 ::-webkit-scrollbar-thumb {

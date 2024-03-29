@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { Navigate, Outlet, RouteObject, useRoutes } from 'react-router-dom';
 
 import { ALL_ROUTES, AUTH_ROUTES, MAIN_ROUTES } from '@/constants/routes';
@@ -8,7 +8,10 @@ import FAQs from '@/pages/main/FAQs';
 import Login from '@/pages/auth/Login';
 import Register from '@/pages/auth/Register';
 import Harmony from '@/pages/main/Harmony';
-import { useAppSelector } from '@/redux/store';
+
+import { authorize } from '@/redux/reducers/auth';
+import { useAppDispatch, useAppSelector } from '@/redux/store';
+import HttpService from '@/services/HttpService';
 
 const authRoutes: RouteObject[] = [
   {
@@ -46,12 +49,14 @@ const mainRoutes: RouteObject[] = [
   },
   {
     path: ALL_ROUTES.ROOT,
-    element: <Navigate to={AUTH_ROUTES.ROOT} />,
+    element: <Navigate to={MAIN_ROUTES.ABOUT} />,
   },
 ];
 
 export default function Routes() {
+  const dispatch = useAppDispatch();
   const isLogin = useAppSelector(state => state.auth.isLogin);
+
   const routes: RouteObject[] = useMemo(
     () => [
       {
@@ -70,6 +75,12 @@ export default function Routes() {
     ],
     [isLogin]
   );
+
+  useEffect(() => {
+    HttpService.get('/auth').then(response => {
+      dispatch(authorize());
+    });
+  }, []);
 
   return useRoutes(routes);
 }

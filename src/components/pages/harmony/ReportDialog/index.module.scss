@@ -1,0 +1,35 @@
+.header {
+  @apply flex gap-x-2 items-end;
+  > p {
+    @apply text-3xl uppercase;
+  }
+  > .badges {
+    > span {
+      @apply rounded-full px-4 py-0.5 bg-green-500 text-xs border-1 border-green-700;
+    }
+  }
+}
+
+.content {
+  @apply flex flex-col items-center w-fit;
+
+  .tablist {
+    @apply flex gap-x-2;
+  }
+}
+
+.scoreCell {
+  @apply w-full relative text-xs;
+  > span {
+    @apply absolute transform -translate-x-1/2 -translate-y-full;
+  }
+  > .colorbar {
+    @apply bg-gradient-to-r h-2 from-red-700 to-green-500 relative rounded-full;
+    > span {
+      @apply h-full w-0.5 bg-white absolute;
+    }
+  }
+  .minmax {
+    @apply flex justify-between;
+  }
+}

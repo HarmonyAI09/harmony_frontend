@@ -3,9 +3,6 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
-      borderWidth: {
-        1: '1px',
-      },
       fontFamily: {
         Poppins: 'Poppins',
       },
@@ -27,6 +24,7 @@ export default {
         success: '#763edd',
         dark: '#0c121c',
         darkblue: '#242c48',
+        emphasize: '#333e62',
       },
       ringColor: {
         primary: '#fbfcfc',
@@ -54,6 +52,10 @@ export default {
       },
       minHeight: {
         screen: '100vh',
+      },
+      borderWidth: {
+        1: '1px',
+        3: '3px',
       },
     },
   },

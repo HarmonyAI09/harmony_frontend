@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { LuUsers2 } from 'react-icons/lu';
 import { ImSphere } from 'react-icons/im';
 import { TbSettingsSearch } from 'react-icons/tb';
@@ -6,12 +6,27 @@ import { TbSettingsSearch } from 'react-icons/tb';
 import Button from '@/components/forms/Button';
 import Radio from '@/components/forms/Radio';
 import RadioGroup from '@/components/forms/RadioGroup';
+import ReportDialog from '@/components/pages/harmony/ReportDialog';
+
+import { useAppDispatch, useAppSelector } from '@/redux/store';
+import { updateRace, updateGender } from '@/redux/reducers/setting';
 
 import classes from './index.module.scss';
 
 function Settings() {
-  const [gender, setGender] = useState('');
-  const [race, setRace] = useState('');
+  const dispatch = useAppDispatch();
+  const gender = useAppSelector(state => state.settting.gender);
+  const race = useAppSelector(state => state.settting.race);
+  const mappingPoints = useAppSelector(state => state.settting.mappingPoints);
+  const [isReportDialog, openReportDialog] = useState(false);
+
+  const isAbleToReport = useMemo(() => {
+    return !!gender && !!race && mappingPoints.front.length > 0;
+  }, [gender, race, mappingPoints]);
+
+  const onViewReportClick = () => {
+    openReportDialog(true);
+  };
 
   return (
     <div className={classes.root}>
@@ -24,7 +39,7 @@ function Settings() {
         </div>
         <RadioGroup
           value={gender}
-          onChange={setGender}
+          onChange={(value: string) => dispatch(updateGender(value))}
           className={classes.radioGroup}
         >
           <Radio label="Male" value="male" />
@@ -43,7 +58,7 @@ function Settings() {
         </div>
         <RadioGroup
           value={race}
-          onChange={setRace}
+          onChange={(value: string) => dispatch(updateRace(value))}
           className={classes.radioGroup}
         >
           <Radio label="Caucasian" value="caucasian" />
@@ -67,10 +82,16 @@ function Settings() {
           variant="contained"
           color="success"
           className={classes.radioGroup}
+          disabled={!isAbleToReport}
+          onClick={onViewReportClick}
         >
           View Report
         </Button>
       </div>
+      <ReportDialog
+        open={isReportDialog}
+        onClose={() => openReportDialog(false)}
+      />
     </div>
   );
 }

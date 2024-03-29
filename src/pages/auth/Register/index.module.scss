@@ -1,5 +1,5 @@
 .root {
-  @apply flex flex-col my-auto;
+  @apply flex flex-col my-auto w-[400px] shrink-0;
   > h1 {
     @apply font-bold text-5xl mb-8 text-center;
   }

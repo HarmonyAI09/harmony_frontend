@@ -3,7 +3,7 @@
 }
 
 .root {
-  @apply flex flex-col max-w-screen-lg h-fit w-full h-4/5 border-1 border-secondary;
+  @apply flex flex-col max-w-screen-lg 2xl:max-w-screen-xl h-fit w-full h-4/5 border-1 border-secondary;
   > .header {
     @apply bg-secondary relative py-4 px-6;
     > span.close {
@@ -14,7 +14,7 @@
     }
   }
   > .body {
-    @apply bg-primary grow;
+    @apply bg-primary grow overflow-y-auto;
   }
 }
 

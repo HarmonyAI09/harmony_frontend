@@ -1,0 +1,10 @@
+.root {
+  @apply flex;
+  > div {
+    @apply shrink-0 text-sm flex items-center justify-center max-h-24 overflow-y-auto;
+  }
+
+  > div.clamp {
+    @apply line-clamp-1;
+  }
+}

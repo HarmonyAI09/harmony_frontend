@@ -3,7 +3,7 @@
   .container {
     @apply flex grow overflow-y-auto gap-x-2;
     .workspace {
-      @apply grow overflow-y-auto bg-secondary;
+      @apply grow overflow-y-auto bg-secondary border-1 border-secondary;
     }
   }
 }

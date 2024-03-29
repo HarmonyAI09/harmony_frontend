@@ -1,9 +1,11 @@
 import { DragEvent, useEffect, useMemo, useRef, useState } from 'react';
-import clsx from 'clsx';
+import { MdOutlineAutoFixHigh } from 'react-icons/md';
 
-import { MODEL_IMAGE_WIDTH, SERVER_URI } from '@/config';
-import { SAMPLE_LANDMARKS } from '@/constants/landmark';
 import Dialog from '@/components/forms/Dialog';
+import { SAMPLE_LANDMARKS } from '@/constants/landmark';
+import { ORIGIN_IMAGE_SIZE, CURRENT_IMAGE_SIZE, SERVER_URI } from '@/config';
+import { useAppDispatch, useAppSelector } from '@/redux/store';
+import { updateFrontPoints, updateSidePoints } from '@/redux/reducers/setting';
 
 import FrontPointModelSrc from '@/assets/images/points/front.jpg';
 import SidePointModelSrc from '@/assets/images/points/side.jpg';
@@ -16,7 +18,8 @@ interface IMappingDialogProps {
 }
 
 function MappingDialog({ open = false, onClose, type }: IMappingDialogProps) {
-  const rawImageUri = `${SERVER_URI}/img/sample/f`;
+  const dispatch = useAppDispatch();
+  const profileID = useAppSelector(state => state.settting.profileID);
 
   const [imgWidth, setImgWidth] = useState(0);
   const [cursor, setCursor] = useState<{ x: number; y: number }>({
@@ -35,10 +38,18 @@ function MappingDialog({ open = false, onClose, type }: IMappingDialogProps) {
     [type]
   );
 
+  const modelImageSrc = useMemo(
+    () => `${SERVER_URI}/img/${profileID}/${type === 'front' ? 'f' : 's'}`,
+    [profileID]
+  );
+
   const matchPoint = useMemo(() => {
     if (dragIndex.current === -1 || dragOrder.current === -1) return null;
     const point = SAMPLE_LANDMARKS[dragIndex.current + 1][dragOrder.current];
-    return { x: (point.x * imgWidth) / 800, y: (point.y * imgWidth) / 800 };
+    return {
+      x: (point.x * imgWidth) / ORIGIN_IMAGE_SIZE,
+      y: (point.y * imgWidth) / ORIGIN_IMAGE_SIZE,
+    };
   }, [dragIndex.current, dragOrder.current, mappingPoints]);
 
   const isSamePt = (first: any, second: any) => {
@@ -90,7 +101,11 @@ function MappingDialog({ open = false, onClose, type }: IMappingDialogProps) {
 
   useEffect(() => {
     if (!imageRef.current) return;
-    setImgWidth(imageRef.current.clientWidth);
+    if (!open) {
+      dispatch(updateFrontPoints(mappingPoints));
+    } else {
+      setImgWidth(imageRef.current.clientWidth);
+    }
   }, [open]);
 
   useEffect(() => {
@@ -98,8 +113,8 @@ function MappingDialog({ open = false, onClose, type }: IMappingDialogProps) {
     setMappingPoints(
       SAMPLE_LANDMARKS.slice(1, 30).map((landmarks: any[]) => {
         return landmarks.map((landmark: any) => ({
-          x: Math.floor((landmark.x * imgWidth) / 800),
-          y: Math.floor((landmark.y * imgWidth) / 800),
+          x: Math.floor((landmark.x * imgWidth) / ORIGIN_IMAGE_SIZE),
+          y: Math.floor((landmark.y * imgWidth) / ORIGIN_IMAGE_SIZE),
         }));
       })
     );
@@ -113,7 +128,13 @@ function MappingDialog({ open = false, onClose, type }: IMappingDialogProps) {
       body={
         <div className={classes.images}>
           <div className={classes.model}>
-            <img src={pointModelSrc} />
+            <img
+              src={pointModelSrc}
+              style={{
+                maxWidth: CURRENT_IMAGE_SIZE,
+                maxHeight: CURRENT_IMAGE_SIZE,
+              }}
+            />
             {matchPoint && (
               <span
                 className={classes.landmark}
@@ -125,7 +146,7 @@ function MappingDialog({ open = false, onClose, type }: IMappingDialogProps) {
             )}
           </div>
           <div className={classes.real} ref={imageRef}>
-            <img src={rawImageUri} alt="Default model image" />
+            <img src={modelImageSrc} alt="Default model image" />
             {mappingPoints.map((landmarks: any[], index: number) => (
               <>
                 {landmarks[0] && (
@@ -150,22 +171,23 @@ function MappingDialog({ open = false, onClose, type }: IMappingDialogProps) {
                 )}
               </>
             ))}
-            <div
-              className={clsx(classes.magnifier, {
-                [classes.invisible]: !isDragging,
-              })}
-              style={{
-                backgroundImage: `url(${rawImageUri})`,
-                backgroundPositionX:
-                  -(cursor.x * MODEL_IMAGE_WIDTH) / imgWidth + 32,
-                backgroundPositionY:
-                  -(cursor.y * MODEL_IMAGE_WIDTH) / imgWidth + 32,
-                left: cursor.x,
-                top: cursor.y,
-              }}
-            >
-              <span />
-            </div>
+            <span className={classes.autoMap}>
+              <MdOutlineAutoFixHigh />
+            </span>
+            {isDragging && (
+              <div
+                className={classes.magnifier}
+                style={{
+                  backgroundImage: `url(${modelImageSrc})`,
+                  backgroundPositionX:
+                    -(cursor.x * CURRENT_IMAGE_SIZE * 2) / imgWidth + 32,
+                  backgroundPositionY:
+                    -(cursor.y * CURRENT_IMAGE_SIZE * 2) / imgWidth + 32,
+                }}
+              >
+                <span />
+              </div>
+            )}
           </div>
         </div>
       }

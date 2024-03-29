@@ -6,23 +6,23 @@ export interface AuthState {
 }
 
 const initialState: AuthState = {
-  isLogin: true,
+  isLogin: false,
 };
 
 export const authReducer = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    login: state => {
+    authorize: state => {
       state.isLogin = true;
     },
-    logout: state => {
+    unauthorize: state => {
       state.isLogin = false;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { login } = authReducer.actions;
+export const { authorize, unauthorize } = authReducer.actions;
 
 export default authReducer.reducer;

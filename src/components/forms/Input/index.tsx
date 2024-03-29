@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import classes from './index.module.scss';
@@ -10,6 +10,8 @@ interface IInputProps {
   isForgot?: boolean;
   forgotUrl?: string;
   required?: boolean;
+  value?: string;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 function Input({
@@ -19,6 +21,8 @@ function Input({
   isForgot = false,
   forgotUrl = '',
   required = false,
+  value = '',
+  onChange = () => {},
 }: IInputProps) {
   const [isDirty, setIsDirty] = useState(false);
 
@@ -33,7 +37,7 @@ function Input({
         )}
         {isForgot && <Link to={forgotUrl}>Forgot your password?</Link>}
       </div>
-      <input type={type} name={name} />
+      <input type={type} name={name} value={value} onChange={onChange} />
     </div>
   );
 }

@@ -15,6 +15,7 @@ type ButtonProps = ComponentProps<'button'> & {
 
 function Button({
   children,
+  disabled = false,
   variant = 'contained',
   color = 'primary',
   className = '',
@@ -40,13 +41,16 @@ function Button({
       ? classes.white
       : '';
 
+  const disabledClassName = disabled ? classes.disabled : '';
+
   return (
     <button
-      onClick={onClick}
+      onClick={disabled ? () => {} : onClick}
       className={clsx(
         classes.root,
         variantClassName,
         colorClassName,
+        disabledClassName,
         className
       )}
     >

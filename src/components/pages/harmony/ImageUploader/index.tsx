@@ -1,6 +1,8 @@
 import { ChangeEvent, useMemo, useRef, useState } from 'react';
 import { BiCloudUpload } from 'react-icons/bi';
 import { TbFaceId } from 'react-icons/tb';
+import { enqueueSnackbar } from 'notistack';
+import { v4 as uuidv4 } from 'uuid';
 import { PinturaEditor } from '@pqina/react-pintura';
 import {
   // editor
@@ -13,27 +15,25 @@ import {
   setPlugins,
   plugin_crop,
   plugin_crop_locale_en_gb,
-  plugin_finetune,
   plugin_finetune_locale_en_gb,
   plugin_finetune_defaults,
-  plugin_filter,
   plugin_filter_locale_en_gb,
   plugin_filter_defaults,
-  plugin_annotate,
   plugin_annotate_locale_en_gb,
   markup_editor_defaults,
   markup_editor_locale_en_gb,
-  PinturaDefaultImageReaderResult,
   PinturaDefaultImageWriterResult,
 } from '@pqina/pintura';
 
-import Dialog from '@/components/forms/Dialog';
+import MappingDialog from '@/components/pages/harmony/MappingDialog';
+import HttpService from '@/services/HttpService';
+import { updateProfileID } from '@/redux/reducers/setting';
+import { useAppDispatch } from '@/redux/store';
 
 import FrontPlaceholderSrc from '@/assets/images/templates/front_placeholder.jpg';
 import SidePlaceholderSrc from '@/assets/images/templates/side_placeholder.jpg';
 import classes from './index.module.scss';
 import '@pqina/pintura/pintura.css';
-import MappingDialog from '../MappingDialog';
 
 setPlugins(plugin_crop);
 
@@ -59,11 +59,13 @@ interface IImageUploaderProps {
 }
 
 function ImageUploader({ type = 'front' }: IImageUploaderProps) {
+  const dispatch = useAppDispatch();
+
   const [isEditing, setIsEditing] = useState(false);
   const [isMapping, openMappingDialog] = useState(false);
   const [fileSrc, setFileSrc] = useState<string>('');
   const [resSrc, setResSrc] = useState<string>('');
-  // const [resBin, setResBin] = useState<File | null>(null);
+  const [rawImgSrc, setRawImgSrc] = useState<File | null>(null);
   const editorRef = useRef<PinturaEditor>(null);
 
   const placeholderSrc = useMemo(
@@ -71,15 +73,9 @@ function ImageUploader({ type = 'front' }: IImageUploaderProps) {
     [type]
   );
 
-  const onMappingClick = () => {
-    openMappingDialog(true);
-    // @todo
-    // Upload Request
-  };
-
   const onImageCrop = (res: PinturaDefaultImageWriterResult) => {
-    // setResBin(res.dest);
     setResSrc(URL.createObjectURL(res.dest));
+    setRawImgSrc(res.dest);
     setIsEditing(false);
   };
 
@@ -87,6 +83,23 @@ function ImageUploader({ type = 'front' }: IImageUploaderProps) {
     if (!e.target.files || !e.target.files.length) return;
     setFileSrc(URL.createObjectURL(e.target.files[0]));
     setIsEditing(true);
+  };
+
+  const onMappingClick = () => {
+    openMappingDialog(true);
+
+    const imageID = uuidv4();
+    const imageData = new FormData();
+    if (rawImgSrc) imageData.append('img', rawImgSrc);
+    HttpService.post(
+      `/img/${imageID}/${type === 'front' ? 'f' : 's'}`,
+      imageData
+    ).then(response => {
+      const { success } = response;
+      if (success) {
+        dispatch(updateProfileID(imageID));
+      }
+    });
   };
 
   return (
@@ -124,14 +137,6 @@ function ImageUploader({ type = 'front' }: IImageUploaderProps) {
           enableCanvasAlpha={true}
         />
       )}
-      {/* <Dialog
-        open={isMapping}
-        onClose={() => openMappingDialog(false)}
-        header={<></>}
-        body={
-          
-        }
-      /> */}
       <MappingDialog
         open={isMapping}
         onClose={() => openMappingDialog(false)}

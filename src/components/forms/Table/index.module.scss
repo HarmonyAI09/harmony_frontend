@@ -1,12 +1,12 @@
 .root {
-  @apply overflow-y-auto;
+  @apply flex flex-col grow overflow-y-auto;
   > .header {
-    @apply flex py-2 px-4 bg-secondary w-fit;
+    @apply flex py-2 px-4 bg-secondary gap-x-2;
     > div {
       @apply shrink-0 text-sm text-center;
     }
   }
   > .body {
-    @apply flex flex-col py-2 px-4;
+    @apply flex flex-col grow py-2 px-4 overflow-y-auto;
   }
 }

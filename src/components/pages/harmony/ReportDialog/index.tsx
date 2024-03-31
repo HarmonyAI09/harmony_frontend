@@ -1,21 +1,28 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 
 import { ASSESSMENTS } from '@/constants/analysis';
+import { GENDERS } from '@/constants/gender';
+import { ETHNICITIES } from '@/constants/ethnicity';
 import Dialog from '@/components/forms/Dialog';
 import Table, { IColumn } from '@/components/forms/Table';
-import TabPanel from '@/components/forms/TabPanel';
-import TabProvider from '@/components/forms/TabProvider';
-import { useAppSelector } from '@/redux/store';
+import { useAppDispatch, useAppSelector } from '@/redux/store';
+import { createProfile } from '@/redux/reducers/profile';
+import { loadFeatures } from '@/redux/reducers/analysis';
+import HttpService from '@/services/HttpService';
 
 import classes from './index.module.scss';
 
-const calcScorePos = (alias: string, score: number): number => {
+const getCursorStyle = (alias: string, score: number): object => {
   const analysis = (ASSESSMENTS as any)[alias];
   const scores = (analysis.scores as number[]) || [];
-  if (!analysis || scores.length < 2) return 0;
-  return Math.floor(
+  let percent = 0;
+  if (!analysis || scores.length < 2) percent = 0.0;
+  percent = Math.floor(
     ((score - scores.slice(-1)[0]) / (scores[0] - scores.slice(-1)[0])) * 100
   );
+  return percent < 50
+    ? { left: `${percent}%` }
+    : { right: `${100 - percent}%` };
 };
 
 interface IReportDialogProps {
@@ -24,18 +31,27 @@ interface IReportDialogProps {
 }
 
 function ReportDialog({ open, onClose }: IReportDialogProps) {
-  const [activePanel, setActivePanel] = useState('front');
+  const dispatch = useAppDispatch();
   const analysis = useAppSelector(state => state.analysis);
+  const setting = useAppSelector(state => state.setting);
+
   const columns: IColumn[] = [
     {
       title: 'Image',
       key: 'image',
-      row: (row: any) => <img alt="Analysis image" src={row.image} />,
+      basis: 100,
+      row: (row: any) => (
+        <img
+          alt="Analysis image"
+          src={row.image}
+          className={classes.imageCell}
+        />
+      ),
     },
     {
       title: 'Measurement Name',
       key: 'name',
-      clamp: true,
+      justify: 'left',
     },
     {
       title: 'Value',
@@ -46,57 +62,57 @@ function ReportDialog({ open, onClose }: IReportDialogProps) {
       key: 'score',
       row: (row: any) => (
         <div className={classes.scoreCell}>
-          <span style={{ left: `${calcScorePos(row.alias, row.score)}%` }}>
-            {row.score}
-          </span>
           <div className={classes.colorbar}>
-            <span style={{ left: `${calcScorePos(row.alias, row.score)}%` }} />
-          </div>
-          <div className={classes.minmax}>
-            <span>{(ASSESSMENTS as any)[row.alias].scores.slice(-1)[0]}</span>
-            <span>{(ASSESSMENTS as any)[row.alias].scores[0]}</span>
+            <span style={getCursorStyle(row.alias, row.score)} />
           </div>
         </div>
       ),
     },
     {
-      title: 'Ideal Range',
-      key: 'range',
+      title: 'Meaning',
+      key: 'meaning',
+      basis: 300,
+      scroll: true,
+      row: (row: any) => <p className={classes.meaningCell}>{row.meaning}</p>,
     },
-    { title: 'Meaning', key: 'meaning', basis: 300 },
     {
       title: 'Advice',
       key: 'advice',
+      justify: 'left',
       scroll: true,
       basis: 500,
     },
   ];
 
+  const onReportClose = () => {
+    dispatch(
+      createProfile({
+        ID: setting.profileID,
+        gender: setting.gender,
+        race: setting.race,
+        mappingPts: [
+          ...setting.mappingPoints.front,
+          ...(setting.mappingPoints.side || []),
+        ],
+      })
+    );
+    onClose();
+  };
+
   return (
     <Dialog
       open={open}
-      onClose={onClose}
+      onClose={onReportClose}
       header={
         <div className={classes.header}>
-          <p>{analysis.totalScore}% Facial Harmony</p>
+          <p>{analysis.score.total}% Facial Harmony</p>
           <div className={classes.badges}>
-            <span>{analysis.frontData.subScore}% front score</span>
-            {analysis.sideData && (
-              <span>{analysis.sideData.subScore}% Side Score</span>
-            )}
+            <span>{analysis.score.front}% front score</span>
+            <span>{analysis.score.side}% Side Score</span>
           </div>
         </div>
       }
-      body={
-        <div className={classes.content}>
-          <TabProvider value={activePanel} onChange={setActivePanel}>
-            <TabPanel value="front">
-              <Table columns={columns} rows={analysis.frontData.analyses} />
-            </TabPanel>
-            {analysis.sideData && <TabPanel value="side"></TabPanel>}
-          </TabProvider>
-        </div>
-      }
+      body={<Table columns={columns} rows={analysis.analyses} />}
     />
   );
 }

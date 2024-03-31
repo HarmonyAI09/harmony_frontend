@@ -1,11 +1,11 @@
 import { DragEvent, useEffect, useMemo, useRef, useState } from 'react';
-import { MdOutlineAutoFixHigh } from 'react-icons/md';
+import { TbRefresh } from 'react-icons/tb';
 
 import Dialog from '@/components/forms/Dialog';
 import { SAMPLE_LANDMARKS } from '@/constants/landmark';
 import { ORIGIN_IMAGE_SIZE, CURRENT_IMAGE_SIZE, SERVER_URI } from '@/config';
 import { useAppDispatch, useAppSelector } from '@/redux/store';
-import { updateFrontPoints, updateSidePoints } from '@/redux/reducers/setting';
+import { updateFrontPts, updateSidePts } from '@/redux/reducers/setting';
 
 import FrontPointModelSrc from '@/assets/images/points/front.jpg';
 import SidePointModelSrc from '@/assets/images/points/side.jpg';
@@ -20,42 +20,58 @@ interface IMappingDialogProps {
 
 function MappingDialog({ open = false, onClose, type }: IMappingDialogProps) {
   const dispatch = useAppDispatch();
-  const profileID = useAppSelector(state => state.settting.profileID);
 
-  const [imgWidth, setImgWidth] = useState(0);
+  const profileID = useAppSelector(state => state.setting.profileID);
+  const mappingPts = useAppSelector(state => state.setting.mappingPoints);
+
   const [cursor, setCursor] = useState<{ x: number; y: number }>({
     x: -100,
     y: -100,
   });
-  const [mappingPoints, setMappingPoints] = useState<any[]>([]);
+  const [autoPts, setAutoPts] = useState<any[]>([]);
+  const [scaledPts, setScaledPts] = useState<any[]>([]);
   const [isDragging, setIsDragging] = useState(false);
 
   const imageRef = useRef<HTMLDivElement>(null);
   const dragIndex = useRef<number>(-1);
   const dragOrder = useRef<number>(-1);
 
-  const pointModelSrc = useMemo(
+  const ptModelSrc = useMemo(
     () => (type === 'front' ? FrontPointModelSrc : SidePointModelSrc),
     [type]
   );
 
-  const modelImageSrc = useMemo(
-    () => `${SERVER_URI}/img/${profileID}/${type.slice(0, 1)}`,
+  const rawModelSrc = useMemo(
+    () =>
+      profileID ? `${SERVER_URI}/img/${profileID}/${type.slice(0, 1)}` : '',
     [profileID]
   );
 
-  const matchPoint = useMemo(() => {
+  const dragPt = useMemo(() => {
     if (dragIndex.current === -1 || dragOrder.current === -1) return null;
-    const point = SAMPLE_LANDMARKS[dragIndex.current + 1][dragOrder.current];
+    const imgSize = imageRef.current?.clientWidth || 0;
+    const point = SAMPLE_LANDMARKS.slice(type === 'front' ? 0 : 30)[
+      dragIndex.current
+    ][dragOrder.current];
     return {
-      x: (point.x * imgWidth) / ORIGIN_IMAGE_SIZE,
-      y: (point.y * imgWidth) / ORIGIN_IMAGE_SIZE,
+      x: (point.x * imgSize) / ORIGIN_IMAGE_SIZE,
+      y: (point.y * imgSize) / ORIGIN_IMAGE_SIZE,
     };
-  }, [dragIndex.current, dragOrder.current, mappingPoints]);
+  }, [dragIndex.current, dragOrder.current, scaledPts]);
 
   const isSamePt = (first: any, second: any) => {
     if (!first || !second) return false;
     return first.x === second.x && first.y === second.y;
+  };
+
+  const getScaledPts = (originPts: any[], originSize: number) => {
+    const imgSize = imageRef.current?.clientWidth || 0;
+    return originPts.map((landmarks: any[]) => {
+      return landmarks.map((landmark: any) => ({
+        x: Math.floor((landmark.x * imgSize) / originSize),
+        y: Math.floor((landmark.y * imgSize) / originSize),
+      }));
+    });
   };
 
   const onMarkDragStart =
@@ -82,8 +98,8 @@ function MappingDialog({ open = false, onClose, type }: IMappingDialogProps) {
       pageY = e.clientY - offsetY;
 
     setCursor({ x: pageX, y: pageY });
-    setMappingPoints(
-      mappingPoints.map((landmarks: any[], index: number) =>
+    setScaledPts(
+      scaledPts.map((landmarks: any[], index: number) =>
         index === dragIndex.current
           ? isSamePt(landmarks[0], landmarks[1])
             ? [
@@ -100,61 +116,68 @@ function MappingDialog({ open = false, onClose, type }: IMappingDialogProps) {
     );
   };
 
+  const onResetMappingClick = () => {
+    setScaledPts(getScaledPts(autoPts, CURRENT_IMAGE_SIZE));
+  };
+
+  const onMappingClose = () => {
+    dispatch(
+      type === 'front' ? updateFrontPts(scaledPts) : updateSidePts(scaledPts)
+    );
+    onClose();
+  };
+
   useEffect(() => {
-    if (!imageRef.current) return;
-    if (!open) {
-      dispatch(updateFrontPoints(mappingPoints));
-    } else {
-      setImgWidth(imageRef.current.clientWidth);
-      if (!profileID) return;
+    if (!open) return;
+    if (profileID) {
       HttpService.post(`/auto/${type.slice(0, 1)}/${profileID}`, {}).then(
         response => {
-          // dispatch(type === 'front' ? updateFrontPoints(response))
+          const { points } = response;
+          setAutoPts(points);
+          if (!mappingPts[type].length) {
+            setScaledPts(getScaledPts(points as any[], CURRENT_IMAGE_SIZE));
+          } else {
+            setScaledPts(
+              getScaledPts(mappingPts[type] as any[], CURRENT_IMAGE_SIZE)
+            );
+          }
         }
       );
     }
-  }, [open]);
-
-  useEffect(() => {
-    if (!imgWidth) return;
-    setMappingPoints(
-      SAMPLE_LANDMARKS.slice(1, 30).map((landmarks: any[]) => {
-        return landmarks.map((landmark: any) => ({
-          x: Math.floor((landmark.x * imgWidth) / ORIGIN_IMAGE_SIZE),
-          y: Math.floor((landmark.y * imgWidth) / ORIGIN_IMAGE_SIZE),
-        }));
-      })
-    );
-  }, [SAMPLE_LANDMARKS, imgWidth]);
+  }, [open, profileID]);
 
   return (
     <Dialog
       open={open}
-      onClose={onClose}
+      onClose={onMappingClose}
       header={<p className={classes.dlgTitle}>Image mapping</p>}
       body={
         <div className={classes.images}>
           <div className={classes.model}>
             <img
-              src={pointModelSrc}
+              src={ptModelSrc}
               style={{
                 maxWidth: CURRENT_IMAGE_SIZE,
                 maxHeight: CURRENT_IMAGE_SIZE,
               }}
             />
-            {matchPoint && (
+            {dragPt && (
               <span
                 className={classes.landmark}
                 style={{
-                  left: matchPoint.x,
-                  top: matchPoint.y,
+                  left: dragPt.x,
+                  top: dragPt.y,
                 }}
               />
             )}
           </div>
           <div className={classes.real} ref={imageRef}>
-            <img src={modelImageSrc} alt="Default model image" />
-            {mappingPoints.map((landmarks: any[], index: number) => (
+            {profileID ? (
+              <img src={rawModelSrc} alt="Default model image" />
+            ) : (
+              <></>
+            )}
+            {scaledPts.map((landmarks: any[], index: number) => (
               <>
                 {landmarks[0] && (
                   <span
@@ -164,6 +187,7 @@ function MappingDialog({ open = false, onClose, type }: IMappingDialogProps) {
                     onDrag={onMarkDraging}
                     onDragEnd={onMarkDragEnd(index)}
                     draggable={true}
+                    hidden={index === 0}
                   />
                 )}
                 {landmarks[1] && !isSamePt(landmarks[0], landmarks[1]) && (
@@ -178,18 +202,25 @@ function MappingDialog({ open = false, onClose, type }: IMappingDialogProps) {
                 )}
               </>
             ))}
-            <span className={classes.autoMap}>
-              <MdOutlineAutoFixHigh />
+            <span className={classes.autoMap} onClick={onResetMappingClick}>
+              <TbRefresh />
             </span>
-            {isDragging && (
+            {isDragging && imageRef.current?.clientWidth && (
               <div
                 className={classes.magnifier}
                 style={{
-                  backgroundImage: `url(${modelImageSrc})`,
+                  backgroundImage: `url(${rawModelSrc})`,
                   backgroundPositionX:
-                    -(cursor.x * CURRENT_IMAGE_SIZE * 2) / imgWidth + 32,
+                    -(cursor.x * CURRENT_IMAGE_SIZE * 2) /
+                      imageRef.current.clientWidth +
+                    48,
                   backgroundPositionY:
-                    -(cursor.y * CURRENT_IMAGE_SIZE * 2) / imgWidth + 32,
+                    -(cursor.y * CURRENT_IMAGE_SIZE * 2) /
+                      imageRef.current.clientWidth +
+                    48,
+                  backgroundSize: `${CURRENT_IMAGE_SIZE * 2}px ${
+                    CURRENT_IMAGE_SIZE * 2
+                  }px`,
                 }}
               >
                 <span />

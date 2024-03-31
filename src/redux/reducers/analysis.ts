@@ -1,5 +1,7 @@
+import { SERVER_URI } from '@/config';
+import { ASSESSMENTS } from '@/constants/analysis';
 import { createSlice } from '@reduxjs/toolkit';
-// import type { PayloadAction } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
 interface IAnalysis {
   image: string;
@@ -7,51 +9,92 @@ interface IAnalysis {
   alias: string;
   value: number;
   score: number;
-  range: string;
   meaning: string;
   advice?: string;
 }
 
+interface IReqFeature {
+  measure: string;
+  value: number;
+  index: number;
+}
+
 export interface AnalysisState {
-  totalScore: number;
-  frontData: {
-    subScore: number;
-    analyses: IAnalysis[];
+  score: {
+    front: number;
+    side: number;
+    total: number;
   };
-  sideData?: {
-    subScore: number;
-    analyses: IAnalysis[];
-  };
+  analyses: IAnalysis[];
 }
 
 const initialState: AnalysisState = {
-  totalScore: 33.58,
-  frontData: {
-    subScore: 55.3,
-    analyses: [
-      {
-        image: '',
-        name: 'Eye Separation Ratio(%)',
-        alias: 'GonialAngle',
-        value: 43.61,
-        score: 4.38,
-        range: '45.00 - 47.90',
-        meaning:
-          'Your eyes have a slightly abnormal spacing relative to your facial width. They may begin to appear either close set (low values) or wide set (high values).',
-        advice:
-          'While extremely difficult to change the actual underlying morphology of your eyes, there are a few ways to improve this assessment: 1) Lose body-fat to create a thinner face, thereby increasing your ESR and making your eyes appear wider set. The opposite also holds true -- if you have overly wide set eyes, gaining some weight on your face can lead to the appearance of more normally spaced eyes. 2) Hairstyles to alter your perceived facial width. Along the same lines as facial fat, you can play around with hairstyles that add width to your face or reduce it. For example, if you have extremely wide set eyes, longer hairstyles that cover the sides of your face or add width can improve your perceived facial harmony. If your eyes are closer set, shorter hairstyles with shorter sides may suit your face better. 3) Cheekbone implants to increase the width of your face. Or, zygomatic reduction surgery to do the opposite. Overall, the only thing you can do is alter your facial width, but not the actual spacing of your eyes themselves. Craniofacial surgery can be used to correct severe cases of facial deformity, but it is not typically used to make minor corrections to eye spacing.',
-      },
-    ],
+  score: {
+    front: 0,
+    side: 0,
+    total: 0,
   },
+  analyses: [],
 };
 
 export const analysisReducer = createSlice({
   name: 'analysis',
   initialState,
-  reducers: {},
+  reducers: {
+    loadFeatures: (
+      state: AnalysisState,
+      action: PayloadAction<{ ID: string; features: IReqFeature[] }>
+    ) => {
+      state.analyses = action.payload.features.map(
+        (feature: IReqFeature, index: number) => ({
+          image: `${SERVER_URI}/img/feat/${action.payload.ID}/${index}`,
+          name: feature.measure,
+          alias: feature.measure,
+          value: feature.value,
+          score: (ASSESSMENTS as any)[feature.measure].scores[feature.index],
+          meaning: (ASSESSMENTS as any)[feature.measure].notes[feature.index],
+          advice:
+            feature.index === 0
+              ? 'N/A'
+              : (ASSESSMENTS as any)[feature.measure].advice,
+        })
+      );
+
+      const { total: frontTot, score: frontScore } = action.payload.features
+        .slice(0, 23)
+        .reduce(
+          (tot: { total: number; score: number }, feature: IReqFeature) => ({
+            total: tot.total + (ASSESSMENTS as any)[feature.measure].scores[0],
+            score:
+              tot.score +
+              (ASSESSMENTS as any)[feature.measure].scores[feature.index],
+          }),
+          { total: 0, score: 0 }
+        );
+      const { total: sideTot, score: sideScore } = action.payload.features
+        .slice(23)
+        .reduce(
+          (tot: { total: number; score: number }, feature: IReqFeature) => ({
+            total: tot.total + (ASSESSMENTS as any)[feature.measure].scores[0],
+            score:
+              tot.score +
+              (ASSESSMENTS as any)[feature.measure].scores[feature.index],
+          }),
+          { total: 0, score: 0 }
+        );
+
+      state.score = {
+        total: Math.floor(
+          ((frontScore + sideScore) / (frontTot + sideTot)) * 100
+        ),
+        front: Math.floor((frontScore / frontTot) * 100),
+        side: Math.floor((sideScore / sideTot) * 100),
+      };
+    },
+  },
 });
 
 // Action creators are generated for each case reducer function
-export const {} = analysisReducer.actions;
+export const { loadFeatures } = analysisReducer.actions;
 
 export default analysisReducer.reducer;

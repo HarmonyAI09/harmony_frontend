@@ -1,10 +1,23 @@
 .root {
-  @apply flex;
+  @apply flex py-2 gap-x-2;
   > div {
     @apply shrink-0 text-sm flex items-center justify-center max-h-24 overflow-y-auto;
   }
-
   > div.clamp {
-    @apply line-clamp-1;
+    > * {
+      @apply line-clamp-1;
+    }
+  }
+  > div.scroll {
+    @apply items-start;
+  }
+  > div.justifyLeft {
+    @apply justify-start;
+  }
+  > div.justifyCenter {
+    @apply justify-center;
+  }
+  > div.justifyRight {
+    @apply justify-end;
   }
 }

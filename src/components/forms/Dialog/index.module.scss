@@ -1,9 +1,9 @@
 .screen {
-  @apply h-screen w-screen fixed top-0 left-0 flex items-center justify-center hidden backdrop-blur-md z-[500];
+  @apply h-screen w-screen fixed top-0 left-0 flex items-center justify-center backdrop-blur-md z-[500];
 }
 
 .root {
-  @apply flex flex-col max-w-screen-lg 2xl:max-w-screen-xl h-fit w-full h-4/5 border-1 border-secondary;
+  @apply flex flex-col max-w-screen-lg 2xl:max-w-screen-xl 3xl:max-w-screen-2xl 4xl:max-w-screen-3xl h-fit w-full h-4/5 border-1 border-secondary;
   > .header {
     @apply bg-secondary relative py-4 px-6;
     > span.close {
@@ -14,10 +14,6 @@
     }
   }
   > .body {
-    @apply bg-primary grow overflow-y-auto;
+    @apply bg-primary grow flex flex-col overflow-y-auto;
   }
-}
-
-.visible {
-  @apply flex;
 }

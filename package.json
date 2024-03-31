@@ -21,6 +21,7 @@
     "@mui/material": "^5.14.8",
     "@pqina/react-pintura": "^9.0.3",
     "@reduxjs/toolkit": "^1.9.5",
+    "@splinetool/runtime": "^1.0.91",
     "@types/uuid": "^9.0.8",
     "axios": "^1.6.8",
     "clsx": "^2.1.0",

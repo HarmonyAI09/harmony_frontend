@@ -4,7 +4,7 @@
   > .model {
     @apply relative select-none;
     > .landmark {
-      @apply absolute bg-green-500 size-2 rounded-full -translate-x-0.5 -translate-y-0.5;
+      @apply absolute bg-green-500 size-2 rounded-full transform -translate-x-1/2 -translate-y-1/2;
     }
   }
   > .real {
@@ -13,7 +13,7 @@
       @apply select-none;
     }
     > .landmark {
-      @apply absolute size-1 rounded-full bg-red-500 cursor-pointer;
+      @apply absolute size-1 rounded-full bg-red-500 cursor-pointer transform -translate-x-1/2 -translate-y-1/2;
     }
     > .autoMap {
       @apply size-12 rounded-full bg-success absolute bottom-4 left-4 flex items-center justify-center cursor-pointer;
@@ -22,7 +22,7 @@
       }
     }
     > .magnifier {
-      @apply absolute -right-12 -bottom-12 size-24 transform -translate-x-1/2 -translate-y-1/2 rounded-full border-1 border-darkblue flex items-center justify-center cursor-pointer;
+      @apply absolute -right-12 -bottom-12 size-24 transform -translate-x-1/2 -translate-y-1/2  border-1 border-emphasize flex items-center justify-center cursor-pointer rounded-full;
 
       > span {
         @apply bg-red-500 size-1 rounded-full;

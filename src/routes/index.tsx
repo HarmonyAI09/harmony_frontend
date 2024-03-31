@@ -77,6 +77,7 @@ export default function Routes() {
   );
 
   useEffect(() => {
+    if (isLogin) return;
     HttpService.get('/auth').then(response => {
       dispatch(authorize());
     });

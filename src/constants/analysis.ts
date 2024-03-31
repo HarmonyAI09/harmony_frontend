@@ -115,7 +115,7 @@ export const ASSESSMENTS = {
         2) Rhinplasty to alter your nose shape in a specific way to either increase or reduce this angle. One such example would be reducing your nasal projection, which tends to reduce the angle and vice versa.`,
   },
   NasoLabialAngle: {
-    scores: [[7.5, 3.75, 1.875, 0.9375, -3, -5, -7.5]],
+    scores: [7.5, 3.75, 1.875, 0.9375, -3, -5, -7.5],
     notes: [
       'Your nose has a pleasant and ideal shape. Your nose is likely not too upturned or droopy and your philtrum probably has a pleasant shape.',
       'Your nose has a pleasant shape. Your nose is likely not too upturned or droopy and your philtrum probably has a pleasant shape.',
@@ -610,14 +610,12 @@ export const ASSESSMENTS = {
   LowerThirdProportion: {
     scores: [5, 2.5, 1.25, 0, -1.25, -2.5],
     notes: [
-      [
-        'Your lower third has a harmonious spacing between its features.',
-        'Your lower third has a harmonious spacing between its features.',
-        'Although not ideal, your lower third has a normal spacing between its features. The upper portion (upper lip/philtrum) of your lower third may be either slightly too short (low values) or long (high values) relative to the lower portion (chin/lower lip).',
-        'Your lower third has a slightly abnormal spacing between its features. The upper portion (upper lip/philtrum) of your lower third may be either too short (low values) or long (high values) relative to the lower portion (chin/lower lip).',
-        'Your lower third has an abnormal spacing between its features. The upper portion (upper lip/philtrum) of your lower third may be either too short (low values) or long (high values) relative to the lower portion (chin/lower lip).',
-        'Your lower third has an extremely abnormal spacing between its features. The upper portion (upper lip/philtrum) of your lower third may be either too short (low values) or long (high values) relative to the lower portion (chin/lower lip).',
-      ],
+      'Your lower third has a harmonious spacing between its features.',
+      'Your lower third has a harmonious spacing between its features.',
+      'Although not ideal, your lower third has a normal spacing between its features. The upper portion (upper lip/philtrum) of your lower third may be either slightly too short (low values) or long (high values) relative to the lower portion (chin/lower lip).',
+      'Your lower third has a slightly abnormal spacing between its features. The upper portion (upper lip/philtrum) of your lower third may be either too short (low values) or long (high values) relative to the lower portion (chin/lower lip).',
+      'Your lower third has an abnormal spacing between its features. The upper portion (upper lip/philtrum) of your lower third may be either too short (low values) or long (high values) relative to the lower portion (chin/lower lip).',
+      'Your lower third has an extremely abnormal spacing between its features. The upper portion (upper lip/philtrum) of your lower third may be either too short (low values) or long (high values) relative to the lower portion (chin/lower lip).',
     ],
     advice: `Altering chin height can be achieved through the following methods: jaw implants, chin implants, vertical genioplasty, facial hair. An increase in chin height lowers this proportion if it is too high.
         Rhinoplasty can reduce the droopiness of the nasal tip, thereby increasing this proportion. Altering lip size does not substantially affect this proportion.`,
@@ -637,7 +635,7 @@ export const ASSESSMENTS = {
         You should factor in how that change would alter your other facial proportions (e.g., facial thirds).`,
   },
   MedialCanthalAngle: {
-    scores: [[10, 5, 2.5, 0, -2.5, -5, -10]],
+    scores: [10, 5, 2.5, 0, -2.5, -5, -10],
     notes: [
       'The inner corner of your eye is harmonious. It has distinct shape and angularity, while not being overly angular.',
       'The inner corner of your eye is generally harmonious. It has distinct shape and angularity, while not being overly angular.',

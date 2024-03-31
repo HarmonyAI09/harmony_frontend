@@ -5,6 +5,7 @@ export interface IColumn {
   title: string;
   key: string;
   basis?: number | string;
+  justify?: 'left' | 'center' | 'right';
   scroll?: boolean;
   clamp?: boolean;
   row?: (row: any) => React.ReactNode;
@@ -20,7 +21,7 @@ function Table({ columns, rows }: ITableProps) {
     <div className={classes.root}>
       <div className={classes.header}>
         {columns.map((column: IColumn, index: number) => (
-          <div key={index} style={{ flexBasis: column.basis || 150 }}>
+          <div key={index} style={{ width: column.basis || 150 }}>
             {column.title}
           </div>
         ))}

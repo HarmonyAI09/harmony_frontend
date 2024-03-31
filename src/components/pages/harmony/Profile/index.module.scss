@@ -1,14 +1,39 @@
 .root {
-  @apply bg-primary flex items-center gap-x-4 px-4 py-2 rounded-sm border-dark border-1 hover:border-secondary cursor-pointer transition;
+  @apply bg-primary flex items-center gap-x-4 px-2 py-2 pl-4 rounded-sm border-dark border-1 hover:border-secondary cursor-pointer transition;
 
   .slide {
     @apply rounded-full overflow-hidden size-12 shrink-0;
   }
 
   .profile {
-    @apply text-sm;
+    @apply text-sm grow relative flex flex-col;
+    > p {
+      @apply flex gap-x-2 items-center;
+    }
     > .gender {
-      @apply text-xs rounded-full bg-success px-2;
+      @apply text-xs rounded-full bg-success px-2 self-start;
+    }
+    > .nameInput {
+      @apply outline-none bg-primary border-1 border-primary;
+    }
+    > .badge,
+    > .saveBtn {
+      @apply rounded-full absolute right-0 bottom-0;
+    }
+
+    .saveBtn {
+      @apply bg-blue-500 px-2.5 text-sm;
+    }
+
+    .badge {
+      @apply bg-success text-primary flex items-center gap-x-0.5 px-2;
+      > svg {
+        @apply fill-primary;
+      }
     }
   }
+}
+
+.active {
+  @apply border-1 border-secondary;
 }

@@ -1,7 +1,5 @@
 import { MdClose } from 'react-icons/md';
 
-import clsx from 'clsx';
-
 import classes from './index.module.scss';
 
 interface IDialogProps {
@@ -17,8 +15,8 @@ function Dialog({
   header,
   body,
 }: IDialogProps) {
-  return (
-    <div className={clsx(classes.screen, { [classes.visible]: open })}>
+  return open ? (
+    <div className={classes.screen}>
       <div className={classes.root}>
         <div className={classes.header}>
           <div>{header}</div>
@@ -29,6 +27,8 @@ function Dialog({
         <div className={classes.body}>{body}</div>
       </div>
     </div>
+  ) : (
+    <></>
   );
 }
 

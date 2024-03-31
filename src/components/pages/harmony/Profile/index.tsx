@@ -1,34 +1,113 @@
+import { ChangeEvent, useMemo, useState } from 'react';
+import { HiOutlinePencil } from 'react-icons/hi';
+import { GiCheckMark } from 'react-icons/gi';
+import clsx from 'clsx';
+
+import { GENDERS } from '@/constants/gender';
+import { ETHNICITIES } from '@/constants/ethnicity';
+import { saveProfile, updateName } from '@/redux/reducers/profile';
+import { useAppDispatch } from '@/redux/store';
+import HttpService from '@/services/HttpService';
+
+import { SERVER_URI } from '@/config';
 import classes from './index.module.scss';
 
 interface IProfile {
-  _id?: string;
+  ID: string;
   name: string;
   gender: string;
   race: string;
-  images: string[];
-  createdAt: string;
+  mappingPts: any[];
+  active?: boolean;
+  isSaved?: boolean;
+  onClick?: () => void;
 }
 
 function Profile({
-  _id = '',
+  ID = '',
   name = '',
   gender = '',
   race = '',
-  images = [],
-  createdAt = '',
+  mappingPts = [],
+  active = false,
+  isSaved = false,
+  onClick = () => {},
 }: IProfile) {
+  const dispatch = useAppDispatch();
+
+  const [nameInput, setNameInput] = useState(name);
+  const [isEditing, setIsEditing] = useState(false);
+
+  const genderName = useMemo(() => {
+    const genderItem = GENDERS.find(item => item.value === gender);
+    return genderItem?.title || '';
+  }, [gender]);
+
+  const raceName = useMemo(() => {
+    const raceItem = ETHNICITIES.find(item => item.value === race);
+    return raceItem?.title || '';
+  }, [race]);
+
+  const onNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setNameInput(e.target.value);
+  };
+
+  const onEditingClose = () => {
+    dispatch(updateName({ ID, name: nameInput }));
+    setIsEditing(false);
+  };
+
+  const onSaveClick = () => {
+    const genderIndex = GENDERS.findIndex(item => item.value === gender);
+    const raceIndex = ETHNICITIES.findIndex(item => item.value === race);
+    HttpService.post('/profile', {
+      id: ID,
+      name,
+      gender: genderIndex,
+      race: raceIndex,
+      points: mappingPts,
+    }).then(response => {
+      dispatch(saveProfile({ ID }));
+    });
+  };
+
   return (
-    <div className={classes.root}>
+    <div
+      className={clsx(classes.root, { [classes.active]: active })}
+      onClick={onClick}
+    >
       <div className={classes.slide}>
-        {images.map((imgSrc: string, index: number) => (
-          <img key={index} alt="Slide image" src={imgSrc} />
-        ))}
+        <img alt="Front image" src={`${SERVER_URI}/img/${ID}/f`} />
       </div>
       <div className={classes.profile}>
-        <p>{name}</p>
-        <span className={classes.gender}>{gender}</span>
-        <p>{race}</p>
-        <p>{createdAt}</p>
+        {!isEditing ? (
+          <p>
+            {name}
+            <span onClick={() => setIsEditing(true)}>
+              <HiOutlinePencil />
+            </span>
+          </p>
+        ) : (
+          <input
+            value={nameInput}
+            onBlur={onEditingClose}
+            onChange={onNameChange}
+            className={classes.nameInput}
+            onKeyDown={(e: any) => e.keyCode === 13 && onEditingClose()}
+          />
+        )}
+        <span className={classes.gender}>{genderName}</span>
+        <p>{raceName}</p>
+        {isSaved ? (
+          <span className={classes.badge}>
+            <GiCheckMark />
+            Saved
+          </span>
+        ) : (
+          <button className={classes.saveBtn} onClick={onSaveClick}>
+            Save
+          </button>
+        )}
       </div>
     </div>
   );

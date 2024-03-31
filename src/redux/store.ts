@@ -9,7 +9,7 @@ import analysisReducer from '@/redux/reducers/analysis';
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    settting: settingReducer,
+    setting: settingReducer,
     profile: profileReducer,
     analysis: analysisReducer,
   },

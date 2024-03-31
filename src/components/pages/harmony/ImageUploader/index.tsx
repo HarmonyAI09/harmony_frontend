@@ -1,4 +1,4 @@
-import { ChangeEvent, useMemo, useRef, useState } from 'react';
+import { ChangeEvent, SyntheticEvent, useMemo, useRef, useState } from 'react';
 import { BiCloudUpload } from 'react-icons/bi';
 import { TbFaceId } from 'react-icons/tb';
 import { enqueueSnackbar } from 'notistack';
@@ -28,7 +28,8 @@ import {
 import MappingDialog from '@/components/pages/harmony/MappingDialog';
 import HttpService from '@/services/HttpService';
 import { updateProfileID } from '@/redux/reducers/setting';
-import { useAppDispatch } from '@/redux/store';
+import { useAppDispatch, useAppSelector } from '@/redux/store';
+import { SERVER_URI } from '@/config';
 
 import FrontPlaceholderSrc from '@/assets/images/templates/front_placeholder.jpg';
 import SidePlaceholderSrc from '@/assets/images/templates/side_placeholder.jpg';
@@ -60,13 +61,20 @@ interface IImageUploaderProps {
 
 function ImageUploader({ type = 'front' }: IImageUploaderProps) {
   const dispatch = useAppDispatch();
+  const profileID = useAppSelector(state => state.setting.profileID);
 
   const [isEditing, setIsEditing] = useState(false);
   const [isMapping, openMappingDialog] = useState(false);
   const [fileSrc, setFileSrc] = useState<string>('');
-  const [resSrc, setResSrc] = useState<string>('');
+  const [destSrc, setDestSrc] = useState<string>('');
   const [rawImgSrc, setRawImgSrc] = useState<File | null>(null);
   const editorRef = useRef<PinturaEditor>(null);
+
+  const destURI = useMemo(
+    () =>
+      profileID ? `${SERVER_URI}/img/${profileID}/${type.slice(0, 1)}` : '',
+    [profileID]
+  );
 
   const placeholderSrc = useMemo(
     () => (type === 'front' ? FrontPlaceholderSrc : SidePlaceholderSrc),
@@ -74,7 +82,7 @@ function ImageUploader({ type = 'front' }: IImageUploaderProps) {
   );
 
   const onImageCrop = (res: PinturaDefaultImageWriterResult) => {
-    setResSrc(URL.createObjectURL(res.dest));
+    setDestSrc(URL.createObjectURL(res.dest));
     setRawImgSrc(res.dest);
     setIsEditing(false);
   };
@@ -86,18 +94,17 @@ function ImageUploader({ type = 'front' }: IImageUploaderProps) {
   };
 
   const onMappingClick = () => {
-    openMappingDialog(true);
-
-    const imageID = uuidv4();
+    const randomID = uuidv4();
     const imageData = new FormData();
     if (rawImgSrc) imageData.append('img', rawImgSrc);
     HttpService.post(
-      `/img/${imageID}/${type === 'front' ? 'f' : 's'}`,
+      `/img/${profileID || randomID}/${type.slice(0, 1)}`,
       imageData
     ).then(response => {
       const { success } = response;
       if (success) {
-        dispatch(updateProfileID(imageID));
+        if (!profileID) dispatch(updateProfileID(randomID));
+        openMappingDialog(true);
       }
     });
   };
@@ -105,8 +112,13 @@ function ImageUploader({ type = 'front' }: IImageUploaderProps) {
   return (
     <div className={classes.root}>
       <img
-        src={resSrc || placeholderSrc}
-        alt={`${type}placeholder`}
+        src={destSrc || destURI}
+        alt="Dest image"
+        width="150"
+        height="150"
+        onError={(e: SyntheticEvent<HTMLImageElement, Event>) => {
+          e.currentTarget.src = placeholderSrc;
+        }}
         hidden={isEditing}
       />
       <div className={classes.buttons}>

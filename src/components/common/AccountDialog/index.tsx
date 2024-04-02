@@ -1,10 +1,12 @@
 import { ChangeEvent, useEffect, useState } from 'react';
+import { enqueueSnackbar } from 'notistack';
 
 import Dialog from '@/components/forms/Dialog';
 import Input from '@/components/forms/Input';
 import Button from '@/components/forms/Button';
 import { IAccount } from '@/redux/reducers/auth';
 import { useAppSelector } from '@/redux/store';
+import HttpService from '@/services/HttpService';
 
 import userImgSrc from '@/assets/images/navbar/user.png';
 import classes from './index.module.scss';
@@ -44,6 +46,23 @@ function AccountDialog({
   const onAccountClose = () => {
     onClose();
   };
+
+  const onUpdateClick = () => {
+    HttpService.post('/user/update', {
+      user_id: account?.userID,
+      customer_id: account?.customerID,
+      username: userAccount.username,
+      email: userAccount.email,
+      first_name: userAccount.firstname,
+      last_name: userAccount.lastname,
+      subscription_id: account?.subscribeID,
+      credits: account?.credits,
+    }).then(response => {
+      enqueueSnackbar('Account information updated.', { variant: 'success' });
+    });
+  };
+
+  const onPassChangeClick = () => {};
 
   useEffect(() => {
     if (!account) return;
@@ -102,6 +121,7 @@ function AccountDialog({
                   variant="contained"
                   color="success"
                   className={classes.updateBtn}
+                  onClick={onUpdateClick}
                 >
                   Update
                 </Button>
@@ -130,6 +150,7 @@ function AccountDialog({
                   variant="contained"
                   color="success"
                   className={classes.changeBtn}
+                  onClick={onPassChangeClick}
                 >
                   Change
                 </Button>

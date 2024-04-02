@@ -8,8 +8,8 @@ export interface AuthState {
 
 export interface IAccount {
   userID?: string;
-  customerID: string;
-  subscribeID: string | null;
+  customerID?: string;
+  subscribeID?: string | null;
   username: string;
   email: string;
   firstname: string;
@@ -64,10 +64,19 @@ export const authReducer = createSlice({
         credits,
       };
     },
+    updateSubscribe: (
+      state: AuthState,
+      action: PayloadAction<string | null>
+    ) => {
+      if (state.account) {
+        state.account.subscribeID = action.payload;
+      }
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { authorize, unauthorize, loadAccount } = authReducer.actions;
+export const { authorize, unauthorize, loadAccount, updateSubscribe } =
+  authReducer.actions;
 
 export default authReducer.reducer;

@@ -13,9 +13,9 @@
     }
 
     > .header {
-      @apply flex flex-col gap-y-2;
-      > .cardElement * {
-        @apply text-primary;
+      @apply flex items-center gap-x-10;
+      > .cardElement {
+        @apply text-primary shrink-0 grow;
       }
       > p {
         @apply text-lg;

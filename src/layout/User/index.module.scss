@@ -1,12 +1,12 @@
 .root {
   @apply relative;
   > .avatar {
-    @apply cursor-pointer flex flex-col;
+    @apply cursor-pointer flex flex-col items-center;
     > img {
       @apply size-14;
     }
     > p {
-      @apply text-xs text-center -mt-2;
+      @apply text-xs text-center -mt-1.5;
     }
   }
   > .dropdown {

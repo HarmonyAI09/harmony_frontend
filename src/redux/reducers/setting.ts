@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { v4 as uuidv4 } from 'uuid';
 
 export interface SettingState {
+  name: string;
   gender: string;
   race: string;
   profileID: string;
@@ -12,6 +14,7 @@ export interface SettingState {
 }
 
 export interface ProfileSetting {
+  name: string;
   gender: string;
   race: string;
   ID: string;
@@ -19,6 +22,7 @@ export interface ProfileSetting {
 }
 
 const initialState: SettingState = {
+  name: 'Untitled',
   gender: '',
   race: '',
   profileID: '',
@@ -32,7 +36,13 @@ export const settingReducer = createSlice({
   name: 'setting',
   initialState,
   reducers: {
+    initializeSetting: (state: SettingState) => {
+      if (!state.profileID) {
+        state.profileID = uuidv4();
+      }
+    },
     resetSetting: (state: SettingState) => {
+      state.name = 'Untitled';
       state.gender = '';
       state.race = '';
       state.profileID = '';
@@ -50,13 +60,11 @@ export const settingReducer = createSlice({
     updateSidePts: (state: SettingState, action: PayloadAction<any[]>) => {
       state.mappingPoints.side = action.payload;
     },
-    updateProfileID: (state: SettingState, action: PayloadAction<string>) => {
-      state.profileID = action.payload;
-    },
     loadSetting: (
       state: SettingState,
       action: PayloadAction<ProfileSetting>
     ) => {
+      state.name = action.payload.name;
       state.gender = action.payload.gender;
       state.race = action.payload.race;
       state.profileID = action.payload.ID;
@@ -68,11 +76,11 @@ export const settingReducer = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
+  initializeSetting,
   updateGender,
   updateRace,
   updateFrontPts,
   updateSidePts,
-  updateProfileID,
   resetSetting,
   loadSetting,
 } = settingReducer.actions;

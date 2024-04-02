@@ -1,25 +1,27 @@
-.images {
-  @apply grid grid-cols-2 gap-8 place-items-center h-full;
+.header {
+  @apply text-3xl;
+}
 
-  > .model {
-    @apply relative select-none;
-    > .landmark {
-      @apply absolute bg-green-500 size-2 rounded-full transform -translate-x-1/2 -translate-y-1/2;
+.images {
+  @apply flex gap-4 items-stretch justify-center h-full flex-wrap;
+  .image {
+    @apply h-full aspect-square;
+    > img {
+      @apply w-full h-full select-none;
     }
   }
-  > .real {
-    @apply relative select-none;
-    > img {
-      @apply select-none;
+
+  .template {
+    @apply relative;
+    > .matchPt {
+      @apply absolute size-1.5 rounded-full bg-blue-500 transform -translate-x-1/2 -translate-y-1/2;
     }
+  }
+  
+  .mapper {
+    @apply relative;
     > .landmark {
       @apply absolute size-1 rounded-full bg-red-500 cursor-pointer transform -translate-x-1/2 -translate-y-1/2;
-    }
-    > .autoMap {
-      @apply size-12 rounded-full bg-success absolute bottom-4 left-4 flex items-center justify-center cursor-pointer;
-      > svg {
-        @apply text-3xl;
-      }
     }
     > .magnifier {
       @apply absolute -right-12 -bottom-12 size-24 transform -translate-x-1/2 -translate-y-1/2  border-1 border-emphasize flex items-center justify-center cursor-pointer rounded-full;
@@ -28,7 +30,37 @@
         @apply bg-red-500 size-1 rounded-full;
       }
     }
+    > .autoDetectBtn {
+      @apply size-12 rounded-full bg-success absolute bottom-4 left-4 flex items-center justify-center cursor-pointer;
+      > svg {
+        @apply text-3xl;
+      }
+    }
   }
+
+  // > .model {
+  //   @apply relative select-none;
+  //   > .landmark {
+  //     @apply absolute bg-green-500 size-2 rounded-full transform -translate-x-1/2 -translate-y-1/2;
+  //   }
+  // }
+  // > .real {
+  //   @apply relative select-none h-full w-full;
+  //   > img {
+  //     @apply select-none w-full h-full;
+  //   }
+  //   > .landmark {
+  //     @apply absolute size-1 rounded-full bg-red-500 cursor-pointer transform -translate-x-1/2 -translate-y-1/2;
+  //   }
+  //
+  //   > .magnifier {
+  //     @apply absolute -right-12 -bottom-12 size-24 transform -translate-x-1/2 -translate-y-1/2  border-1 border-emphasize flex items-center justify-center cursor-pointer rounded-full;
+
+  //     > span {
+  //       @apply bg-red-500 size-1 rounded-full;
+  //     }
+  //   }
+  // }
 }
 
 .dlgTitle {

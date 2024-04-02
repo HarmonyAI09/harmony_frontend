@@ -25,14 +25,13 @@ import {
   PinturaDefaultImageWriterResult,
 } from '@pqina/pintura';
 
-import MappingDialog from '@/components/pages/harmony/MappingDialog';
-import HttpService from '@/services/HttpService';
-import { updateProfileID } from '@/redux/reducers/setting';
-import { useAppDispatch, useAppSelector } from '@/redux/store';
 import { SERVER_URI } from '@/config';
+import MappingDialog from '@/components/pages/harmony/MappingDialog';
+import { useAppDispatch, useAppSelector } from '@/redux/store';
+import HttpService from '@/services/HttpService';
 
-import FrontPlaceholderSrc from '@/assets/images/templates/front_placeholder.jpg';
-import SidePlaceholderSrc from '@/assets/images/templates/side_placeholder.jpg';
+import frontPHSrc from '@/assets/images/templates/front_placeholder.jpg';
+import sidePHSrc from '@/assets/images/templates/side_placeholder.jpg';
 import classes from './index.module.scss';
 import '@pqina/pintura/pintura.css';
 
@@ -65,59 +64,65 @@ function ImageUploader({ type = 'front' }: IImageUploaderProps) {
 
   const [isEditing, setIsEditing] = useState(false);
   const [isMapping, openMappingDialog] = useState(false);
-  const [fileSrc, setFileSrc] = useState<string>('');
-  const [destSrc, setDestSrc] = useState<string>('');
-  const [rawImgSrc, setRawImgSrc] = useState<File | null>(null);
+
+  const [uploadImageSrc, setUploadImageSrc] = useState<string>('');
+  const [cropImageSrc, setCropImageSrc] = useState<string>('');
   const editorRef = useRef<PinturaEditor>(null);
 
-  const destURI = useMemo(
-    () =>
-      profileID ? `${SERVER_URI}/img/${profileID}/${type.slice(0, 1)}` : '',
+  const phImageSrc = useMemo(
+    () => (type === 'front' ? frontPHSrc : sidePHSrc),
+    [type]
+  );
+  const uploadedImageSrc = useMemo(
+    () => `${SERVER_URI}/img/${profileID}/${type.slice(0, 1)}`,
     [profileID]
   );
 
-  const placeholderSrc = useMemo(
-    () => (type === 'front' ? FrontPlaceholderSrc : SidePlaceholderSrc),
-    [type]
-  );
-
   const onImageCrop = (res: PinturaDefaultImageWriterResult) => {
-    setDestSrc(URL.createObjectURL(res.dest));
-    setRawImgSrc(res.dest);
+    if (!res.dest) {
+      enqueueSnackbar('Image crop failed. Please retry to crop image.', {
+        variant: 'warning',
+      });
+    } else {
+      console.log(res.dest);
+      const imageData = new FormData();
+      imageData.append('img', res.dest);
+      HttpService.post(`/img/${profileID}/${type.slice(0, 1)}`, imageData).then(
+        response => {
+          const { success } = response;
+          if (success) {
+            enqueueSnackbar(
+              `${type === 'front' ? 'Front' : 'Side'} image uploaded.`,
+              { variant: 'success' }
+            );
+          }
+        }
+      );
+
+      setCropImageSrc(URL.createObjectURL(res.dest));
+    }
     setIsEditing(false);
   };
 
   const onFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || !e.target.files.length) return;
-    setFileSrc(URL.createObjectURL(e.target.files[0]));
+    setUploadImageSrc(URL.createObjectURL(e.target.files[0]));
     setIsEditing(true);
   };
 
   const onMappingClick = () => {
-    const randomID = uuidv4();
-    const imageData = new FormData();
-    if (rawImgSrc) imageData.append('img', rawImgSrc);
-    HttpService.post(
-      `/img/${profileID || randomID}/${type.slice(0, 1)}`,
-      imageData
-    ).then(response => {
-      const { success } = response;
-      if (success) {
-        if (!profileID) dispatch(updateProfileID(randomID));
-        openMappingDialog(true);
-      }
-    });
+    openMappingDialog(true);
   };
 
   return (
     <div className={classes.root}>
       <img
-        src={destSrc || destURI}
-        alt="Dest image"
+        src={cropImageSrc || uploadedImageSrc}
+        alt="Uploader image"
         width="150"
         height="150"
         onError={(e: SyntheticEvent<HTMLImageElement, Event>) => {
-          e.currentTarget.src = placeholderSrc;
+          e.currentTarget.src = phImageSrc;
         }}
         hidden={isEditing}
       />
@@ -138,7 +143,7 @@ function ImageUploader({ type = 'front' }: IImageUploaderProps) {
       {isEditing && (
         <PinturaEditor
           {...editorDefaults}
-          src={fileSrc}
+          src={uploadImageSrc}
           ref={editorRef}
           util={'crop'}
           imageCropAspectRatio={1}
@@ -147,13 +152,12 @@ function ImageUploader({ type = 'front' }: IImageUploaderProps) {
           previewUpscale={true}
           enableTransparencyGrid={true}
           enableCanvasAlpha={true}
+          imageCropLimitToImage={false}
         />
       )}
-      <MappingDialog
-        open={isMapping}
-        onClose={() => openMappingDialog(false)}
-        type={type}
-      />
+      {isMapping && (
+        <MappingDialog onClose={() => openMappingDialog(false)} type={type} />
+      )}
     </div>
   );
 }

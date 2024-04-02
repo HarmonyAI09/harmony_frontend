@@ -1,8 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import type { PayloadAction } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
 export interface AuthState {
   isLogin: boolean;
+  account?: IAccount;
+}
+
+export interface IAccount {
+  userID: string;
+  username: string;
+  email: string;
+  firstname: string;
+  lastname: string;
+  credits: number;
+}
+
+export interface IReqAccount {
+  user_id: string;
+  first_name: string;
+  last_name: string;
+  username: string;
+  email: string;
+  credits: number;
 }
 
 const initialState: AuthState = {
@@ -19,10 +38,22 @@ export const authReducer = createSlice({
     unauthorize: state => {
       state.isLogin = false;
     },
+    loadAccount: (state: AuthState, action: PayloadAction<IReqAccount>) => {
+      const { user_id, first_name, last_name, username, email, credits } =
+        action.payload;
+      state.account = {
+        userID: user_id,
+        username,
+        email,
+        firstname: first_name,
+        lastname: last_name,
+        credits,
+      };
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { authorize, unauthorize } = authReducer.actions;
+export const { authorize, unauthorize, loadAccount } = authReducer.actions;
 
 export default authReducer.reducer;

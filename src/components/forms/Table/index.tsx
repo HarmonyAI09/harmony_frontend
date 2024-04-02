@@ -28,7 +28,12 @@ function Table({ columns, rows }: ITableProps) {
       </div>
       <div className={classes.body}>
         {rows.map((row: any, index: number) => (
-          <TableRow key={index} columns={columns} row={row} />
+          <TableRow
+            key={index}
+            columns={columns}
+            row={row}
+            active={index < 7}
+          />
         ))}
       </div>
     </div>

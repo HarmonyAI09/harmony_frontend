@@ -150,3 +150,5 @@ export const SAMPLE_LANDMARKS = [
   [{ x: 210, y: 494 }], //58
   [{ x: 185, y: 428 }], //59
 ];
+
+export const SIDE_BLACK_PT_LIST = [24, 26, 4];

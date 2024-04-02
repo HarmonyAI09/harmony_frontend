@@ -35,14 +35,10 @@ function Register() {
       username: account.name,
       email: account.email,
       password: account.password,
-    })
-      .then(response => {
-        enqueueSnackbar('Account registered.', { variant: 'success' });
-        navigate('register', { replace: true });
-      })
-      .catch(err => {
-        enqueueSnackbar(err.response?.data.detail[0].msg, { variant: 'error' });
-      });
+    }).then(response => {
+      enqueueSnackbar('Account registered.', { variant: 'success' });
+      navigate('register', { replace: true });
+    });
   };
 
   return (

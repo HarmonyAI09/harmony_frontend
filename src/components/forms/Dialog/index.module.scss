@@ -7,7 +7,7 @@
   > .header {
     @apply bg-secondary relative py-4 px-6;
     > span.close {
-      @apply absolute top-1/2 right-2 size-9 rounded-full bg-success flex items-center justify-center transform -translate-y-1/2 cursor-pointer;
+      @apply absolute top-4 right-4 size-9 rounded-full bg-success flex items-center justify-center cursor-pointer;
       > svg {
         @apply text-2xl fill-primary;
       }

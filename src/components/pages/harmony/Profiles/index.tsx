@@ -12,12 +12,13 @@ import classes from './index.module.scss';
 
 function Profiles() {
   const dispatch = useAppDispatch();
+  const userID = useAppSelector(state => state.auth.account?.userID);
   const profileID = useAppSelector(state => state.setting.profileID);
   const profiles = useAppSelector(state => state.profile.profiles);
 
   useEffect(() => {
     if (!profiles.length) {
-      HttpService.get('/profile').then(response => {
+      HttpService.get(`/profile/${userID}`).then(response => {
         dispatch(loadProfiles(response));
       });
     }
@@ -34,6 +35,7 @@ function Profiles() {
             dispatch(
               loadSetting({
                 ID: profile.ID,
+                name: profile.name,
                 gender: profile.gender,
                 race: profile.race,
                 points: profile.mappingPts,

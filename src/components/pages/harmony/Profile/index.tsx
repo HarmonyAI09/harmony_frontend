@@ -1,12 +1,13 @@
 import { ChangeEvent, useMemo, useState } from 'react';
 import { HiOutlinePencil } from 'react-icons/hi';
 import { GiCheckMark } from 'react-icons/gi';
+import { FaDownload } from 'react-icons/fa6';
 import clsx from 'clsx';
 
 import { GENDERS } from '@/constants/gender';
 import { ETHNICITIES } from '@/constants/ethnicity';
 import { saveProfile, updateName } from '@/redux/reducers/profile';
-import { useAppDispatch } from '@/redux/store';
+import { useAppDispatch, useAppSelector } from '@/redux/store';
 import HttpService from '@/services/HttpService';
 
 import { SERVER_URI } from '@/config';
@@ -34,6 +35,8 @@ function Profile({
   onClick = () => {},
 }: IProfile) {
   const dispatch = useAppDispatch();
+  const userID = useAppSelector(state => state.auth.account?.userID);
+  const analyses = useAppSelector(state => state.analysis.analyses);
 
   const [nameInput, setNameInput] = useState(name);
   const [isEditing, setIsEditing] = useState(false);
@@ -62,12 +65,46 @@ function Profile({
     const raceIndex = ETHNICITIES.findIndex(item => item.value === race);
     HttpService.post('/profile', {
       id: ID,
+      user_id: userID,
       name,
       gender: genderIndex,
       race: raceIndex,
       points: mappingPts,
     }).then(response => {
       dispatch(saveProfile({ ID }));
+    });
+  };
+
+  const saveFile = (url: string, filename: string) => {
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
+
+  function s2ab(s: string) {
+    var buf = new ArrayBuffer(s.length);
+    var view = new Uint8Array(buf);
+    for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xff;
+    return buf;
+  }
+
+  const onDownClick = () => {
+    HttpService.post('/profile/download', {
+      id: ID,
+      name,
+      gender: genderName,
+      race: raceName,
+      features: analyses,
+    }).then((response: any) => {
+      const file = new Blob([response], {
+        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,',
+      });
+      const url = window.URL.createObjectURL(file);
+      saveFile(url, `${name}.xlsx`);
+      window.URL.revokeObjectURL(url);
     });
   };
 
@@ -108,6 +145,9 @@ function Profile({
             Save
           </button>
         )}
+        <span className={classes.downBtn} onClick={onDownClick}>
+          <FaDownload />
+        </span>
       </div>
     </div>
   );

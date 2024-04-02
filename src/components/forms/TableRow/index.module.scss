@@ -1,5 +1,5 @@
 .root {
-  @apply flex py-2 gap-x-2;
+  @apply flex relative;
   > div {
     @apply shrink-0 text-sm flex items-center justify-center max-h-24 overflow-y-auto;
   }
@@ -19,5 +19,9 @@
   }
   > div.justifyRight {
     @apply justify-end;
+  }
+
+  .blur {
+    @apply backdrop-blur-md absolute w-full h-full bg-white/10 left-0 top-0;
   }
 }

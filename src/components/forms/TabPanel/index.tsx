@@ -14,17 +14,9 @@ interface ITabPanelProps {
 function TabPanel({ value, children, className = '' }: ITabPanelProps) {
   const context = useContext(TabContext);
   return (
-    <div
-      className={clsx(
-        classes.root,
-        {
-          [classes.visible]: value === context.value,
-        },
-        className
-      )}
-    >
-      {children}
-    </div>
+    value === context.value && (
+      <div className={clsx(classes.root, className)}>{children}</div>
+    )
   );
 }
 

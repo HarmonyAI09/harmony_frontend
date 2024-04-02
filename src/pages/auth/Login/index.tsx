@@ -1,18 +1,18 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { ChangeEvent, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { enqueueSnackbar } from 'notistack';
 
 import Input from '@/components/forms/Input';
 import Button from '@/components/forms/Button';
 
-import { authorize } from '@/redux/reducers/auth';
-import { useAppDispatch } from '@/redux/store';
 import { AUTH_ROUTES, MAIN_ROUTES } from '@/constants/routes';
+import { authorize, loadAccount } from '@/redux/reducers/auth';
+import { useAppDispatch } from '@/redux/store';
+import HttpService from '@/services/HttpService';
+import { setupToken } from '@/utils/token';
 
 import GoogleIcon from '@/assets/svgs/google.svg';
 import classes from './index.module.scss';
-import { ChangeEvent, useState } from 'react';
-import HttpService from '@/services/HttpService';
-import { enqueueSnackbar } from 'notistack';
-import { setupToken } from '@/utils/token';
 
 interface IAccount {
   email: string;
@@ -26,7 +26,6 @@ const initialAccount: IAccount = {
 
 function Login() {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const [account, setAccount] = useState<IAccount>(initialAccount);
 
@@ -38,24 +37,15 @@ function Login() {
     const reqJson = new FormData();
     reqJson.append('username', account.email);
     reqJson.append('password', account.password);
-    HttpService.post('/auth/login', reqJson)
-      .then(response => {
-        const { access_token, refresh_token } = response;
-        setupToken(access_token, refresh_token);
-        dispatch(authorize());
-        navigate(`/${MAIN_ROUTES.HARMONY}`);
+    HttpService.post('/auth/login', reqJson).then(response => {
+      const { access_token, refresh_token } = response;
+      setupToken(access_token, refresh_token);
+      dispatch(authorize());
+      HttpService.get('/auth').then(response => {
+        dispatch(loadAccount(response));
         enqueueSnackbar('Login success.', { variant: 'success' });
-      })
-      .catch(err => {
-        if (err.response) {
-          const { status, data } = err.response;
-          if (status === 401) {
-            enqueueSnackbar(data.detail, { variant: 'error' });
-          } else {
-            enqueueSnackbar(data.detail[0].msg, { variant: 'error' });
-          }
-        }
       });
+    });
   };
 
   return (

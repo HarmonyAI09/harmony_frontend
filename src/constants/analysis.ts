@@ -1,5 +1,7 @@
 export const ASSESSMENTS = {
   GonialAngle: {
+    name: 'Gonial Angle',
+    unit: '°',
     scores: [40, 20, 10, 5, 0, -10, -20],
     notes: [
       'Your jaw has an ideal shape. Since your Gonial angle is neither too obtuse or acute, your jaw is likely neither too square or steep/rounded in shape.',
@@ -10,13 +12,31 @@ export const ASSESSMENTS = {
       'Your jawline is beginning to stray into the extremes and would not generally be considered harmonious. It is likely that your jaw is either too square or rounded in shape.',
       'Your jawline shape is at the extremes and would not generally be considered harmonious. It is likely that your jaw is either too square or rounded in shape.',
     ],
-    advice: `There are a few effective ways to improve your gonial angle. The best course to take depends on the severity and specifics of your case.
-        1) lose body-fat to reveal the underlying angularity of your jaw. 
-        2) correct malocclusion if that is causing your angle to be overly obtuse. (i.e., consult maxillofacial surgeon or orthodontist)
-        3) wear a bite guard if you grind your teeth. Bruxism can wear down your teeth and give your jaw an overly flat appearance.
-        4) Wraparound jaw implants to artificially create a jaw shape of your choosing.`,
+    advice: `There are a few effective ways to improve your gonial angle. The best course of action depends on the severity and specifics of your case.
+
+    LIFESTYLE CHANGES
+    1) Lose body-fat and reduce facial bloating to reveal the underlying angularity of your jaw.
+    2) Good posture can positively affect the appearance of your jawline. It may also help reduce the risk of developing jaw joint problems that can negatively impact your jaw's function.
+    3) Avoid excess chewing, which can result in an overdevelopment of your jaw muscles.
+    
+    NON SURGICAL INTERVENTIONS
+    4) Dermal filler around the jawline can alter its appearance, but it must be carefully catered to the patient. Facial balance should be considered.
+    5) Botox can atrophy the masseter muscle for patients with overly prominent jaw muscles.
+    6) Radiofrequency treatments and UI therapy may improve the skin laxity surrounding the jawline, resulting in a more angular appearance.
+    7) Correct any malocclusion if that is the cause of an overly steep mandible (lower jaw). Make sure to consult a Maxillofacial surgeon or Orthodontist if you are considering orthognathic surgery or corrective appliances.
+    
+    ORTHODONTIC INTERVENTIONS
+    8) Wear a bite guard if you grind your teeth. Bruxism can wear down your teeth and has been observed to cause a reduction in the gonial angle, resulting in a flatter appearance of the jaw. 
+    
+    SURGICAL INTERVENTIONS
+    9) Wraparound jaw implants to artificially customize a jaw shape.
+    10) A Genioplasty, or chin surgery, may affect the shape of your jawline.
+    11) Mandibular angle reduction involves shaving off part of the mandibular structure to reduce its prominence.
+    `,
   },
   NasofrontalAngle: {
+    name: 'Nasofrontal Angle',
+    unit: '°',
     scores: [15, 7.5, 3.75, 1.875, 0, -5],
     notes: [
       'The angle formed between your brow ridge and nose is pleasant. Your brow region is neither too soft or harsh.',
@@ -26,12 +46,24 @@ export const ASSESSMENTS = {
       'The angle formed between your brow ridge and nose is outside of a normal range. Your brow region is may appear too protrusive (low values) or soft (high values).',
       'The angle formed between your brow ridge and nose is outside at the extremes, indicating a lack of facial harmony. Your brow region is may appear too protrusive (low values) or soft (high values).',
     ],
-    advice: `While difficult to change the morphology of the brow region, there are a few ways to improve your nasofrontal angle. 
-        This is a sensitive area to change and it is not as common as other procedures.
-        1) Rhinoplasty can change the shape of the area around your nasion and dorsum, which can alter the angle.
-        2) custom forehead implants around the brow region can add projection and lower the angle if desired.`,
+    advice: `While it is difficult to change the morphology of the brow region, there are a few ways to improve your nasofrontal angle. This is a sensitive area and not as frequently operated upon.
+
+    LIFESTYLE CHANGES
+    1) Relaxing the muscles around your brow region may play a minor role in reducing its perceived prominence.
+    
+    NON SURGICAL INTERVENTIONS
+    2) Filler directed around the brow region can also increase its projection, thereby lowering the nasofrontal angle. 
+    
+    SURGICAL INTERVENTIONS
+    3) Rhinoplasty can change the shape of the area around your nasion and dorsum, which can alter the angle.
+    4) Custom forehead implants around the brow region can add projection and lower the angle if desired.
+    5) Brow bone reduction surgery may be an option for patients with excess brow protrusion or brow bossing. This may be more common for facial feminization procedures.
+    6) Fat grafting , where fat from another part of the body is injected into the forehead area, can subtly alter the nasofrontal angle.
+    7) A brow lift may subtly alter the soft tissue (skin & fat) around your brow region.`,
   },
   MandibularPlaneAngle: {
+    name: 'Mandibular Plane Angle',
+    unit: '°',
     scores: [12.5, 6.25, 3.125, 1.5625, -5, -10],
     notes: [
       'The slope of your mandible is harmonious, being neither too flat or downward grown. This is usually indicative of a healthy jaw and normal growth pattern.',
@@ -41,15 +73,30 @@ export const ASSESSMENTS = {
       'The slope of your mandible is outside of a normal range of values. At this point, the growth of your jaw indicates some hyper/hypo-divergent growth patterns. Your jaw may be either too flat (low values) or too steep (high values).',
       'The slope of your mandible is far outside of a normal range of values. At this point, the growth of your jaw indicates some hyper/hypo-divergent growth patterns. Your jaw may be either too flat (low values) or too steep (high values).',
     ],
-    advice: `There are a few effective ways to improve your MPA. 
-        The best course to take depends on the severity and specifics of your case. 
-        Most of the same advice from the GA would apply here since the MPA helps form the GA.
-        1) lose body-fat to reveal the underlying angularity of your jaw.
-        2) correct malocclusion if that is causing your angle to be overly obtuse. You especially want to address any hyper/hypo divergent growth patterns, where your jaw can become too elongated or short. This would yield the most profound effect since most unideal MPA have to do with one's teeth. (i.e., consult maxillofacial surgeon or orthodontist)
-        3) wear a bite guard if you grind your teeth. Bruxism can wear down your teeth and give your jaw an overly flat appearance.
-        4) Wraparound jaw implants to artificially create a jaw shape of your choosing.`,
+    advice: `There are a few effective ways to improve your MPA. The best course to take depends on the severity and specifics of your case. Most of the same advice from the Gonial angle would apply here since the MPA helps form the Gonial angle.
+
+    LIFESTYLE CHANGES
+    1) Lose body-fat and reduce facial bloating to reveal the underlying angularity of your jaw.
+    2) Good posture can positively affect the appearance of your jawline. It may also help reduce the risk of developing jaw joint problems that can negatively impact your jaw's function.
+    3) Avoid excess chewing, which can result in an overdevelopment of your jaw muscles.
+    
+    NON SURGICAL INTERVENTIONS
+    4) Dermal filler around the jawline can alter its appearance, but it must be carefully catered to the patient. Facial balance should be considered.
+    5) Botox can atrophy the masseter muscle for patients with overly prominent jaw muscles.
+    6) Radiofrequency treatments and UI therapy may improve the skin laxity surrounding the jawline, resulting in a more angular appearance.
+    7) Correct any malocclusion if that is the cause of an overly steep mandible (lower jaw). Make sure to consult a Maxillofacial surgeon or Orthodontist if you are considering orthognathic surgery or corrective appliances.
+    
+    ORTHODONTIC INTERVENTIONS
+    8) Wear a bite guard if you grind your teeth. Bruxism can wear down your teeth and has been observed to cause a reduction in the gonial angle, resulting in a flatter appearance of the jaw. 
+    
+    SURGICAL INTERVENTIONS
+    9) Wraparound jaw implants to artificially customize a jaw shape.
+    10) A Genioplasty, or chin surgery, may affect the shape of your jawline.
+    11) Mandibular angle reduction involves shaving off part of the mandibular structure to reduce its prominence.`,
   },
   RamusMandibleRatio: {
+    name: 'Ramus To Mandible Ratio',
+    unit: '',
     scores: [10, 5, 2.5, 1.25, -5, -10],
     notes: [
       'The length of your ramus relative your mandible is harmonious. Your ramus is neither too long or short.',
@@ -59,14 +106,23 @@ export const ASSESSMENTS = {
       'The length of your ramus relative your mandible falls outside of the normal range. Your ramus can be considered too short (low values) or too long (high values).',
       'Although not ideal, the length of your ramus relative your mandible is within a normal range of values. Your ramus is neither too long or short.',
     ],
-    advice: `The main thing we would seek to improving here is improving the ramus length. 
-        Shaving off bone and reducing ramus length is not really a viable procedure. 
-        For those who do need ramus shortening a unilateral Le Fort I osteotomy has been attempted in the literature. 
-        To add ramus height there is really only one option:custom wraparound jaw implants can add overall volume to the jaw. 
-        Keep in mind this would also add height to the mandible, thereby lengthening your face. 
-        That is worth considering given your other facial assessments.`,
+    advice: `While difficult to address, there are a few options to alter your Ramus length.
+
+    LIFESTYLE CHANGES
+    1) Losing facial fat or using jawline defining techniques like Gua sha, while not able to alter your bone structure, may improve the appearance of your jawline. 
+    
+    NON SURGICAL INTERVENTIONS
+    2) Filler directed at the ramus or gonion (bottom of the back jaw) may improve its perceived length.
+    
+    SURGICAL INTERVENTIONS
+    3) A unilateral Le Fort I osteotomy has been observed to reduce the ramus height in the literature as a result of reducing the midface length. 
+    4) Mandibular angle reduction can reduce the ramus length slightly, resulting in a more feminine jawline.
+    3) Custom wraparound jaw implants can add overall volume to the jaw. This would also add height to the mandible, thereby lengthening your face. It is worth factoring that in with your overall facial balance.
+    4) There are more invasive procedures like Distraction Osteogenesis that are used in severe cases of craniofacial abnormality.`,
   },
   FacialConvexityGlabella: {
+    name: 'Facial Convexity (glabella)',
+    unit: '°',
     scores: [10, 5, 2.5, 0, -2.5, -5],
     notes: [
       'You have a pleasant shape of the side profile. Neither part of your face -- upper, middle, or lower are in disharmony to one another. You also likely have a pleasant dental occlusion with no severe overjet or underbite.',
@@ -76,17 +132,30 @@ export const ASSESSMENTS = {
       'Your side profile shape is outside of the normal range. This can indicate that some part of your face -- upper, middle, or lower are in disharmony to one another. You may have some occlusal issues like perhaps a moderate overjet (low values) or underbite (high values).',
       'Your side profile shape is far outside of the normal range. This can indicate that some part of your face -- upper, middle, or lower are in extreme disharmony to one another. You certainly have some occlusal issues like perhaps an overjet (low values) or underbite (high values).',
     ],
-    advice: `To improve your facial convexity, we want to try and improve the balance in projection of your facial thirds. This is primarily done through altering the position of the upper jaw (maxilla) and lower jaw (mandible). 
-        Consulting an orthodontist or maxillofacial surgeon is the best bet as the course of action would depend on the severity of your case. Some options are:
-        1) Orthognathic surgery to forcibly alter the position of your upper/lower jaw to be in better alignment. This is more financially costly and invasive. This would be appropriate in cases of severe malocclusion.
-        2) braces may be the only thing needed to align your jaw.
-        3) other orthodontic contraptions can set your teeth in proper alignment.
-        4) facial hair around the chin can improve perceived chin projection, which can increase this angle into the harmonious range.
-        5) Brow implants if the glabella position is recessed can increase facial convexity.
-        6) Multiple-implant augmentation of the midface skeleton can simulate the visual appearance of Le Fort III osteotomy and advancement without altering dental occlusion. The entire midface is freed in the subperiosteal plane. The midface skeleton is augmented with a combination of porous polyethylene implants immobilized.
-        A precise course of action would require consulting a specialist and taking X-rays beforehand in the case of jaw surgery.`,
+    advice: `Improving your facial convexity requires altering the balance and projection of your facial thirds. This is primarily done through altering the position of the upper jaw (maxilla), lower jaw (mandible & chin), and to a lesser extent the brow region.
+
+    LIFESTYLE CHANGES
+    1) Achieving a healthy weight can naturally alter facial contours, as changes in body fat distribution can affect facial fullness and profiles.
+    
+    NON SURGICAL INTERVENTIONS
+    2) Facial hair around the chin can improve the perceived projection of your chin, resulting in a flatter facial profile.
+    3) Filler directed at regions like the lip/philtrum and chin can subtly alter the convexity of your profile.
+    
+    ORTHODONTIC INTERVENTIONS
+    Consulting an orthodontist or maxillofacial surgeon is the best way to improve the alignment of your jaw.
+    4) Braces or invisalign may yield subtle changes to your side profile. Correcting dental misalignments can alter the lip's position and improve the jawline, impacting the facial profile and convexity.
+    5) Orthodontic contraptions and appliances can influence jaw growth, particularly in young patients.
+    
+    SURGICAL INTERVENTIONS
+    6) Orthognathic surgery can alter the position of your upper and lower jaw to be in better alignment . There are also procedures to advance the jaw. These procedures are typically financially costly and invasive, requiring up to a year to fully recover . Orthognathic surgery is corrective in nature and appropriate in cases of severe malocclusion or facial recession.
+    7) Altering the projection of your brow region through filler, fat grafting, or implants can increase facial convexity. Reductions to brow ridge projection can lead to a softer and rounder profile.
+    8) Multiple-implant augmentation of the midface skeleton can simulate the visual appearance of Le Fort III osteotomy and advancement without altering dental occlusion. The entire midface is freed in the subperiosteal plane and augmented through implants to be more projected.
+    9) Chin augmentation or reduction can alter the chin's projection (i.e., sliding or reduction genioplasty). 
+    A precise course of action would require consulting a specialist.`,
   },
   SubmentalCervicalAngle: {
+    name: 'Submental Cervical Angle',
+    unit: '°',
     scores: [10, 5, 2.5, 0, -5],
     notes: [
       'The angle between your neck and lower jaw is harmonious and defined.',
@@ -95,12 +164,27 @@ export const ASSESSMENTS = {
       'The angle between your neck and lower jaw is outside of the normal range and may indicate lacking jaw definition.',
       'The angle between your neck and lower jaw is far outside of the normal range and may indicate lacking jaw definition.',
     ],
-    advice: `A few courses of action can improve the definition around your neck. 
-        1) lose body fat.
-        2) neck liposuction.
-        3) Other non-surgical subdermal skin tightening techniques may provide some improvement.`,
+    advice: `There are a few courses of action that can improve the definition around your neck and jaw. 
+
+    LIFESTYLE CHANGES
+    1) Losing body-fat and reducing facial bloating can improve the definition and contour of your jawline.
+    2) Improvements in posture can dramatically improve the appearance of your jawline.
+    
+    NON SURGICAL INTERVENTIONS
+    3) Kybella is an FDA-approved injectable treatment that destroys fat cells under the chin, reducing fat and improving the contour of the neck and jawline.
+    4) Radiofrequency (RF) Treatments: RF energy is used to tighten the skin and stimulate collagen production, which can improve skin laxity in the neck and submental area.
+    5) Ultrasound Therapy (e.g., Ultherapy): Utilizes focused ultrasound energy to lift and tighten loose skin, improving the definition of the neck and jawline.
+    
+    SURGICAL INTERVENTIONS
+    6) Submental liposuction can reduce loose skin or adipose tissue underneath the jawline.
+    7) Neck Lift (Lower Rhytidectomy): A surgical procedure that removes excess skin and fat from the neck and tightens the platysma muscle, significantly improving the submental-cervical angle.
+    8) Submentoplasty: A less invasive surgical option that combines liposuction with direct excision of fat and tightening of the platysma muscle through a small incision under the chin.
+    9) Platysmaplasty: A surgery that addresses the platysma muscle in the neck, tightening it to define the neck and jawline better.
+    `,
   },
   NasoFacialAngle: {
+    name: 'Nasofacial Angle',
+    unit: '°',
     scores: [9, 4.5, 2.25, 1.125, -2, -5],
     notes: [
       "This angle indicates a harmonious balance between your nose and chin. This encompasses your nose shape and position, as well as your chin's position. It can indicate that you have a pleasant jaw position, but not always. It mainly indicates that your nose is harmonious relative to your chin, but doesn't provide additional information on whether your chin is harmonious relative to other parts of your face.",
@@ -110,11 +194,31 @@ export const ASSESSMENTS = {
       "Your angle indicates an abnormal balance between your nose and chin. This encompasses your nose shape and position, as well as your chin's position. This indicates that your jaw's position relative to your nose is unfavorable, but it does not provide additional information regarding the relative positioning of your jaw like the facial convexity angle. ",
       "Your angle indicates an extremely abnormal balance between your nose and chin. This encompasses your nose shape and position, as well as your chin's position. This indicates that your jaw's position relative to your nose is unfavorable, but it does not provide additional information regarding the relative positioning of your jaw like the facial convexity angle. ",
     ],
-    advice: `Along with correcting any malocclusion (reference facial convexity glabella), there are a few ways to improve your nasofacial angle. The best course of action would depend on the specifics of your case:
-        1) Chin implants if your angle is too obtuse can help reduce the angle and boost harmony. Keep in mind this would have to consider other facial assessments as the change does not occur in isolation.
-        2) Rhinplasty to alter your nose shape in a specific way to either increase or reduce this angle. One such example would be reducing your nasal projection, which tends to reduce the angle and vice versa.`,
+    advice: `Improving the Nasofacial angle will generally require the same suggestions as the other facial assessments (i.e., facial convexity):
+
+    LIFESTYLE CHANGES
+    1) Achieving a healthy weight can naturally alter facial contours, as changes in body fat distribution can affect facial fullness and profiles.
+    
+    NON SURGICAL INTERVENTIONS
+    2) Facial hair around the chin can improve the perceived projection of your chin, resulting in a lower nasofacial angle.
+    3) Filler directed at regions like the nose and chin can subtly alter this angle.
+    
+    ORTHODONTIC INTERVENTIONS
+    Consulting an orthodontist or maxillofacial surgeon is the best way to improve the alignment of your jaw.
+    4) Braces or invisalign may yield subtle changes to your side profile. Correcting dental misalignments can alter the lip's position and improve the jawline, impacting the facial profile.
+    5) Orthodontic contraptions and appliances can influence jaw growth, particularly in young patients.
+    
+    SURGICAL INTERVENTIONS
+    6) Orthognathic surgery can alter the position of your upper and lower jaw to be in better alignment . There are also procedures to advance the jaw. These procedures are typically financially costly and invasive, requiring up to a year to fully recover . Orthognathic surgery is corrective in nature and appropriate in cases of severe malocclusion or facial recession.
+    7) Rhinoplasty can alter your nose shape in a specific way to either increase or reduce this angle. One such example would be reducing your nasal projection, which tends to reduce the angle and vice versa. 
+    8) Multiple-implant augmentation of the midface skeleton can simulate the visual appearance of Le Fort III osteotomy and advancement without altering dental occlusion. The entire midface is freed in the subperiosteal plane and augmented through implants to be more projected.
+    9) Chin augmentation or reduction can alter the chin's projection (i.e., sliding or reduction genioplasty). 
+    A precise course of action would require consulting a specialist.
+    `,
   },
   NasoLabialAngle: {
+    name: 'Nasolabial Angle',
+    unit: '°',
     scores: [7.5, 3.75, 1.875, 0.9375, -3, -5, -7.5],
     notes: [
       'Your nose has a pleasant and ideal shape. Your nose is likely not too upturned or droopy and your philtrum probably has a pleasant shape.',
@@ -125,21 +229,42 @@ export const ASSESSMENTS = {
       'Your nose has an extremely abnormal shape. Your nose may be noticeably upturned (high values) or droopy (low values) and your philtrum may have a less than ideal shape.',
       'Your nose has an extremely abnormal shape. Your nose may be noticeably upturned (high values) or droopy (low values) and your philtrum may have a less than ideal shape.',
     ],
-    advice: `Altering your nasolabial angle is fairly straightforward since it is in the isolated region of your nose. A rhinoplasty primarily aimed at addressing the columella and nasal tip region can alter the nasolabial angle.
-        Upper lip filler may also create some upswing of your philtrum, reducing the angle.`,
+    advice: `
+    NON SURGICAL INTERVENTIONS
+    1) Growing facial hair may give the illusion of a more acute nasolabial angle.
+    
+    SURGICAL INTERVENTIONS
+    2) Upper lip filler may create some upswing of your philtrum, thereby reducing the angle.
+    3) Permalip lip implants may increase lip volume, thereby reducing this angle.
+    4) A Rhinoplasty primarily aimed at addressing the columella and nasal tip region can alter the nasolabial angle. A cosmetic surgeon should be able to make the nose contour more upturned in the case of a droopy nasal tip.
+    `,
   },
   OrbitalVector: {
+    name: 'Orbital Vector',
+    unit: '',
     scores: [7.5, 3.75, 0],
     notes: [
       'You have a positive orbital vector, indicating no infraorbital hollowing. This is a youthful feature that is generally considered attractive.',
       'You have a neutral orbital vector, indicating no infraorbital hollowing. This is a youthful feature that is generally considered attractive.',
       'You have a negative orbital vector, indicating infraorbital hollowing. There is a lack of soft tissue protrusion under your eyes, making your eyes perhaps appear sunken and less youthful.',
     ],
-    advice: `To improve the youthfulness of the undereye region, filler is the primary option. Hyaluronic acid filler injected in the infraorbital region can add volume and create a rejuvenating effect. This would have to recurring as the filler dissipates. 
-        Implants in the midface region, particularly around the zygomatic and infraorbital region can also address this issue.
-        Another potential option is gaining body-fat. This will not provide a substantial benefit, but as your face gains soft tissue in the form of fat, so does the region under your eyes to some degree.`,
+    advice: `
+    LIFESTYLE CHANGES
+    1) Gaining body-fat may provide some rejuvenating effect to the undereye region. As your face gains soft tissue in the form of fat, so does the region under your eyes to some degree.
+    
+    NON SURGICAL INTERVENTIONS
+    2) Topical Treatments: Retinoids, peptides, and vitamin C can improve skin texture and thickness over time, which might help diminish the appearance of infraorbital hollows slightly.
+    
+    SURGICAL INTERVENTIONS
+    3) Hyaluronic acid filler injected in the infraorbital region can add volume and create a rejuvenating effect.
+    4) Fat Transfer: A minimally invasive procedure where fat is harvested from another part of the body, processed, and then injected into the infraorbital area to fill hollows. Though more invasive than fillers, it can offer a more permanent solution.
+    5) Cheekbone Augmentation: Implants or fat grafting to the cheeks can improve the orbital vector by enhancing the prominence of the cheekbones, creating a more positive vector and reducing the relative prominence of the eyes.
+    6) Orbital Decompression: In cases where the negative orbital vector is due to thyroid eye disease or other conditions causing the eyes to bulge, orbital decompression surgery can reposition the eyes to a more normal position.
+    7) Midface Lift: This procedure can elevate the midface tissues, reducing the appearance of hollowing under the eyes and improving the overall facial contour.`,
   },
   TotalFacialConvexity: {
+    name: 'Total Facial Convexity',
+    unit: '°',
     scores: [7.5, 3.75, 1.88, 0, -3.75, -5, -7.5],
     notes: [
       'The harmony of your lateral profile is pleasant when considering your nose. This means that your nose harmonizes well with the projection of your brow ridge and chin.',
@@ -150,11 +275,32 @@ export const ASSESSMENTS = {
       'The harmony of your lateral profile is extremely abnormal when considering your nose. This means that your nose harmonizes unfavorably with the projection of your brow ridge and chin.',
       'The harmony of your lateral profile is extremely abnormal when considering your nose. This means that your nose harmonizes unfavorably with the projection of your brow ridge and chin.',
     ],
-    advice: `The same concepts of improvement would apply here as for the facial convexity (glabella) assessment. However, since this is the total profile, altering the nose's projection can also improve this assessment if that is the issue. We want to carefully recognize whether your unfavorable angle is due to your jaw, glabella, or your nose projection.
-        If your angle is too high, you can get a Rhinoplasty to reduce the projection of your nose.
-        If your angle is too low, increasing the projection of your nose is possible, but less common. I would caution against this unless your angle is extreme.`,
+    advice: `The same concepts of improvement would apply here as for the facial convexity (glabella) assessment. However, since this is the total profile, altering the nose's projection can also improve this assessment (if that is the point of concern). It is important to carefully assess whether your unfavorable angle is due to your jaw, glabella, nose projection, or a combination of the three
+
+    LIFESTYLE CHANGES
+    1) Achieving a healthy weight can naturally alter facial contours, as changes in body fat distribution can affect facial fullness and profiles.
+    
+    NON SURGICAL INTERVENTIONS
+    2) Facial hair around the chin can improve the perceived projection of your chin, resulting in a flatter facial profile.
+    3) Filler directed at regions like the lip/philtrum and chin can subtly alter the convexity of your profile.
+    
+    ORTHODONTIC INTERVENTIONS
+    Consulting an orthodontist or maxillofacial surgeon is the best way to improve the alignment of your jaw.
+    4) Braces or invisalign may yield subtle changes to your side profile. Correcting dental misalignments can alter the lip's position and improve the jawline, impacting the facial profile and convexity.
+    5) Orthodontic contraptions and appliances can influence jaw growth, particularly in young patients.
+    
+    SURGICAL INTERVENTIONS
+    6) Orthognathic surgery can alter the position of your upper and lower jaw to be in better alignment . There are also procedures to advance the jaw. These procedures are typically financially costly and invasive, requiring up to a year to fully recover . Orthognathic surgery is corrective in nature and appropriate in cases of severe malocclusion or facial recession.
+    7) Altering the projection of your brow region through filler, fat grafting, or implants can increase facial convexity. Reductions to brow ridge projection can lead to a softer and rounder profile.
+    8) Multiple-implant augmentation of the midface skeleton can simulate the visual appearance of Le Fort III osteotomy and advancement without altering dental occlusion. The entire midface is freed in the subperiosteal plane and augmented through implants to be more projected.
+    9) Chin augmentation or reduction can alter the chin's projection (i.e., sliding or reduction genioplasty). 
+    10) A Rhinoplasty can reduce the projection of your nose, thereby increasing this angle if your profile appears too round or your nose appears disproportionately large.
+    A precise course of action would require consulting a specialist.
+    `,
   },
   MentolabialAngle: {
+    name: 'Mentolabial Angle',
+    unit: '°',
     scores: [7.5, 3.75, 1.88, 0, -3.75, -7.5],
     notes: [
       'You have a pleasant contour of the chin. The indent formed between your chin is neither too deep or flat.',
@@ -164,14 +310,25 @@ export const ASSESSMENTS = {
       'You have an abnormal contour of the chin. The indent formed between your chin could be a bit more normalized since it is too indented (low values) or flat (high values).',
       'You have an extremely abnormal contour of the chin. The indent formed between your chin could be a bit more normalized since it is too indented (low values) or flat (high values).',
     ],
-    advice: `The main things we would seek to address here are the projection of your chin and lower lip. There are a few ways to improve this assessment:
-        1) losing body-fat can make the indent between your chin and lower lip subtly more pronounced.
-        2) chin implants can reduce the angle if yours is too high.
-        3) lower lip filler can reduce the angle if yours is too high.
-        4) chin reduction surgery to increase the angle. Lower lip atrophy can also achieve this effect, but that tends to occur naturally with age.
-        5) facial hair in males around the chin can give the illusion of increasing this angle.`,
+    advice: `
+    LIFESTYLE CHANGES
+    1) Losing body-fat can make the indent between your chin and lower lip subtly more pronounced.
+    2) Facial hair in males around the chin can give the illusion of increasing this angle, or decreasing it, depending on how it is styled.
+    3) While skincare and lifestyle changes don't directly alter the mentolabial angle, maintaining healthy skin can improve the overall appearance of the lower face. 
+    
+    NON SURGICAL INTERVENTIONS
+    4) Dermal Fillers: Injectable fillers can be used to add volume to the chin and subtly alter the lower facial contours, impacting the mentolabial angle by enhancing chin projection or softening the crease between the lower lip and chin.
+    5) Neuromodulators (e.g., Botox): Injecting Botox into the mentalis muscle (the muscle responsible for chin dimpling) can relax the chin area, potentially softening a deep mentolabial fold.
+    
+    SURGICAL INTERVENTIONS
+    6) Genioplasty (Chin Surgery): This surgical procedure involves repositioning or reshaping the chin bone (mandible), which can significantly alter the mentolabial angle. It can be performed by either sliding genioplasty, where the chin bone is cut and moved forward or backward, or by adding or removing bone material to achieve the desired contour.
+    7) Lip Reduction or Augmentation: Adjusting the size and projection of the lower lip can influence the mentolabial angle. Lip augmentation can be achieved with fillers or fat grafting, while lip reduction involves the surgical removal of lip tissue.
+    8) Chin augmentation or reduction  can increase or decrease the projection of your chin.
+    `,
   },
   FacialConvexityNasion: {
+    name: 'Facial Convexity (nasion)',
+    unit: '°',
     scores: [5, 2.5, 1.25, 0.625, 0, -5],
     notes: [
       'You have a pleasant shape of the side profile. Neither part of your face -- upper, middle, or lower are in disharmony to one another. You also likely have a pleasant dental occlusion with no severe overjet or underbite.',
@@ -181,9 +338,31 @@ export const ASSESSMENTS = {
       'Your side profile shape is outside of the normal range. This can indicate that some part of your face -- upper, middle, or lower are in disharmony to one another. You may have some occlusal issues like perhaps a moderate overjet (low values) or underbite (high values).',
       'Your side profile shape is far outside of the normal range. This can indicate that some part of your face -- upper, middle, or lower are in extreme disharmony to one another. You certainly have some occlusal issues like perhaps an overjet (low values) or underbite (high values).',
     ],
-    advice: `The same general concepts of improvement would apply here as for the facial convexity (glabella) assessment. However, there is one caveat. If your angle is low, and it is not primarily a result of a jaw recession, then it may be due to the recessed position of your nasion. In that case, a Rhinoplasty can add projection to the top of your nose.`,
+    advice: `The same improvement notes generally apply here as do for the facial convexity (glabella).
+
+    LIFESTYLE CHANGES
+    1) Achieving a healthy weight can naturally alter facial contours, as changes in body fat distribution can affect facial fullness and profiles.
+    
+    NON SURGICAL INTERVENTIONS
+    2) Facial hair around the chin can improve the perceived projection of your chin, resulting in a flatter facial profile.
+    3) Filler directed at regions like the lip/philtrum and chin can subtly alter the convexity of your profile.
+    
+    ORTHODONTIC INTERVENTIONS
+    Consulting an orthodontist or maxillofacial surgeon is the best way to improve the alignment of your jaw.
+    4) Braces or invisalign may yield subtle changes to your side profile. Correcting dental misalignments can alter the lip's position and improve the jawline, impacting the facial profile and convexity.
+    5) Orthodontic contraptions and appliances can influence jaw growth, particularly in young patients.
+    
+    SURGICAL INTERVENTIONS
+    6) Orthognathic surgery can alter the position of your upper and lower jaw to be in better alignment . There are also procedures to advance the jaw. These procedures are typically financially costly and invasive, requiring up to a year to fully recover . Orthognathic surgery is corrective in nature and appropriate in cases of severe malocclusion or facial recession.
+    7) Altering the projection of your brow region through filler, fat grafting, or implants can increase facial convexity. Reductions to brow ridge projection can lead to a softer and rounder profile.
+    8) Multiple-implant augmentation of the midface skeleton can simulate the visual appearance of Le Fort III osteotomy and advancement without altering dental occlusion. The entire midface is freed in the subperiosteal plane and augmented through implants to be more projected.
+    9) Chin augmentation or reduction can alter the chin's projection (i.e., sliding or reduction genioplasty). 
+    A precise course of action would require consulting a specialist.
+    `,
   },
   NasalProjection: {
+    name: 'Nasal Projection',
+    unit: '',
     scores: [5, 2.5, 1.25, 0.625, 0, -5],
     notes: [
       'You have an ideal nasal projection. Your nose is not too pronounced or unprojected.',
@@ -193,9 +372,21 @@ export const ASSESSMENTS = {
       'You have an abnormal nasal projection. Your nose is slightly too projected (high values) or unprojected (low values).',
       'You have an extremely abnormal nasal projection. Your nose is slightly too projected (high values) or unprojected (low values).',
     ],
-    advice: `Rhinoplasty to reduce nasal projection is the primary way to address an overly projected nose. Increasing nasal projection is not as common, but some form of Rhinoplasty would also apply.`,
+    advice: `
+    LIFESTYLE CHANGES
+    1) Makeup Techniques: Contouring with makeup can create the illusion of a more projected or less projected nose.
+    
+    NON SURGICAL INTERVENTIONS
+    2) Dermal Fillers: Injectable fillers can be used to subtly alter the shape of the nose, including its projection. This is a temporary solution but can be a good option for those seeking minor adjustments or considering surgical options in the future.
+    3) Thread Lifts: Though less common for nasal adjustments, thread lifts can provide a temporary lift or support to the nasal tip, slightly altering its projection.
+    
+    SURGICAL INTERVENTIONS
+    4) Rhinoplasty: This is the most direct and permanent way to modify nasal projection. Rhinoplasty can increase or decrease the nose's projection through structural modifications, using techniques like cartilage grafting (to build up the nose) or cartilage reshaping/reduction.
+    5) Septorhinoplasty: Combines the features of rhinoplasty with corrections of the nasal septum, which can impact both the functional and aesthetic aspects of nasal projection.`,
   },
   NasalWHRatio: {
+    name: 'Nasal W to H',
+    unit: '',
     scores: [5, 2.5, 1.25, 0.625, 0, -5],
     notes: [
       'You have an ideal Nasal WHR. The projection of your nose is proportionate relative to its height.',
@@ -205,22 +396,51 @@ export const ASSESSMENTS = {
       'You have an abnormal Nasal WHR. The projection of your nose may be too much (high values) or too little (low values) compared to its height.',
       'You have an extremely abnormal Nasal WHR. The projection of your nose may be too much (high values) or too little (low values) compared to its height.',
     ],
-    advice: `Reducing the vertical height of the nose is not really possible aside from a Lefort 1 advancement or some kind of invasive maxillofacial surgery. 
-        The more superficial option is a Rhinoplasty to reduce nasal projection as the primary way to address an overly projected nose and create a lower ratio.
-        Increasing nasal projection is not as common, but some form of Rhinoplasty would also apply to increase the ratio`,
+    advice: `
+    LIFESTYLE CHANGES
+    1) Makeup Techniques: Contouring with makeup can create the illusion of a more projected or less projected nose.
+    
+    NON SURGICAL INTERVENTIONS
+    2) Dermal Fillers: Injectable fillers can be used to subtly alter the shape of the nose, including its projection. This is a temporary solution but can be a good option for those seeking minor adjustments or considering surgical options in the future.
+    3) Thread Lifts: Though less common for nasal adjustments, thread lifts can provide a temporary lift or support to the nasal tip, slightly altering its projection.
+    
+    SURGICAL INTERVENTIONS
+    4) Rhinoplasty: This is the most direct and permanent way to modify nasal projection. Rhinoplasty can increase or decrease the nose's projection through structural modifications, using techniques like cartilage grafting (to build up the nose) or cartilage reshaping/reduction.
+    5) Septorhinoplasty: Combines the features of rhinoplasty with corrections of the nasal septum, which can impact both the functional and aesthetic aspects of nasal projection.`,
   },
   RickettsELine: {
+    name: "Ricketts' E Line",
+    unit: '',
     scores: [5, 2.5, 0],
     notes: [
       'You have a pleasant harmony between your chin, lips, and nose according to this specific assessment.',
       'You have a reasonably pleasant harmony between your chin, lips, and nose according to this specific assessment.',
       'You do not have a pleasant harmony between your chin, lips, and nose according to this specific assessment.',
     ],
-    advice: `Fixing any malocclusion generally helps to improve the harmony of your chin, lips, and nose.
-        Aside from that, lip filler, chin filler, and rhinoplasty can also be specifically catered to improve the harmony of your lip assessments. This concept would apply to all four of the lip assessments (EHSB).
-        Facial hair in males may also be a viable option to increase perceived chin projection if that is lacking.`,
+    advice: `It is important to factor in ethnic variation in lip size when considering these options. 
+
+    LIFESTYLE CHANGES
+    1) Facial hair in males may be a viable option to increase perceived chin projection. 
+    
+    NON SURGICAL INTERVENTIONS
+    2) Dermal Fillers: Injectable fillers can add volume to the lips or chin, subtly altering their projection to improve alignment with the E-line.
+    3) Botox: Can be used to adjust the positioning of the lips slightly or reduce the appearance of a gummy smile, affecting the lips' relation to the E-line.
+    4) Thread Lifts: Though less common, thread lifts can offer temporary repositioning of the lower facial features, including the jowls and cheeks, potentially influencing the overall facial profile and its relation to the E-line.
+    
+    ORTHODONTIC INTERVENTIONS
+    5) Orthodontic Treatment: Braces or clear aligners can adjust the positioning of teeth, which may indirectly influence the lips' projection and their relation to the E-line.
+    
+    SURGICAL INTERVENTIONS
+    6) Rhinoplasty: Adjusts the shape and projection of the nose to better align with the E-line.
+    7) Chin Surgery (Genioplasty or Chin Implants): Enhances or reduces chin projection to align with the E-line. Genioplasty can move the chin forward or backward, while implants can increase its projection.
+    8) Lip Lift or Reduction: Alters the height and position of the lips to achieve better alignment with the E-line.
+    9) Orthognathic Surgery: In cases of significant jaw discrepancies, surgical repositioning of the jaw(s) can improve overall facial harmony and alignment with the E-line.
+    10) Fat Transfer to Lips: Adds volume to the lips, potentially pushing them slightly forward to align closer to or on the E-line.
+    `,
   },
   HoldawayHLine: {
+    name: 'Holdaway H Line',
+    unit: '',
     scores: [5, 2.5, 0],
     notes: [
       'You have a pleasant harmony between your chin and lips according to this specific assessment.',
@@ -230,6 +450,8 @@ export const ASSESSMENTS = {
     advice: `N/A`,
   },
   SteinerSLine: {
+    name: 'Steiner S Line',
+    unit: '',
     scores: [5, 2.5, 0],
     notes: [
       'You have a pleasant harmony between your chin, lips, and nose according to this specific assessment.',
@@ -239,6 +461,8 @@ export const ASSESSMENTS = {
     advice: `N/A`,
   },
   BurstoneLine: {
+    name: 'Burstone Line',
+    unit: '',
     scores: [5, 2.5, 0],
     notes: [
       'You have a pleasant harmony between your chin, lips, and nose according to this specific assessment.',
@@ -248,6 +472,8 @@ export const ASSESSMENTS = {
     advice: `N/A`,
   },
   NasomentalAngle: {
+    name: 'Nasomental Angle',
+    unit: '°',
     scores: [5, 2.5, 1.25, 0.625, 0, -5],
     notes: [
       "This angle indicates a harmonious balance between your nose and chin. This encompasses your nose shape and position as well as your chin's position. It can indicate that you have a pleasant jaw position, but not always. It mainly indicates that your nose is harmonious relative to your chin, but doesn't provide additional information on whether your chin is harmonious relative to other parts of your face.",
@@ -257,22 +483,49 @@ export const ASSESSMENTS = {
       "This angle indicates an abnormal balance between your nose and chin. This encompasses your nose shape and position as well as your chin's position. It probably indicates that you have an abnormal jaw position, but not always. It mainly indicates that your nose is normal relative to your chin, but doesn't provide additional information on whether your chin is harmonious relative to other parts of your face.",
       "This angle indicates an extremely abnormal balance between your nose and chin. This encompasses your nose shape and position as well as your chin's position. It probably indicates that you have an extremely abnormal jaw position, but not always. It mainly indicates that your nose is normal relative to your chin, but doesn't provide additional information on whether your chin is harmonious relative to other parts of your face.",
     ],
-    advice: `Along with correcting any malocclusion (reference facial convexity glabella), there are a few ways to improve your nasomental angle. The best course of action would depend on the specifics of your case:
-        1) Chin implants if your angle is too acute can help increase the angle and boost harmony. Keep in mind this would have to consider other facial assessments as the change does not occur in isolation.
-        2) Rhinoplasty can alter your nose shape in a specific way to either increase or reduce this angle. One such example would be reducing your nasal projection, which tends to increase the angle and vice versa. 
-        This angle is the same conceptually as the nasofacial, but the angles vary inversely.`,
+    advice: `Improving the Nasomental angle will generally require the same suggestions as the other facial assessments (i.e., facial convexity):
+
+    LIFESTYLE CHANGES
+    1) Achieving a healthy weight can naturally alter facial contours, as changes in body fat distribution can affect facial fullness and profiles.
+    
+    NON SURGICAL INTERVENTIONS
+    2) Facial hair around the chin can improve the perceived projection of your chin, resulting in a lower nasofacial angle.
+    3) Filler directed at regions like the nose and chin can subtly alter this angle.
+    
+    ORTHODONTIC INTERVENTIONS
+    Consulting an orthodontist or maxillofacial surgeon is the best way to improve the alignment of your jaw.
+    4) Braces or invisalign may yield subtle changes to your side profile. Correcting dental misalignments can alter the lip's position and improve the jawline, impacting the facial profile.
+    5) Orthodontic contraptions and appliances can influence jaw growth, particularly in young patients.
+    
+    SURGICAL INTERVENTIONS
+    6) Orthognathic surgery can alter the position of your upper and lower jaw to be in better alignment . There are also procedures to advance the jaw. These procedures are typically financially costly and invasive, requiring up to a year to fully recover . Orthognathic surgery is corrective in nature and appropriate in cases of severe malocclusion or facial recession.
+    7) Rhinoplasty can alter your nose shape in a specific way to either increase or reduce this angle. One such example would be reducing your nasal projection, which tends to reduce the angle and vice versa. 
+    8) Multiple-implant augmentation of the midface skeleton can simulate the visual appearance of Le Fort III osteotomy and advancement without altering dental occlusion. The entire midface is freed in the subperiosteal plane and augmented through implants to be more projected.
+    9) Chin augmentation or reduction can alter the chin's projection (i.e., sliding or reduction genioplasty). 
+    A precise course of action would require consulting a specialist.
+    `,
   },
   GonionMouthRelationship: {
+    name: 'Gonion To Mouth Relationship',
+    unit: '',
     scores: [5, 1, 0, -5],
     notes: [
       'Your ramus has sufficient vertical growth.',
       'Your ramus has normal vertical growth, but could ideally have more length.',
-      'Reference the notes for the ramus:mandible ratio. Improving this assessment also requires increasing ramus length.',
-      'Reference the notes for the ramus:mandible ratio. Improving this assessment also requires increasing ramus length.',
+      'Your ramus has lacking vertical growth.',
+      'Your ramus has severely lacking vertical growth.',
     ],
-    advice: `N/A`,
+    advice: `
+    NON SURGICAL INTERVENTIONS
+    1) Filler directed at the ramus or gonion (bottom of the back jaw) may improve its perceived length.
+    
+    SURGICAL INTERVENTIONS
+    2) Custom wraparound jaw implants can add overall volume to the jaw. This would also add height to the mandible, thereby lengthening your face. It is worth factoring that in with your overall facial balance.
+    `,
   },
   RecessionRelativeFrankfortPlane: {
+    name: 'Recession Relative to Frankfort Plane',
+    unit: '',
     scores: [5, 1, 0, -5],
     notes: [
       'According to this assessment, you have no notable recession regarding the position of your chin relative to your nasion.',
@@ -281,12 +534,26 @@ export const ASSESSMENTS = {
       'According to this assessment, you have extreme recession regarding the position of your chin relative to your nasion.',
     ],
     advice: `This assessment tends to correlate to the facial convexity. To improve it, you can consider a few things:
-        1) fixing malocclusion
-        2) chin implants if your chin is in a retruded position
-        3) facial hair in males to add perceived chin projection
-        4) orthognathic surgery in severe cases with severely retruded chins`,
+
+    LIFESTYLE CHANGES
+    1) Facial hair in males may give the illusion of a more prominent lower jaw.
+    
+    NON SURGICAL INTERVENTIONS
+    2) Filler directed at the chin can subtly alter the projection of your lower jaw.
+    
+    ORTHODONTIC INTERVENTIONS
+    Consulting an orthodontist or maxillofacial surgeon is the best way to improve the alignment of your jaw.
+    3) Braces or invisalign may yield subtle changes to your side profile. Correcting dental misalignments can alter the lip's position and improve the jawline, impacting the facial profile
+    4) Orthodontic contraptions and appliances can influence jaw growth, particularly in young patients.
+    
+    SURGICAL INTERVENTIONS
+    5) Orthognathic surgery can alter the position of your upper and lower jaw to be in better alignment . There are also procedures to advance the jaw. These procedures are typically financially costly and invasive, requiring up to a year to fully recover . Orthognathic surgery is corrective in nature and appropriate in cases of severe malocclusion or facial recession.
+    6) Chin augmentation or reduction can alter the chin's projection (i.e., sliding or reduction genioplasty). 
+    A precise course of action would require consulting a specialist.`,
   },
   BrowridgeInclinationAngle: {
+    name: 'Browridge Inclincation Angle',
+    unit: '°',
     scores: [4, 2, 1, 0.5, -2, -6, -10],
     notes: [
       'Your forehead is not overly sloped back or flat. It is harmonious in shape.',
@@ -297,12 +564,21 @@ export const ASSESSMENTS = {
       'Your forehead has an extremely abnormal shape. It is either overly sloped back (high values) or flat (low values).',
       'Your forehead has an extremely abnormal shape. It is either overly sloped back (high values) or flat (low values).',
     ],
-    advice: `There are a few ways to improve the shape of your frontal bone, or forehead:
-        1) custom forehead implants to make your forehead flatter in shape if it is too sloped back. Achieving drastic results may not be that realistic. 
-        2) using a hairstyle that covers your forehead to distract from or hide this specific feature.
-        3) custom forehead implants localized near the brow region to increase the slant of your forehead if it is too flat. This would also have to consider other assessments like the nasofrontal angle and facial convexity.`,
+    advice: `
+    LIFESTYLE CHANGES
+    1) A hairstyle that covers your forehead can distract from or hide this specific feature.
+    
+    NON SURGICAL INTERVENTIONS
+    2) Dermal Fillers: Injectable fillers can be used to temporarily enhance the contour of the brow ridge by adding volume beneath the skin.
+    3) Fat Transfer: Similar to fillers, but using fat harvested from another part of the body. This can provide a more natural augmentation of the brow ridge, though it involves a minimally invasive procedure.
+    
+    SURGICAL INTERVENTIONS
+    4) Brow Bone Augmentation: This procedure involves using implants or bone cement to add volume and change the contour of the brow ridge, increasing its prominence or altering its shape.
+    5) Forehead Recontouring: Often part of facial feminization surgery (FFS) or facial masculinization surgery (FMS), this procedure can modify the shape of the forehead and brow ridge by adding or removing bone or using implants.`,
   },
   NasalTipAngle: {
+    name: 'Nasal Tip Angle',
+    unit: '°',
     scores: [4, 2, 1, 0.5, 0, -2],
     notes: [
       'You have a harmonious nasal tip that is not overly upturned or droopy.',
@@ -312,10 +588,20 @@ export const ASSESSMENTS = {
       'You have an abnormal nasal tip angle, indicating that your nose is either too upturned (high values) or droopy (low values).',
       'You have an extremely abnormal nasal tip angle, indicating that your nose is either too upturned (high values) or droopy (low values).',
     ],
-    advice: `Rhinplasty specifically localized around the nasal tip is extremely common to address either an overly droopy or upturned nasal tip. This is also called nasal tip rotation rhinoplasty.`,
+    advice: `
+    NON SURGICAL INTERVENTIONS
+    1) Dermal Fillers: Injectable fillers can be used to subtly alter the nasal tip's appearance by adding volume around the tip or in specific areas to create the illusion of a lift or adjustment in the angle. This is a temporary solution but can be a good option for those seeking minor adjustments or who are hesitant about surgery.
+    
+    SURGICAL INTERVENTIONS
+    2) Rhinoplasty: This surgical procedure can adjust the nasal tip angle through various techniques, including trimming or reshaping the lower lateral cartilages, and using sutures to reposition the tip. Cartilage grafts may also be used to support and maintain the new tip position.
+    3) Tip Plasty: A more focused version of rhinoplasty that specifically targets improvements to the nasal tip, including rotation and projection. 
+    4) Septorhinoplasty: Combines the features of rhinoplasty with corrections to the nasal septum, which can be necessary if a deviated septum is affecting the nose's appearance or function.
+    5) Chin Augmentation or Reduction: Through genioplasty (surgical repositioning of the chin bone), chin implants, or reduction surgery, the chin can be reshaped to better balance the lower third with the rest of the face.`,
   },
 
   EyeSeparationRatio: {
+    name: 'Eye Separation Ratio',
+    unit: '%',
     scores: [35, 17.5, 8.75, 4.38, 0, -4.38, -17.5],
     notes: [
       'Your eyes are harmoniously spaced relative to your facial width.',
@@ -326,13 +612,21 @@ export const ASSESSMENTS = {
       'Your eyes have an abnormal spacing relative to your facial width. They appear either too close set (low values) or wide set (high values).',
       'Your eyes have an extremely abnormal spacing relative to your facial width. They appear either too close set (low values) or wide set (high values).',
     ],
-    advice: `While extremely difficult to change the actual underlying morphology of your eyes, there are a few ways to improve this assessment:
-        1) Lose body-fat to create a thinner face, thereby increasing your ESR and making your eyes appear wider set. The opposite also holds true -- if you have overly wide set eyes, gaining some weight on your face can lead to the appearance of more normally spaced eyes.
-        2) Hairstyles to alter your perceived facial width. Along the same lines as facial fat, you can play around with hairstyles that add width to your face or reduce it. For example, if you have extremely wide set eyes, longer hairstyles that cover the sides of your face or add width can improve your perceived facial harmony. If your eyes are closer set, shorter hairstyles with shorter sides may suit your face better.
-        3) Cheekbone implants to increase the width of your face. Or, zygomatic reduction surgery to do the opposite. 
-        Overall, the only thing you can do is alter your facial width, but not the actual spacing of your eyes themselves. Craniofacial surgery can be used to correct severe cases of facial deformity, but it is not typically used to make minor corrections to eye spacing.`,
+    advice: `While it is extremely difficult to change the underlying morphology of your eyes, there are a few ways to improve this assessment:
+
+    LIFESTYLE CHANGES
+    1) Eye Makeup: Applying makeup can significantly affect how the eye separation is perceived. For eyes that appear too close, emphasizing the outer corners with darker eyeshadow or extending eyeliner outward can create the illusion of wider-set eyes. For eyes that seem too far apart, focusing darker shades and eyeliner more on the inner corners can help.
+    2) Eyebrow Shape: Adjusting the shape and position of the eyebrows can also influence the perception of eye separation. Bringing the eyebrows slightly closer together can make wide-set eyes appear closer, while subtly increasing the gap can make close-set eyes seem further apart.
+    3) Losing body-fat can result in a thinner face, thereby increasing your ESR and making your eyes appear wider set. The opposite also holds true. Gaining some weight on your face can lead to the appearance of more normally spaced eyes.
+    4) Hairstyles can alter your perceived facial width. Along the same lines as facial fat, you can play around with hairstyles that add or reduce the perceived width of your face. For example, if you have extremely wide set eyes, longer hairstyles that add width to your face may improve your perceived facial harmony. If your eyes are closer set, hairstyles with shorter sides may suit your face better.
+    
+    SURGICAL INTERVENTIONS
+    5) Cheekbone augmentation (i.e., implants) can increase the width of your face. Zygomatic reduction surgery can reduce the width of your face. 
+    6) Craniofacial surgery can be used to correct severe* cases of facial deformity (i.e., hypertelorism), but it is not typically used to make minor corrections to eye spacing.`,
   },
   FacialThirds: {
+    name: 'Facial Thirds',
+    unit: '%',
     scores: [30, 15, 7.5, 3.75, 0, -7.5, -15],
     notes: [
       'Your facial thirds are harmoniously distributed, leading to a balanced appearance of the upper, middle, and lower parts of your face.',
@@ -344,12 +638,25 @@ export const ASSESSMENTS = {
       'Your facial thirds are extremely abnormal in their distribution, leading to an unbalanced appearance of the upper, middle, and lower parts of your face. One of your thirds appears overly short or long in relation to the others.',
     ],
     advice: `There are many ways to alter your facial thirds. The best course of action would depend on your specific case:
-        1) hairstyle to add length to your forehead if your upper third is short or reduce it if your upper third is too tall. 
-        2) facial hair to add perceived vertical height to the lower third.
-        3) Rhinoplasty to reduce a droopy nasal tip, since the middle third begins at the bottom of the nasal tip. This would give a shorter middle third. 
-        4) Custom jaw implants to add vertical height to your lower third if needed. Again, this must consider the harmony of other facial assessments.`,
+
+    LIFESTYLE CHANGES
+    1) Various hairstyles can add or reduce the perceived length of your upper third.
+    2) Facial hair in males can add perceived vertical height to the lower third.
+    
+    ORTHODONTIC INTERVENTIONS
+    3) Orthodontics or Orthognathic Surgery: Corrects dental or jaw alignment issues, impacting the lower third's proportions and possibly its height.
+    
+    SURGICAL INTERVENTIONS
+    4) Forehead Reduction Surgery or Hairline Lowering: Reduces the size of an overly large upper third.
+    5) Brow Lift: Raises the eyebrows to a more aesthetically pleasing position, indirectly affecting the upper third's proportions.
+    6) Rhinoplasty: Reduces a droopy nasal tip, thereby giving the appearance of a shorter middle third. 
+    7) Custom jaw implants can add vertical height to your lower third if needed. Again, this must consider the harmony of other facial assessments. 
+    8) Hair Transplant: For receding hairlines or thinning hair, this can help restore a balanced upper third.
+    `,
   },
   LateralCanthalTilt: {
+    name: 'Lateral Canthal Tilt',
+    unit: '°',
     scores: [25, 12.5, 6.25, 3.125, 0, -5, -12.5],
     notes: [
       'Your eyes have a harmonious tilt, meaning they are not overly droopy or upturned.',
@@ -360,10 +667,26 @@ export const ASSESSMENTS = {
       'Your eyes have an abnormal tilt.  They appear overly droopy (low values) or overly upturned (high values)',
       'Your eyes have an extremely  abnormal tilt.  They appear overly droopy (low values) or overly upturned (high values)',
     ],
-    advice: `Aside from illusions in the form of makeup and lash length, there is no real way to change the structural distance between your eyes.
-        Craniofacial surgery is an option in extreme cases of orbital hypertelorism. In those cases, the eyes may be 2 or more eye's widths apart.`,
+    advice: `
+    LIFESTYLE CHANGES
+    1) Skincare: Regular use of products that promote collagen production and elasticity (like retinoids and peptides) can improve the skin's firmness around the eyes, supporting a more lifted appearance.
+    2) Sun Protection: Protecting the eye area from sun damage with sunscreen and sunglasses can help maintain skin elasticity and prevent sagging.
+    
+    NON SURGICAL INTERVENTIONS
+    3) Botox: Strategic injections can lift the eyebrows' outer portion, subtly lifting the lateral aspect of the eyelids and enhancing the canthal tilt.
+    4) Fillers: Injectable fillers can provide lift and support to the eyebrow and outer eye area, indirectly affecting the canthal tilt by elevating the tissue around the eye.
+    5) Thread Lifts: These can provide a temporary lift to the brow and lateral eye area, subtly altering the canthal tilt.
+    
+    SURGICAL INTERVENTIONS
+    6) Lateral Canthoplasty (Canthopexy): A surgical procedure that repositions the lateral canthus (outer corner of the eye) higher to create or enhance a positive canthal tilt. Lateral Canthoplasty is relatively invasive and can significantly change the eye's shape.
+    7) Canthopexy is a less invasive procedure compared to Canthoplasty. It involves repositioning and tightening the lateral canthal tendon without cutting it, which can subtly lift the outer corner of the eye.
+    8) Blepharoplasty: Specifically, upper or lower eyelid surgery can address sagging skin and fat around the eyes, and when combined with canthoplasty, it can improve the canthal tilt. In the case of a sagging lower eyelid, blepharoplasty can also increase the perceived tilt of the eyes.
+    9) Brow Lift: Elevating the eyebrows surgically can indirectly influence the appearance of the canthal tilt by lifting the tissue around the outer corners of the eyes.
+    10) Fat Transfer: Adding volume to the brow or temple area through fat grafting can lift the lateral eyebrow and eyelid area, potentially enhancing the canthal tilt.`,
   },
   FacialWHRatio: {
+    name: 'Facial Width To Height Ratio',
+    unit: '',
     scores: [25, 12.5, 6.25, 3.13, 0, -3.13, -6.25],
     notes: [
       'You have an ideal FWHR, indicating a facial width and midface height that harmonize well with one another. Your midface region (i.e., FWHR) is not overly compact or elongated in shape.',
@@ -374,15 +697,22 @@ export const ASSESSMENTS = {
       'You have an abnormal FWHR, indicating a facial width and midface height that do not harmonize that well. Your midface region (i.e., FWHR) likely appears overly long or overly compact. Your ratio is beginning to stray into the extremes.',
       'You have an extremely abnormal FWHR, indicating a facial width and midface height that do not harmonize that well. Your midface region (i.e., FWHR) likely appears overly long or overly compact. Your ratio is at the extremes.',
     ],
-    advice: `There are a few ways to alter FWHR, but it is largely unchangeable due to it being linked heavily to one's bone structure:
-        1) gaining or losing facial- fat can either increase or reduce your FWHR, respectively. 
-        2) Cheekbone implants can increase facial width, thereby increasing FWHR slightly.
-        3) upper lip filler can reduce the vertical distance of your midface, thereby increasing FWHR slightly. 
-        4)  You can grow eyebrow hair more interior towards your nose, which can increase FWHR.
-        5) Brow implants or filler may marginally lower your brow position, thereby increasing FWHR.
-        Reducing FWHR is not as possible aside from losing facial fat and invasive zygomatic remodeling (cheekbone reduction surgery).`,
+    advice: `There are a few ways to alter FWHR, but it is largely unchangeable due to being linked heavily to one's bone structure:
+
+    LIFESTYLE CHANGES
+    1) Gaining or losing facial- fat can either increase or reduce your FWHR, respectively. 
+    2) Growing eyebrow hair towards the interior of your upper nose can make your midface appear subtly more compact.
+    
+    SURGICAL INTERVENTIONS
+    3) Cheekbone augmentation can alter facial width. Cheekbone implants or reduction surgery can increase or decrease facial width, respectively.
+    4) Upper lip filler or Permalip can reduce the vertical distance of your midface, thereby increasing FWHR slightly. 
+    5) Brow augmentation (i.e., filler or implants) may marginally lower your brow position, thereby increasing FWHR.
+    6) Orthognathic surgery can alter the position of your upper and jaw, including reducing its vertical height. 
+    `,
   },
   JawFrontalAngle: {
+    name: 'Jaw Frontal Angle',
+    unit: '°',
     scores: [25, 12.5, 6.25, 3.13, 0, -6.25, -12.5],
     notes: [
       'Your jaw has an ideal contour in the front profile, indicated by a harmonious angle in this assessment.',
@@ -394,13 +724,30 @@ export const ASSESSMENTS = {
       'Your jaw has an extremely unideal contour in the front profile. It is considered either slightly too flat (high values) or steep (low values).',
     ],
     advice: `There are a few ways to improve the contour of your jaw:
-        1) Losing facial-fat can reveal your jaw contour better, often resulting in a more pleasant angle.
-        2) Custom jaw implants can be used to specifically design your jaw's desired shape.
-        3) Fixing malocclusion can improve your jaw in the same way that it would address your MPA. Your JFA is heavily tied to your MPA.
-        4) Chin implants -- a wider chin tends to reduce this angle, while a narrower chin increases it. Facial hair can also conceptually do this to some degree.
-        5) Masseter reduction surgery. An overly wide jaw can tend to increase this angle. Conversely, increasing your jaw width through chewing exercises can increase this angle if yours is on the lower end.`,
+
+    LIFESTYLE CHANGES
+    1) Lose body-fat and reduce facial bloating to reveal the underlying angularity of your jaw. Gaining facial fat tends to increase this angle while losing it tends to decrease it.
+    2) Good posture can positively affect the appearance of your jawline. It may also help reduce the risk of developing jaw joint problems that can negatively impact your jaw's function.
+    3) Chewing can hypertrophy your jaw muscles and result in a higher JFA.
+    
+    NON SURGICAL INTERVENTIONS
+    4) Dermal filler around the jawline can alter its appearance, but it must be carefully catered to the patient. Facial balance should be considered.
+    5) Botox can atrophy the masseter muscle for patients with overly prominent jaw muscles.
+    6) Radiofrequency treatments and UI therapy may improve the skin laxity surrounding the jawline, resulting in a more angular appearance.
+    7) Correct any malocclusion if that is the cause of an overly steep mandible (lower jaw). Make sure to consult a Maxillofacial surgeon or Orthodontist if you are considering orthognathic surgery or corrective appliances.
+    
+    ORTHODONTIC INTERVENTIONS
+    8) Wear a bite guard if you grind your teeth. Bruxism can wear down your teeth and has been observed to cause a reduction in the gonial angle, resulting in a flatter appearance of the jaw. 
+    
+    SURGICAL INTERVENTIONS
+    9) Wraparound jaw implants to artificially customize a jaw shape.
+    10) A Genioplasty, or chin surgery, may affect the shape of your jawline.
+    11) Mandibular angle reduction involves shaving off part of the mandibular structure to reduce its prominence.
+    `,
   },
   CheekBoneHeight: {
+    name: 'Cheekbone Height',
+    unit: '%',
     scores: [20, 12.5, 6.25, 3.13, 0, -6.25, -12.5],
     notes: [
       'You have high cheekbones, which are generally preferred when it comes to facial aesthetics.',
@@ -411,9 +758,24 @@ export const ASSESSMENTS = {
       'You have what would be classified as low set cheekbones, where the widest part of your face is likely more towards the base of your nose rather than closer to your eyes. This can lead to a droopy or melted face appearance and your face generally lacks the structure that is considered attractive.',
       'You have what would be classified as extremely low set cheekbones, where the widest part of your face is likely more towards the base of your nose rather than closer to your eyes. This can lead to a droopy or melted face appearance and your face generally lacks the structure that is considered attractive.',
     ],
-    advice: `We will assume that the main goal is to achieve higher set cheekbones. To do this, you can either lose body fat to reveal the underlying cheekbone structure if you have high cheekbones. Or, you can use cheekbone implants to increase the protrusion and width of your face near your eyes. Making that the widest part of your face will give the appearance of high cheekbones.`,
+    advice: `
+    LIFESTYLE CHANGES
+    1) Lose body-fat and reduce facial bloating to reveal the underlying angularity of your cheekbones. 
+    2) Skincare Routine: A diligent skincare routine, including products that promote collagen production and skin elasticity (like retinoids and vitamin C serums), can improve the overall health and tautness of the skin, contributing to a more lifted appearance of the cheeks.
+    3) Sun Protection: Regular use of sunscreen protects the skin from premature aging and sagging, supporting a more youthful facial structure.
+    
+    NON SURGICAL INTERVENTIONS
+    4) Dermal fillers directed around your cheekbones can alter their perceived height.
+    
+    SURGICAL INTERVENTIONS
+    5) Cheekbone augmentation, namely implants, can lead to the appearance of high cheekbones.
+    6) Malar Osteotomy: This more invasive procedure involves cutting and repositioning the cheekbones to enhance their prominence. It's less common and has a longer recovery period compared to other options.
+    7) Facelift: While primarily aimed at reducing sagging and wrinkles, a facelift can include repositioning of the cheek fat pads, indirectly enhancing the cheekbones' appearance.
+    `,
   },
   TotalFacialWHRatio: {
+    name: 'Total Facial Width To Height Ratio',
+    unit: '',
     scores: [15, 7.5, 3.75, 0, -3.75, -7.5, -15],
     notes: [
       "You have an ideal face shape when it comes to your face's height and width (Total FWHR/facial index). Your face is neither too long or compact.",
@@ -424,16 +786,21 @@ export const ASSESSMENTS = {
       "You have an extremely abnormal face shape when it comes to your face's height and width (Total FWHR/facial index). Your face is too long (high values) or short (low values).",
       "You have an extremely abnormal face shape when it comes to your face's height and width (Total FWHR/facial index). Your face is too long (high values) or short (low values).",
     ],
-    advice: `Improving total FWHR/facial index depends on the underlying cause and severity of your overly elongated or compact face shape:
-        1) Losing facial fat can increase the ratio, while gaining facial fat can reduce it.
-        2) Cheekbone implants or reduction can reduce or increase this ratio, respectively.
-        3) Hairstyles can manipulate the perceived dimensions of your face similar to the facial thirds. If your face is overly long, a wider hairstyle may help and vice versa. 
-        4) Facial hair can add height to your face is your ratio is too low.
-        5) Correcting any hyper/hypo divergent growth pattern at the orthodontist or maxillofacial surgeon can increase the harmony of your face's vertical height.
-        6) Overly clenching and wearing down your teeth can result in a deep bite and reduce your facial height, thereby reducing this ratio. Although, this is not suggested as a method of improvement; rather, it is more so to avoid a reduction in facial height along with jaw joint problems.
-        7) Correcting hair loss through minoxidil or a hairline transplant can lower this ratio. Severe hairline recession can often lead to abnormally high ratios.`,
+    advice: `Improving total FWHR depends on the underlying cause of your elongated or compact face shape:
+
+    LIFESTYLE CHANGES
+    1) Losing facial fat can increase this ratio, resulting in a longer face shape, while gaining facial fat can do the opposite. This may be a suitable option  for individuals that lie close to the ideal range.
+    2) Hairstyles can manipulate the perceived dimensions of your face , similar to the facial thirds. If your face is overly long, a wider hairstyle may help and vice versa. 
+    3) Facial hair can add perceived height to your face, resulting in the appearance of a longer face.
+    
+    SURGICAL INTERVENTIONS
+    4) Cheekbone augmentation can increase or decrease facial width, which affects how long or short your face appears.
+    5) Correcting any hyper/hypo divergent growth patterns through orthognathic (jaw) surgery may increase the harmony of your face.
+    6) Hair Transplant: For receding hairlines or thinning hair, this can help restore a balanced upper third. Preventative hair loss methods like finasteride and minoxidil may help retain the result.`,
   },
   BigonialWidth: {
+    name: 'Bigonial Width',
+    unit: '%',
     scores: [15, 7.5, 3.75, 1.88, 0, -3.75, -10],
     notes: [
       'You have an ideal jaw width. Your jaw is neither too wide or narrow relative to your total facial width.',
@@ -444,14 +811,27 @@ export const ASSESSMENTS = {
       'You have an abnormal jaw width. Your jaw can be considered either too narrow (low values) or wide (high values).',
       'You have an extremely abnormal jaw width. Your jaw can be considered either too narrow (low values) or wide (high values).',
     ],
-    advice: `There are a few ways to alter this ratio:
-        1) Increasing the cross-sectional muscle area of your masseter muscle through chewing tough foods can increase your jaw width if your ratio is low.
-        2) Masseter reduction surgery can reduce your jaw width if it is too wide.
-        3) Increasing your facial width through cheekbone implants can reduce your jaw's perceived width.
-        4) Thicker sideburns can reduce your jaw's perceived width.
-        5) A thicker beard can increase your jaw's perceived width.`,
+    advice: `
+    LIFESTYLE CHANGES
+    1) Increasing the mass of your masseter muscle through chewing exercises can increase your jaw width. However, take caution when performing jaw exercises as it may negatively impact your Temporomandibular joint.
+    2) Hairstyle: Choosing a hairstyle that balances the face can also help in creating the illusion of a wider or more proportionate jawline. For example, shorter hairstyles may emphasize the jawline more, while longer hairstyles can soften the appearance of the jaw. Thicker sideburns may make your jaw appear smaller by proportin.
+    3) Losing facial fat can reduce your jaw width while gaining facial fat can do the opposite.
+    4) In males, a thicker beard can increase your jaw's perceived width.
+    
+    NON SURGICAL INTERVENTIONS
+    5) Fillers: Injectable fillers can provide temporary enhancement to the jawline, subtly increasing its width. This approach requires regular maintenance.
+    6) Botox can temporarily reduce the size of the masseter muscle by blocking nerve signals that cause muscle contractions, leading to a visually slimmer jawline. This non-surgical approach requires periodic treatments to maintain results but can serve as a minimally invasive option.
+    
+    SURGICAL INTERVENTIONS
+    7) Orthognathic Surgery: In cases of jaw misalignment or for significant changes in jaw structure, surgical repositioning of the jawbones (orthognathic surgery) can alter the bigonial width. This approach is more complex and typically also addresses functional issues.
+    8) Jawline Implants: Custom implants can be designed to enhance the width of the lower jaw, providing a more defined or broader jawline.
+    9) Masseter muscle reduction is a procedure aimed at decreasing the size of the masseter muscles. This surgery can be considered for individuals looking to soften an overly square or wide jawline, often for aesthetic reasons or to address issues related to teeth grinding (bruxism) that have led to muscle hypertrophy. 
+    10) Cheekbone augmentation can increase (implants) or decrease (shaving) your facial width. This will affect the perceived width of your jaw by proportion.
+    `,
   },
   ChinPhiltrumRatio: {
+    name: 'Chin To Philtrum Ratio',
+    unit: '',
     scores: [12.5, 6.25, 3.13, 1.56, 0, -3.13, -6.25],
     notes: [
       'Your chin is harmoniously proportioned relative to your philtrum. This indicates that neither your chin or philtrum are too long or short.',
@@ -461,14 +841,28 @@ export const ASSESSMENTS = {
       'Your chin is abnormally proportioned relative to your philtrum. This can indicate that your chin is too short (low values) or tall (high values) relative to your philtrum.',
       'Your chin is abnormally proportioned relative to your philtrum. This can indicate that your chin is too short (low values) or tall (high values) relative to your philtrum.',
     ],
-    advice: `To alter this ratio we want to consider the chin and lips. Altering the position of the subnasale is not really possible.
-        1) chin implants to increase this ratio.
-        2) correcting malocclusion to fix any excessive or lacking chin projection and height.
-        3) facial hair to increase perceived chin height and increase this ratio.
-        4) upper lip filler to increase this ratio.
-        5) lower lip filler to reduce this ratio.`,
+    advice: `
+    LIFESTYLE CHANGES
+    1) Facial hair can add perceived height to your chin, resulting in the appearance of a higher ratio.
+    2) Makeup Techniques: Highlighting and contouring can play a significant role in altering the perceived proportions of the chin and philtrum. For example,  highlighting the cupid's bow can make the philtrum appear shorter.
+    
+    NON SURGICAL INTERVENTIONS
+    3) Dermal Fillers: Injectable fillers can add volume to the chin, subtly altering its height and projection for a more balanced look. This is a temporary solution but can be ideal for minor adjustments.
+    
+    ORTHODONTIC INTERVENTIONS
+    4) Orthodontics or Orthognathic Surgery: Corrects dental or jaw alignment issues, impacting the lower third's proportions and possibly chin height.
+    
+    SURGICAL INTERVENTIONS
+    5) Lip augmentation, namely lip filler or lip implants like Permalip, can alter the height of your chin or philtrum. An increase in upper lip volume tends to make your philtrum appear shorter, thereby increasing this ratio. An increase in lower lip volume tends to make your chin appear shorter, which decreases the ratio.
+    6) Lip Lift: Reduces the height of the philtrum by removing a strip of skin under the nose, shortening the distance between the nose and the upper lip, and enhancing the upper lip's appearance.
+    7) Genioplasty: A surgical procedure that alters the bone of the chin, either moving it forward or backward, or vertically lengthening or shortening it, to improve facial proportions.
+    8) Chin Implants: The insertion of implants to enhance chin projection or increase its height can contribute to a more balanced facial profile.
+    9) Fat Grafting: Injecting fat into the chin area can subtly increase its volume and adjust its contour, including height adjustments.
+    `,
   },
   NeckWidth: {
+    name: 'Neck Width',
+    unit: '%',
     scores: [10, 5, 1, 0, -2.5, -5, -7.5],
     notes: [
       'You have an ideal neck width that adds balance to your facial appearance.',
@@ -479,9 +873,14 @@ export const ASSESSMENTS = {
       'Your neck can be considered extremely narrow (low values) or extremely wide (high values).',
       'Your neck can be considered extremely narrow (low values) or extremely wide (high values).',
     ],
-    advice: `Altering your neck width is fairly straightforward. Losing body fat tends to make the neck thinner and vice versa. Exercising your neck through resistance training can increase its circumference and width in the front view.`,
+    advice: `
+    LIFESTYLE CHANGES
+    1) Building Muscle: Exercises targeting the neck and upper shoulders can increase muscle mass, potentially enhancing the neck's width. Examples include neck curls, lateral raises, and shoulder presses.
+    2) An increase or decrease in body fat can increase or decrease the width of your neck, respectively.`,
   },
   MouthNoseWidthRatio: {
+    name: 'Mouth Width To Nose Width Ratio',
+    unit: '',
     scores: [10, 5, 2.5, 1.25, 0, -2.5, -5],
     notes: [
       'Your mouth width harmonizes extremely well with your nose width.',
@@ -492,11 +891,18 @@ export const ASSESSMENTS = {
       'Your mouth width harmonizes poorly with your nose width. Your nose/mouth may be considered too narrow or wide, resulting in a less than ideal proportion.',
       'Your mouth width harmonizes extremely poorly with your nose width. Your nose/mouth may be considered too narrow or wide, resulting in a less than ideal proportion.',
     ],
-    advice: `To alter this ratio, we primarily want to change the nasal width. Altering mouth width is more invasive and does not tend to produce as favorable results.
-        A Commissuroplasty is a possible method to increase one's mouth width. Rhinoplasty can be used to reduce your nasal width (higher ratios), or increase it (lower ratios). 
-        The latter is less common, but possible.`,
+    advice: `
+    NON SURGICAL INTERVENTIONS
+    1) Botox: Small amounts of Botox can be used to slightly narrow the nose by relaxing muscles that flare the nostrils.
+    
+    SURGICAL INTERVENTIONS
+    2) Rhinoplasty: A surgical procedure that can alter the width of the nose at various points, including the nostrils, nasal bridge, and tip. Rhinoplasty can narrow or widen the nose, depending on the individual's goals.
+    3) Alarplasty (Nostril Reduction): A specific type of rhinoplasty focused on reducing the width of the nostrils and the base of the nose for a more proportionate appearance.
+    4) Commissuroplasty is a surgical procedure aimed at altering the corners of the mouth, specifically addressing issues related to the oral commissures. It can be used to adjust the width of the mouth by either narrowing or widening it, depending on the individual's needs and aesthetic goals. This procedure can also correct downturned mouth corners (oral commissure droop), which often give a sad or angry appearance, and can be part of treatment for conditions like facial paralysis, congenital deformities, or the results of aging.`,
   },
   MidfaceRatio: {
+    name: 'Midface Ratio',
+    unit: '',
     scores: [10, 5, 2.5, 1.25, 0, -5, -10],
     notes: [
       'You have a harmonious interior (or central) midface structure that is neither too compact or elongated.',
@@ -507,10 +913,17 @@ export const ASSESSMENTS = {
       'You have an extremely unharmonious interior (or central) midface structure. It can be considered too elongated (low values) or compact (high values).',
       'You have an extremely unharmonious interior (or central) midface structure. It can be considered too elongated (low values) or compact (high values).',
     ],
-    advice: `Since altering the distance between your pupils through craniofacial surgery is usually reserved for facial abnormalities,  upper lip filler to increase the ratio is a more realistic option.
-        Some more invasive midface procedures like Lefort 1 can make the midface more vertically compact. thereby reducing the ratio further. Other forms of orthognathic surgery may result in some changes to the midface structure as well.`,
+    advice: `
+    NON SURGICAL INTERVENTIONS
+    1) Makeup Techniques: Highlighting and contouring can play a significant role in altering the perceived proportions of the midface. For example,  highlighting the cupid's bow can make the philtrum appear shorter, which makes the midface appear subtly more compact.
+    
+    SURGICAL INTERVENTIONS
+    2) Lip augmentation, namely lip filler or lip implants like Permalip, can alter the prominence of your upper lip. An increase in upper lip volume tends to make your midface appear subtly shorter. The difference will not be substantial though.
+    3) Some invasive midface procedures like a Lefort 1 Osteotomy can alter the midface structure to be more vertically elongated or compact. Other forms of orthognathic surgery may result in some changes to the midface structure as well. Such procedures are typically reserved for severe cases as they are corrective operations with notable risks and long recovery times.`,
   },
   EyebrowPositionRatio: {
+    name: 'Eyebrow Position Ratio',
+    unit: '',
     scores: [10, 5, 2.5, 1, 0, -2.5, -5],
     notes: [
       'You have an ideal positioning of your eyebrows above your eyes. A lower position is typically preferred among younger demographics. Your eyebrows could generally be considered low-set, which typically leads to a more striking appearance.',
@@ -521,10 +934,24 @@ export const ASSESSMENTS = {
       'You have an unideal positioning of your eyebrows above your eyes. Your eyebrows could be considered very high set. This may lead to the appearance of a more elongated midface region.',
       'You have an unideal positioning of your eyebrows above your eyes. Your eyebrows could be considered extremely high set. This may lead to the appearance of a more elongated midface region.',
     ],
-    advice: `This assessment is not really surgically alterable to be more favorable. However, in some cases where higher eyebrows result in an overall more harmonious face (factoring in other assessments), a brow lift can be a viable option.
-        Filler around the brows can perhaps lower the brow position, but it is not something commonly done and it may throw off the appearance of your brow region.`,
+    advice: `
+    LIFESTYLE CHANGES
+    1) Eyebrow Grooming: Shaping the eyebrows by plucking, threading, or waxing can also alter their perceived position and shape. Allowing the outer part of the brows to grow thicker while removing hair from the lower inner brows can create a lift effect.
+    
+    NON SURGICAL INTERVENTIONS
+    2) Dermal Fillers: While primarily used to add volume, fillers can also provide a slight lift to the brows when injected into the forehead or temples. They can sometimes be used to lower the perceived position of the eyebrows by adding volume above them.
+    3) Thread Lifts: Absorbable threads are inserted under the skin to physically lift the brow area. The results are temporary, lasting several months to a couple of years.
+    4) Botox: Strategically placed Botox injections can be used to relax certain forehead muscles that elevate the eyebrows, allowing the brows to lower slightly. The effect is temporary, and the degree of lowering can be subtle.
+    
+    SURGICAL INTERVENTIONS
+    5) Brow Lift (Forehead Lift): A surgical procedure that raises the eyebrows to a more desired position. It can be performed through various techniques, including endoscopic, coronal, or hairline lifts, depending on the individual's anatomy and aesthetic goals.
+    6) Direct Brow Lift: Involves removing a segment of skin directly above the eyebrows to lift them. This method is less commonly used due to visible scarring but might be appropriate in specific cases.
+    7) Pretrichial Brow Lift: Similar to a direct brow lift but the incision is made along the hairline, reducing the forehead size while lifting the brows, which can be beneficial for individuals with a high forehead.
+    `,
   },
   EyeSpacingRatio: {
+    name: 'Eye Spacing Ratio',
+    unit: '',
     scores: [10, 5, 2.5, 1, 0, -5, -10],
     notes: [
       'Your eyes have a harmonious spacing relative to one another.',
@@ -535,10 +962,16 @@ export const ASSESSMENTS = {
       'Your eyes have an extremely abnormal spacing relative to one another. They may appear either overly close together (low values) or far apart (high values).',
       'Your eyes have an extremely abnormal spacing relative to one another. They may appear either overly close together (low values) or far apart (high values).',
     ],
-    advice: `Aside from illusions in the form of makeup and lash length, there is no real way to change the structural distance between your eyes.
-        Craniofacial surgery is an option in extreme cases of orbital hypertelorism. In those cases, the eyes may be 2 or more eye's widths apart.`,
+    advice: `
+    LIFESTYLE CHANGES
+    1) Makeup Techniques: Highlighting and contouring around the eyes can alter their perceived width, usually making them appear wider.
+    
+    SURGICAL INTERVENTIONS
+    2) Craniofacial surgery is an option in extreme cases of orbital hypertelorism. In those cases, the eyes may be greater than two eye widths apart.`,
   },
   EyeAspectRatio: {
+    name: 'Eye Aspect Ratio',
+    unit: '',
     scores: [10, 5, 2.5, 1.25, 0, -2.5, -5],
     notes: [
       'Your eyes have an ideal shape in terms of their width and height. Your eyes are neither too narrow and elongated or round in shape.',
@@ -549,10 +982,24 @@ export const ASSESSMENTS = {
       "Your eyes have an extremely abnormal shape in terms of their width and height. Your eyes may be considered either too round (low values) or narrow (high values) in shape. Overly round eyes can begin to look too beady and overly narrow one's lack the ability to display emotional cues as well. Both extremes are generally not attractive.",
       "Your eyes have an extremely abnormal shape in terms of their width and height. Your eyes may be considered either too round (low values) or narrow (high values) in shape. Overly round eyes can begin to look too beady and overly narrow one's lack the ability to display emotional cues as well. Both extremes are generally not attractive.",
     ],
-    advice: `ower lid blepharoplasty can increase this ratio if a sagging lower lid is the culprit.
-        In the cases of overlying soft tissue in the upper lid region, blepharoplasty can increase the perceived height and roundness of your eyes.`,
+    advice: `
+    LIFESTYLE CHANGES
+    1) Makeup: Skilled application of makeup can create the illusion of wider or taller eyes. Techniques include strategic placement of eyeshadow, eyeliner to extend the eye shape, and mascara to open up the eyes.
+    2) Eyelash Extensions: Can enhance the perceived size of the eyes by adding volume and length to the lashes
+    
+    NON SURGICAL INTERVENTIONS
+    3) Fillers: Injectable dermal fillers can be used carefully around the eye area to adjust contours and subtly affect the appearance of the eye's width and height.
+    
+    SURGICAL INTERVENTIONS
+    4) Blepharoplasty (Eyelid Surgery): Upper Blepharoplasty: Can remove excess skin and fat to create a more open and larger appearance of the eye, potentially affecting palpebral height.
+    Lower Blepharoplasty: Targets under-eye bags and excess skin, which can subtly influence the perceived height and shape of the eye.
+    5) Lateral Canthoplasty: A surgical procedure that alters the outer corner of the eye (lateral canthus), which can increase the width of the eye and create a more almond-shaped appearance.
+    6) Epicanthoplasty: Focuses on the inner corner of the eye (medial canthus), reducing the epicanthal fold common in Asian eyelids, which can increase the horizontal width of the eye and create a more open look.
+    7) Ptosis Surgery: Corrects drooping of the upper eyelid by tightening the muscle, which can increase the palpebral height, making the eye appear larger and more awake.`,
   },
   LowerUpperLipRatio: {
+    name: 'Lower Lip To Upper Lip Ratio',
+    unit: '',
     scores: [7.5, 3.75, 1.88, 0.94, 0, -3.75, -7.5],
     notes: [
       'Your lower and upper lip are ideally proportioned relative to one another.',
@@ -563,9 +1010,24 @@ export const ASSESSMENTS = {
       'Your lower and upper lip are abnormally proportioned relative to one another. Your upper lip may be too full (high values) or thin (low values) relative to your upper lip. This may also indicate lacking upper lip volume of the upper lip itself rather than the inherent fullness of the lower lip.',
       'Your lower and upper lip are abnormally proportioned relative to one another. Your upper lip may be too full (high values) or thin (low values) relative to your upper lip. This may also indicate lacking upper lip volume of the upper lip itself rather than the inherent fullness of the lower lip.',
     ],
-    advice: `Lip filler aimed at increasing the upper or lower lip volume is the best way to address this proportion.`,
+    advice: `
+    LIFESTYLE CHANGES
+    1) Makeup Techniques: Altering the prominence of your upper and/or lower lip through lip liner, lipstick, highlighting techniques, and contouring can affect their perceived height.
+    
+    NON SURGICAL INTERVENTIONS
+    2) Dermal filler can increase the prominence of the upper and/or lower lip.
+    
+    ORTHODONTIC INTERVENTIONS
+    3) Braces or clear aligners can adjust the positioning of teeth, which may indirectly influence the prominence of your upper and lower lip.
+    
+    SURGICAL INTERVENTIONS
+    4) Surgical lip augmentation like Permalip can alter the prominence of your upper and/or lower lip. 
+    5) Fat Transfer: Uses the patient's own fat to add volume to the lips, providing a more natural feel. It's more invasive than fillers or a lip flip and has a longer recovery period.
+    `,
   },
   DeviationOfIaaJfa: {
+    name: 'Deviation of IAA & JFA',
+    unit: '°',
     scores: [7, 3.75, 1.88, 0.94, 0, -3.75],
     notes: [
       'You have an ideal harmony between your JFA and IAA.',
@@ -578,6 +1040,8 @@ export const ASSESSMENTS = {
     advice: `N/A`,
   },
   EyebrowTilt: {
+    name: 'Eyebrow Tilt',
+    unit: '°',
     scores: [6, 3, 1.5, 0, -3, -6],
     notes: [
       'Your eyebrows have an ideal tilt. They are neither too upturned or droopy when accounting for inter-sex variability.',
@@ -587,10 +1051,23 @@ export const ASSESSMENTS = {
       'Your eyebrows have an abnormal tilt. They may be considered too upturned (high values) or droopy (low values) when accounting for inter-sex variability.',
       'Your eyebrows have an extermely abnormal tilt. They may be considered too upturned (high values) or droopy (low values) when accounting for inter-sex variability.',
     ],
-    advice: `Altering the tilt of your brows can primarily be done through superficial techniques (e.g., plucking, shaving, shaping, waxing, threading, etc.).
-        Sometimes though, the shape of your brows is tied to your brow ridge's actual morphology. In that case, there is not an easy way to change its shape. In the case of droopy eyebrows, an eyebrow lift can also help.`,
+    advice: `
+    LIFESTYLE CHANGES
+    1) Makeup: Use an eyebrow pencil or pomade to shape the eyebrows artificially. For a more upturned look, focus on elevating the tail end with makeup while lightly filling in the front. To flatten the arch, use makeup to emphasize a straighter line from the beginning to the end of the brow.
+    2) Grooming techniques: Repositioning brow hairs can support either an upturned appearance or a flatter arch, depending on how you brush and set them. Waxing and plucking eyebrows to achieve a desired shape are also effective strategies.
+    
+    NON SURGICAL INTERVENTIONS
+    3) Botox Injections: Strategically placed Botox can adjust the dynamics of the muscles around the eyebrows, either lifting the outer portions for a more upturned look or relaxing specific areas to flatten the arch. This requires skilled application by a professional to achieve the desired effect without compromising facial expressions.
+    4) Dermal Fillers: Though less common for directly altering eyebrow tilt, fillers can be used around the eyebrows to support the desired shape indirectly or correct asymmetries that affect eyebrow tilt.
+    
+    SURGICAL INTERVENTIONS
+    5) Brow Lift: A surgical procedure that can be tailored to modify the tilt of the eyebrows. Depending on the technique used (endoscopic, coronal, or hairline lift), the surgeon can reposition the eyebrows to be more flat or more arched, enhancing the outer brow lift for a more upturned appearance.
+    6) Direct Brow Lift: Involves removing a segment of skin above or below the eyebrows to raise or lower their position, which can also affect their tilt. This method is less commonly used due to potential scarring.
+    7) Temporal Brow Lift: Part of the scalp is lifted, specifically targeting the outer third of the eyebrows to raise them, creating a more upturned look`,
   },
   BitemporalWidth: {
+    name: 'Bitemporal Width',
+    unit: '%',
     scores: [5, 2.5, 1.25, 0, -1.25, -2.5, -5],
     notes: [
       'Your forehead has an ideal width relative to your cheekbones. Your forehead is neither too narrow nor wide.',
@@ -601,26 +1078,53 @@ export const ASSESSMENTS = {
       'Your forehead has an extremely abnormal width relative to your cheekbones. Your forehead may be considered either too wide (high values) or narrow (low values).',
       'Your forehead has an extremely abnormal width relative to your cheekbones. Your forehead may be considered either too wide (high values) or narrow (low values).',
     ],
-    advice: `Altering your forehead width will mostly have to do with altering your hairline. While altering this proportion is generally not necessary unless it is an extreme case, there are a few ways to do so:
-        1) laser hair removal to widen an overly narrow hairline.
-        2) shaving your hairline is inadvisable, but can widen the hairline.
-        3) using a hairstyle to cover your forehead.
-        4) altering your hair length. For example, wider bitemporal widths may suit shorter sides, while narrow foreheads may suit longer hairstyles. `,
+    advice: `
+    LIFESTYLE CHANGES
+    1) Hairstyles can manipulate the perceived dimensions of your forehead. If your forehead is wide, a hairstyle with shorter sides may suit you better. Narrower hairline may suit longer hairstyles. For women, styles that pull the hair back tightly may emphasize a narrower forehead. Fringe hairstyles can also be used to mask your forehead region.
+    2) Headwear: Hats and headbands can also be styled to alter the perceived width of the forehead, either by covering the temples or by adding width through their design.
+    
+    NON SURGICAL INTERVENTIONS
+    3) While generally inadvisable, shaving your hairline can alter its perceived width.
+    
+    SURGICAL INTERVENTIONS
+    4) Hair Transplant: For receding hairlines or thinning hair, this can help restore a more balanced forehead width. Preventative hair loss methods like finasteride and minoxidil may help retain the result.
+    5) For permanent results, hairline laser hair removal can be an effective method for altering the appearance of the bitemporal width. This procedure reshapes the forehead by removing or thinning unwanted hair at the hairline. Concentrated light is used to target and destroy hair follicles, leading to permanent hair reduction in the treated area.
+    6) While a less common procedure, temporal implants can alter the actual shape of the upper head.  `,
   },
   LowerThirdProportion: {
+    name: 'Lower Third Proportion',
+    unit: '%',
     scores: [5, 2.5, 1.25, 0, -1.25, -2.5],
     notes: [
-      'Your lower third has a harmonious spacing between its features.',
-      'Your lower third has a harmonious spacing between its features.',
-      'Although not ideal, your lower third has a normal spacing between its features. The upper portion (upper lip/philtrum) of your lower third may be either slightly too short (low values) or long (high values) relative to the lower portion (chin/lower lip).',
-      'Your lower third has a slightly abnormal spacing between its features. The upper portion (upper lip/philtrum) of your lower third may be either too short (low values) or long (high values) relative to the lower portion (chin/lower lip).',
-      'Your lower third has an abnormal spacing between its features. The upper portion (upper lip/philtrum) of your lower third may be either too short (low values) or long (high values) relative to the lower portion (chin/lower lip).',
-      'Your lower third has an extremely abnormal spacing between its features. The upper portion (upper lip/philtrum) of your lower third may be either too short (low values) or long (high values) relative to the lower portion (chin/lower lip).',
+      [
+        'Your lower third has a harmonious spacing between its features.',
+        'Your lower third has a harmonious spacing between its features.',
+        'Although not ideal, your lower third has a normal spacing between its features. The upper portion (upper lip/philtrum) of your lower third may be either slightly too short (low values) or long (high values) relative to the lower portion (chin/lower lip).',
+        'Your lower third has a slightly abnormal spacing between its features. The upper portion (upper lip/philtrum) of your lower third may be either too short (low values) or long (high values) relative to the lower portion (chin/lower lip).',
+        'Your lower third has an abnormal spacing between its features. The upper portion (upper lip/philtrum) of your lower third may be either too short (low values) or long (high values) relative to the lower portion (chin/lower lip).',
+        'Your lower third has an extremely abnormal spacing between its features. The upper portion (upper lip/philtrum) of your lower third may be either too short (low values) or long (high values) relative to the lower portion (chin/lower lip).',
+      ],
     ],
-    advice: `Altering chin height can be achieved through the following methods: jaw implants, chin implants, vertical genioplasty, facial hair. An increase in chin height lowers this proportion if it is too high.
-        Rhinoplasty can reduce the droopiness of the nasal tip, thereby increasing this proportion. Altering lip size does not substantially affect this proportion.`,
+    advice: `
+    LIFESTYLE CHANGES
+    1) Facial hair can add perceived height to your chin, resulting in the appearance of a lower ratio.
+    
+    NON SURGICAL INTERVENTIONS
+    2) Dermal Fillers: Injectable fillers can add volume to the chin, subtly altering its height and projection for a more balanced look. This is a temporary solution but can be ideal for minor adjustments.
+    
+    ORTHODONTIC INTERVENTIONS
+    3) Orthodontics or Orthognathic Surgery: Corrects dental or jaw alignment issues, impacting the lower third's proportions and possibly chin height.
+    
+    SURGICAL INTERVENTIONS
+    4) Genioplasty: A surgical procedure that alters the bone of the chin, either moving it forward or backward, or vertically lengthening or shortening it, to improve facial proportions.
+    5) Chin Implants: The insertion of implants to enhance chin projection or increase its height can contribute to a more balanced facial profile.
+    6) Fat Grafting: Injecting fat into the chin area can subtly increase its volume and adjust its contour, including height adjustments.
+    7) Rhinoplasty can reduce the droopiness of the nasal tip, which increases the value of this proportion.
+    `,
   },
   IpsilateralAlarAngle: {
+    name: 'Ipsilateral Alar Angle',
+    unit: '°',
     scores: [2.5, 1.25, 0.63, 0, -0.63, -1.25, -2.5],
     notes: [
       'Your midface structure retains a harmonious balance.',
@@ -631,10 +1135,18 @@ export const ASSESSMENTS = {
       'Your midface structure lacks balance. Your angle may indicate an extremely elongated nasal region and close set eyes (low values). Or, it may indicate a short nose and wide set eyes (high values).',
       'Your midface structure lacks balance. Your angle may indicate an extremely elongated nasal region and close set eyes (low values). Or, it may indicate a short nose and wide set eyes (high values).',
     ],
-    advice: `Altering the spacing between your eyes is not feasible for most people, so the main way to change this measurement is to alter the position of your nasal tip. Rhinoplasty to reduce nasal tip droopiness can increase this angle.
-        You should factor in how that change would alter your other facial proportions (e.g., facial thirds).`,
+    advice: `
+    LIFESTYLE CHANGES
+    1) Makeup: Skilled application of makeup can create the illusion of wider eyes. 
+    2) Eyelash Extensions: Can enhance the perceived size of the eyes by adding volume and length to the lashes
+    
+    SURGICAL INTERVENTIONS
+    1) Rhinoplasty can reduce the droopiness of the nasal tip, thereby increasing this value by a subtle amount.
+    2) Some invasive midface procedures like a Lefort 1 Osteotomy can alter the midface structure to be more vertically elongated or compact. Other forms of orthognathic surgery may result in some changes to the midface structure as well. Such procedures are typically reserved for severe cases as they are corrective operations with notable risks and long recovery times.`,
   },
   MedialCanthalAngle: {
+    name: 'Medial Canthal Angle',
+    unit: '°',
     scores: [10, 5, 2.5, 0, -2.5, -5, -10],
     notes: [
       'The inner corner of your eye is harmonious. It has distinct shape and angularity, while not being overly angular.',
@@ -645,6 +1157,14 @@ export const ASSESSMENTS = {
       'The inner corner of your eye is very disharmonious. It either lacks some distinct angularity (high values) or is overly sharp (low values).',
       'The inner corner of your eye is extremely disharmonious. It either lacks some distinct angularity (high values) or is overly sharp (low values).',
     ],
-    advice: `There is no surgery specifically addressed at altering the sharpness of the medial canthus, but Canthoplasty, Canthopexy, or Blepharoplasty would alter this to some effect.`,
+    advice: `
+    LIFESTYLE CHANGES
+    1) Makeup: Skilled application of makeup can create the illusion of a sharper inner eye corner. 
+    
+    SURGICAL INTERVENTIONS
+    2) Medial Canthoplasty: This procedure tightens or repositions the medial canthal tendon to alter the angle between the eyelids, bringing them closer to the nose or adjusting their tension. It's often used to correct eyelid laxity or to bring the eyelids into a more aesthetically pleasing position.
+    3) Epicanthoplasty: Specifically targets the epicanthal fold, which is more common in Asian eyelids, to create a more open appearance of the eyes by modifying the medial canthal angle. This procedure can reduce the fold and change the eye's shape, making the eyes appear larger and more rounded.
+    4) Lower Blepharoplasty: Targets under-eye bags and excess skin, which can subtly influence the perceived shape of the medial canthus.
+    5) Ptosis Surgery: Corrects drooping of the upper eyelid by tightening the muscle, which can increase the palpebral height, making the inner eye corner appear larger and more awake (along with the rest of the eye).`,
   },
 };

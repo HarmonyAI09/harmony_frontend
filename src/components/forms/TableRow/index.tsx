@@ -7,9 +7,10 @@ import classes from './index.module.scss';
 interface ITableRowProps {
   columns: IColumn[];
   row: any;
+  active?: boolean;
 }
 
-function TableRow({ columns, row }: ITableRowProps) {
+function TableRow({ columns, row, active = true }: ITableRowProps) {
   const justifyClasses = (column: IColumn) =>
     column.justify === 'left'
       ? classes.justifyLeft
@@ -42,6 +43,7 @@ function TableRow({ columns, row }: ITableRowProps) {
           {(column.row && column.row(row)) || row[column.key] || ''}
         </div>
       ))}
+      {!active && <div className={classes.blur}></div>}
     </div>
   );
 }

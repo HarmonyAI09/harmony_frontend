@@ -9,7 +9,7 @@ import Login from '@/pages/auth/Login';
 import Register from '@/pages/auth/Register';
 import Harmony from '@/pages/main/Harmony';
 
-import { authorize } from '@/redux/reducers/auth';
+import { authorize, loadAccount } from '@/redux/reducers/auth';
 import { useAppDispatch, useAppSelector } from '@/redux/store';
 import HttpService from '@/services/HttpService';
 
@@ -80,6 +80,8 @@ export default function Routes() {
     if (isLogin) return;
     HttpService.get('/auth').then(response => {
       dispatch(authorize());
+      dispatch(loadAccount(response));
+      console.log(response);
     });
   }, []);
 

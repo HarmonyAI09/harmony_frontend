@@ -1,231 +1,249 @@
-import { DragEvent, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  MouseEvent,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 import { TbRefresh } from 'react-icons/tb';
+import { useWindowSize } from '@react-hook/window-size';
+import clsx from 'clsx';
 
 import Dialog from '@/components/forms/Dialog';
-import { SAMPLE_LANDMARKS } from '@/constants/landmark';
-import { ORIGIN_IMAGE_SIZE, CURRENT_IMAGE_SIZE, SERVER_URI } from '@/config';
+import { SAMPLE_LANDMARKS, SIDE_BLACK_PT_LIST } from '@/constants/landmark';
+import { NORMAL_IMAGE_SIZE, ORIGIN_IMAGE_SIZE, SERVER_URI } from '@/config';
 import { useAppDispatch, useAppSelector } from '@/redux/store';
 import { updateFrontPts, updateSidePts } from '@/redux/reducers/setting';
-
-import FrontPointModelSrc from '@/assets/images/points/front.jpg';
-import SidePointModelSrc from '@/assets/images/points/side.jpg';
-import classes from './index.module.scss';
 import HttpService from '@/services/HttpService';
+import { MappingPtType, normalizePts, denormalizePts } from '@/utils/point';
+
+import frontModelSrc from '@/assets/images/points/front.jpg';
+import sideModelSrc from '@/assets/images/points/side.jpg';
+import classes from './index.module.scss';
 
 interface IMappingDialogProps {
-  open: Boolean;
+  open?: Boolean;
   onClose: () => void;
   type: 'front' | 'side';
 }
 
-function MappingDialog({ open = false, onClose, type }: IMappingDialogProps) {
+function MappingDialog({
+  open = true,
+  onClose = () => {},
+  type = 'front',
+}: IMappingDialogProps) {
   const dispatch = useAppDispatch();
+  const profileID = useAppSelector(store => store.setting.profileID);
+  const savingPts = useAppSelector(store => store.setting.mappingPoints[type]);
 
-  const profileID = useAppSelector(state => state.setting.profileID);
-  const mappingPts = useAppSelector(state => state.setting.mappingPoints);
+  const windowSize = useWindowSize();
 
-  const [cursor, setCursor] = useState<{ x: number; y: number }>({
-    x: -100,
-    y: -100,
+  const [mapperSize, setMapperSize] = useState(0);
+  const [mapperOffset, setMapperOffset] = useState<{
+    x: number;
+    y: number;
+  }>({ x: 0, y: 0 });
+  const [mapperCursor, setMapperCursor] = useState<{ x: number; y: number }>({
+    x: 0,
+    y: 0,
   });
-  const [autoPts, setAutoPts] = useState<any[]>([]);
-  const [scaledPts, setScaledPts] = useState<any[]>([]);
+  const [matchingPt, setMatchingPt] = useState({
+    x: 0,
+    y: 0,
+  });
+  const [autoDetecPts, setAutoDetecPts] = useState<MappingPtType[]>([]);
+  const [workingPts, setWorkingPts] = useState<MappingPtType[]>([]);
   const [isDragging, setIsDragging] = useState(false);
 
-  const imageRef = useRef<HTMLDivElement>(null);
-  const dragIndex = useRef<number>(-1);
-  const dragOrder = useRef<number>(-1);
+  const mapperRef = useRef<HTMLDivElement>(null);
 
-  const ptModelSrc = useMemo(
-    () => (type === 'front' ? FrontPointModelSrc : SidePointModelSrc),
-    [type]
-  );
-
-  const rawModelSrc = useMemo(
-    () =>
-      profileID ? `${SERVER_URI}/img/${profileID}/${type.slice(0, 1)}` : '',
-    [profileID]
-  );
-
-  const dragPt = useMemo(() => {
-    if (dragIndex.current === -1 || dragOrder.current === -1) return null;
-    const imgSize = imageRef.current?.clientWidth || 0;
-    const point = SAMPLE_LANDMARKS.slice(type === 'front' ? 0 : 30)[
-      dragIndex.current
-    ][dragOrder.current];
-    return {
-      x: (point.x * imgSize) / ORIGIN_IMAGE_SIZE,
-      y: (point.y * imgSize) / ORIGIN_IMAGE_SIZE,
-    };
-  }, [dragIndex.current, dragOrder.current, scaledPts]);
-
-  const isSamePt = (first: any, second: any) => {
-    if (!first || !second) return false;
+  const isSamePt = (
+    first: { x: number; y: number },
+    second: { x: number; y: number }
+  ) => {
     return first.x === second.x && first.y === second.y;
   };
 
-  const getScaledPts = (originPts: any[], originSize: number) => {
-    const imgSize = imageRef.current?.clientWidth || 0;
-    return originPts.map((landmarks: any[]) => {
-      return landmarks.map((landmark: any) => ({
-        x: Math.floor((landmark.x * imgSize) / originSize),
-        y: Math.floor((landmark.y * imgSize) / originSize),
-      }));
-    });
-  };
-
-  const onMarkDragStart =
-    (ptIndex: number, order: number) => (e: DragEvent<HTMLSpanElement>) => {
-      dragIndex.current = ptIndex;
-      dragOrder.current = order;
-      setIsDragging(true);
-    };
-
-  const onMarkDragEnd = (ptIndex: number) => () => {
-    if (ptIndex !== dragIndex.current) return;
-    dragIndex.current = -1;
-    dragOrder.current = -1;
-    setIsDragging(false);
-  };
-
-  const onMarkDraging = (e: any) => {
-    if (dragIndex.current === -1) return;
-    if (!e.clientX && !e.clientY) return;
-
-    const offsetX = imageRef.current?.offsetLeft || 0,
-      offsetY = imageRef.current?.offsetTop || 0;
-    const pageX = e.clientX - offsetX,
-      pageY = e.clientY - offsetY;
-
-    setCursor({ x: pageX, y: pageY });
-    setScaledPts(
-      scaledPts.map((landmarks: any[], index: number) =>
-        index === dragIndex.current
-          ? isSamePt(landmarks[0], landmarks[1])
-            ? [
-                { x: pageX, y: pageY },
-                { x: pageX, y: pageY },
-              ]
-            : landmarks.map((landmark: any, markId: number) =>
-                markId === dragOrder.current
-                  ? { x: e.clientX - offsetX, y: e.clientY - offsetY }
-                  : landmark
-              )
-          : landmarks
-      )
-    );
-  };
-
-  const onResetMappingClick = () => {
-    setScaledPts(getScaledPts(autoPts, CURRENT_IMAGE_SIZE));
-  };
-
-  const onMappingClose = () => {
+  const onMappingCloseBtnClick = () => {
     dispatch(
-      type === 'front' ? updateFrontPts(scaledPts) : updateSidePts(scaledPts)
+      type === 'front'
+        ? updateFrontPts(normalizePts(workingPts, mapperSize))
+        : updateSidePts(normalizePts(workingPts, mapperSize))
     );
     onClose();
   };
 
+  const onMappingResetBtnClick = () => {
+    setWorkingPts(denormalizePts(autoDetecPts, mapperSize));
+  };
+
+  const onLandmarkDown =
+    (index: number, order: number) => (e: MouseEvent<HTMLSpanElement>) => {
+      const { width, height, left, top } =
+        e.currentTarget.getBoundingClientRect();
+      const shiftX = e.clientX - left - width / 2;
+      const shiftY = e.clientY - top - height / 2;
+
+      console.log(index, order);
+      console.log(SAMPLE_LANDMARKS[index][order]);
+
+      setMatchingPt({
+        x: Math.floor(
+          (SAMPLE_LANDMARKS[index + (type === 'front' ? 0 : 30)][order].x *
+            mapperSize) /
+            ORIGIN_IMAGE_SIZE
+        ),
+        y: Math.floor(
+          (SAMPLE_LANDMARKS[index + (type === 'front' ? 0 : 30)][order].y *
+            mapperSize) /
+            ORIGIN_IMAGE_SIZE
+        ),
+      });
+
+      const onLandmarkMove = (ev: MouseEvent) => {
+        setWorkingPts(
+          workingPts.map((pts: MappingPtType, id: number) =>
+            id === index
+              ? pts.map((point: { x: number; y: number }, pos: number) =>
+                  order === pos
+                    ? {
+                        x: ev.pageX - mapperOffset.x - shiftX,
+                        y: ev.pageY - mapperOffset.y - shiftY,
+                      }
+                    : point
+                )
+              : pts
+          )
+        );
+        setMapperCursor({
+          x: ev.pageX - mapperOffset.x - shiftX,
+          y: ev.pageY - mapperOffset.y - shiftY,
+        });
+        setIsDragging(true);
+      };
+
+      document.addEventListener('mousemove', onLandmarkMove);
+      document.addEventListener('mouseup', () => {
+        document.removeEventListener('mousemove', onLandmarkMove);
+        document.onmousemove = null;
+        setIsDragging(false);
+      });
+    };
+
+  const layoutCallback = () => {
+    if (!mapperRef.current) return;
+    const { height, left, top } = mapperRef.current.getBoundingClientRect();
+    setMapperSize(height);
+    setMapperOffset({
+      x: left,
+      y: top,
+    });
+  };
+
+  useLayoutEffect(layoutCallback, []);
+  useEffect(layoutCallback, [windowSize]);
+
   useEffect(() => {
-    if (!open) return;
-    if (profileID) {
-      HttpService.post(`/auto/${type.slice(0, 1)}/${profileID}`, {}).then(
-        response => {
-          const { points } = response;
-          setAutoPts(points);
-          if (!mappingPts[type].length) {
-            setScaledPts(getScaledPts(points as any[], CURRENT_IMAGE_SIZE));
-          } else {
-            setScaledPts(
-              getScaledPts(mappingPts[type] as any[], CURRENT_IMAGE_SIZE)
-            );
-          }
-        }
-      );
-    }
-  }, [open, profileID]);
+    HttpService.post(`/auto/${type.slice(0, 1)}/${profileID}`, {}).then(
+      response => {
+        const { points } = response;
+        setAutoDetecPts(points);
+      }
+    );
+  }, []);
+
+  useEffect(() => {
+    if (savingPts.length > 0)
+      setWorkingPts(denormalizePts(savingPts, mapperSize));
+    else setWorkingPts(denormalizePts(autoDetecPts, mapperSize));
+  }, [autoDetecPts, mapperSize]);
 
   return (
     <Dialog
-      open={open}
-      onClose={onMappingClose}
-      header={<p className={classes.dlgTitle}>Image mapping</p>}
+      open={true}
+      onClose={onMappingCloseBtnClick}
+      header={<p className={classes.header}>Image Mapping</p>}
       body={
         <div className={classes.images}>
-          <div className={classes.model}>
+          <div className={clsx(classes.image, classes.template)}>
             <img
-              src={ptModelSrc}
-              style={{
-                maxWidth: CURRENT_IMAGE_SIZE,
-                maxHeight: CURRENT_IMAGE_SIZE,
-              }}
+              src={type === 'front' ? frontModelSrc : sideModelSrc}
+              alt="Template image"
             />
-            {dragPt && (
+            {isDragging && (
               <span
-                className={classes.landmark}
+                className={classes.matchPt}
                 style={{
-                  left: dragPt.x,
-                  top: dragPt.y,
+                  left: matchingPt.x,
+                  top: matchingPt.y,
                 }}
               />
             )}
           </div>
-          <div className={classes.real} ref={imageRef}>
-            {profileID ? (
-              <img src={rawModelSrc} alt="Default model image" />
-            ) : (
-              <></>
+          <div className={clsx(classes.image, classes.mapper)} ref={mapperRef}>
+            <img
+              src={`${SERVER_URI}/img/${profileID}/${type.slice(0, 1)}`}
+              alt="Mapping image"
+              onDragStart={e => e.preventDefault()}
+            />
+            {workingPts.map((landmarks: any[], index: number) =>
+              type === 'side' && SIDE_BLACK_PT_LIST.includes(index) ? (
+                <></>
+              ) : (
+                <>
+                  {landmarks[0] && (
+                    <span
+                      style={{ left: landmarks[0].x, top: landmarks[0].y }}
+                      className={classes.landmark}
+                      onMouseDown={onLandmarkDown(index, 0)}
+                      onDragStart={() => false}
+                      draggable="false"
+                      hidden={index === 0}
+                    />
+                  )}
+                  {type === 'front' &&
+                    landmarks[1] &&
+                    !isSamePt(
+                      SAMPLE_LANDMARKS[index][0],
+                      SAMPLE_LANDMARKS[index][1]
+                    ) && (
+                      <span
+                        style={{ left: landmarks[1].x, top: landmarks[1].y }}
+                        className={classes.landmark}
+                        onMouseDown={onLandmarkDown(index, 1)}
+                        onDragStart={() => false}
+                        draggable="false"
+                      />
+                    )}
+                </>
+              )
             )}
-            {scaledPts.map((landmarks: any[], index: number) => (
-              <>
-                {landmarks[0] && (
-                  <span
-                    style={{ left: landmarks[0].x, top: landmarks[0].y }}
-                    className={classes.landmark}
-                    onDragStart={onMarkDragStart(index, 0)}
-                    onDrag={onMarkDraging}
-                    onDragEnd={onMarkDragEnd(index)}
-                    draggable={true}
-                    hidden={index === 0}
-                  />
-                )}
-                {landmarks[1] && !isSamePt(landmarks[0], landmarks[1]) && (
-                  <span
-                    style={{ left: landmarks[1].x, top: landmarks[1].y }}
-                    className={classes.landmark}
-                    onDragStart={onMarkDragStart(index, 1)}
-                    onDrag={onMarkDraging}
-                    onDragEnd={onMarkDragEnd(index)}
-                    draggable={true}
-                  />
-                )}
-              </>
-            ))}
-            <span className={classes.autoMap} onClick={onResetMappingClick}>
-              <TbRefresh />
-            </span>
-            {isDragging && imageRef.current?.clientWidth && (
+            {isDragging && mapperSize && (
               <div
                 className={classes.magnifier}
                 style={{
-                  backgroundImage: `url(${rawModelSrc})`,
+                  backgroundImage: `url(${SERVER_URI}/img/${profileID}/${type.slice(
+                    0,
+                    1
+                  )})`,
                   backgroundPositionX:
-                    -(cursor.x * CURRENT_IMAGE_SIZE * 2) /
-                      imageRef.current.clientWidth +
-                    48,
+                    -(mapperCursor.x * NORMAL_IMAGE_SIZE * 2) / mapperSize + 48,
                   backgroundPositionY:
-                    -(cursor.y * CURRENT_IMAGE_SIZE * 2) /
-                      imageRef.current.clientWidth +
-                    48,
-                  backgroundSize: `${CURRENT_IMAGE_SIZE * 2}px ${
-                    CURRENT_IMAGE_SIZE * 2
+                    -(mapperCursor.y * NORMAL_IMAGE_SIZE * 2) / mapperSize + 48,
+                  backgroundSize: `${NORMAL_IMAGE_SIZE * 2}px ${
+                    NORMAL_IMAGE_SIZE * 2
                   }px`,
                 }}
               >
                 <span />
               </div>
             )}
+            <span
+              className={classes.autoDetectBtn}
+              onClick={onMappingResetBtnClick}
+            >
+              <TbRefresh />
+            </span>
           </div>
         </div>
       }

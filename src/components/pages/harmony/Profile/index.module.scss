@@ -25,6 +25,10 @@
       @apply bg-blue-500 px-2.5 text-sm;
     }
 
+    .downBtn {
+      @apply size-6 absolute rounded-full right-0 top-0 flex items-center justify-center bg-green-500;
+    }
+
     .badge {
       @apply bg-success text-primary flex items-center gap-x-0.5 px-2;
       > svg {

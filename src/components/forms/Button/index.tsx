@@ -1,4 +1,5 @@
 import React, { ComponentProps } from 'react';
+import { motion } from 'framer-motion';
 import clsx from 'clsx';
 
 import classes from './index.module.scss';
@@ -44,7 +45,7 @@ function Button({
   const disabledClassName = disabled ? classes.disabled : '';
 
   return (
-    <button
+    <motion.button
       onClick={disabled ? () => {} : onClick}
       className={clsx(
         classes.root,
@@ -53,9 +54,11 @@ function Button({
         disabledClassName,
         className
       )}
+      whileHover={{ scale: 1.1 }}
+      transition={{ type: 'spring', stiffness: 400, damping: 10 }}
     >
       {children}
-    </button>
+    </motion.button>
   );
 }
 

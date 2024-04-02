@@ -44,7 +44,6 @@ function Register() {
   return (
     <div className={classes.root}>
       <h1>Sign Up</h1>
-      <p>Creating attractive with your hands</p>
       <div className={classes.form}>
         <Input
           name="name"

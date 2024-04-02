@@ -51,7 +51,6 @@ function Login() {
   return (
     <div className={classes.root}>
       <h1>Log In</h1>
-      <p>Creating attractive with your hands</p>
       <div className={classes.form}>
         <Input
           name="email"

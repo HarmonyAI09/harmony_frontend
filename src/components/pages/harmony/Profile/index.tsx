@@ -1,7 +1,9 @@
+import axios from 'axios';
 import { ChangeEvent, useMemo, useState } from 'react';
 import { HiOutlinePencil } from 'react-icons/hi';
 import { GiCheckMark } from 'react-icons/gi';
 import { FaDownload } from 'react-icons/fa6';
+import { enqueueSnackbar } from 'notistack';
 import clsx from 'clsx';
 
 import { GENDERS } from '@/constants/gender';
@@ -75,37 +77,40 @@ function Profile({
     });
   };
 
-  const saveFile = (url: string, filename: string) => {
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  };
-
-  function s2ab(s: string) {
-    var buf = new ArrayBuffer(s.length);
-    var view = new Uint8Array(buf);
-    for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xff;
-    return buf;
-  }
-
   const onDownClick = () => {
-    HttpService.post('/profile/download', {
-      id: ID,
-      name,
-      gender: genderName,
-      race: raceName,
-      features: analyses,
-    }).then((response: any) => {
-      const file = new Blob([response], {
-        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,',
+    (async () => {
+      const response = await fetch(`${SERVER_URI}/profile/download`, {
+        method: 'POST',
+        body: JSON.stringify({
+          id: userID,
+          name,
+          gender: genderName,
+          race: raceName,
+          features: analyses,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
-      const url = window.URL.createObjectURL(file);
-      saveFile(url, `${name}.xlsx`);
-      window.URL.revokeObjectURL(url);
-    });
+
+      if (response.ok) {
+        const blob = await response.blob();
+
+        let filename = `${name}_${genderName}_${raceName}.xlsx`;
+
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      } else {
+        enqueueSnackbar('Download failed.', { variant: 'error' });
+      }
+    })();
   };
 
   return (

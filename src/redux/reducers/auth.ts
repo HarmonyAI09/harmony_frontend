@@ -7,16 +7,20 @@ export interface AuthState {
 }
 
 export interface IAccount {
-  userID: string;
+  userID?: string;
+  customerID: string;
+  subscribeID: string | null;
   username: string;
   email: string;
   firstname: string;
   lastname: string;
-  credits: number;
+  credits?: number;
 }
 
 export interface IReqAccount {
   user_id: string;
+  customer_id: string;
+  subscription_id: string | null;
   first_name: string;
   last_name: string;
   username: string;
@@ -39,10 +43,20 @@ export const authReducer = createSlice({
       state.isLogin = false;
     },
     loadAccount: (state: AuthState, action: PayloadAction<IReqAccount>) => {
-      const { user_id, first_name, last_name, username, email, credits } =
-        action.payload;
+      const {
+        user_id,
+        customer_id,
+        subscription_id,
+        first_name,
+        last_name,
+        username,
+        email,
+        credits,
+      } = action.payload;
       state.account = {
         userID: user_id,
+        customerID: customer_id,
+        subscribeID: subscription_id,
         username,
         email,
         firstname: first_name,

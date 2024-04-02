@@ -45,7 +45,7 @@ export const settingReducer = createSlice({
       state.name = 'Untitled';
       state.gender = '';
       state.race = '';
-      state.profileID = '';
+      state.profileID = uuidv4();
       state.mappingPoints = initialState.mappingPoints;
     },
     updateGender: (state: SettingState, action: PayloadAction<string>) => {

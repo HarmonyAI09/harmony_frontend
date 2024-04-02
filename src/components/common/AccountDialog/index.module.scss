@@ -1,0 +1,43 @@
+.header {
+  @apply text-3xl;
+}
+
+.account {
+  @apply flex gap-x-8 py-8 px-12;
+  > .avatar {
+    @apply shrink-0;
+    > img {
+      @apply size-32;
+    }
+  }
+  > .controls {
+    @apply flex flex-col gap-y-4;
+    > .generals {
+      @apply flex flex-col gap-y-2;
+      > p {
+        @apply text-xl;
+      }
+      > .horizon {
+        @apply flex gap-x-2;
+      }
+      > .updateBtn {
+        @apply self-end px-6 mt-2;
+      }
+    }
+    > .security {
+      @apply flex flex-col gap-y-2;
+      > p {
+        @apply text-xl;
+      }
+      > .horizon {
+        @apply flex gap-x-2;
+      }
+      > .changeBtn {
+        @apply self-end px-6;
+      }
+    }
+  }
+  .input {
+    @apply border-1 border-secondary bg-primary text-primary;
+  }
+}

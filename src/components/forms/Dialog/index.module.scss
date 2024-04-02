@@ -3,7 +3,7 @@
 }
 
 .root {
-  @apply flex flex-col max-w-screen-lg 2xl:max-w-screen-xl 3xl:max-w-screen-2xl 4xl:max-w-screen-3xl h-fit w-full h-4/5 border-1 border-secondary;
+  @apply flex flex-col h-fit w-full border-1 border-secondary;
   > .header {
     @apply bg-secondary relative py-4 px-6;
     > span.close {
@@ -16,4 +16,36 @@
   > .body {
     @apply bg-primary grow flex flex-col overflow-y-auto;
   }
+}
+
+.screenWidth {
+  @apply max-w-[90%];
+}
+
+.triXLWidth {
+  @apply max-w-screen-3xl;
+}
+
+.duoXLWidth {
+  @apply max-w-screen-2xl;
+}
+
+.xlWidth {
+  @apply max-w-screen-xl;
+}
+
+.lgWidth {
+  @apply max-w-screen-lg;
+}
+
+.mdWidth {
+  @apply max-w-screen-md;
+}
+
+.smWidth {
+  @apply max-w-screen-sm;
+}
+
+.fullHeight {
+  @apply h-4/5;
 }

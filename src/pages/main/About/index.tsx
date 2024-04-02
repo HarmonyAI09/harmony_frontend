@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { BiGridAlt, BiCloudUpload, BiQrScan } from 'react-icons/bi';
 import { FaPlay, FaRocket, FaScrewdriverWrench } from 'react-icons/fa6';
@@ -9,7 +8,6 @@ import { FREE_FEATURES, PRO_FEATURES } from '@/constants/price';
 import Button from '@/components/forms/Button';
 import ParticleAnimation from '@/components/pages/about/ParticleAnimation';
 
-import IPhoneImage from '@/assets/images/backs/iphone.png';
 import DemoVideo from '@/assets/videos/demo.mp4';
 import classes from './index.module.scss';
 
@@ -153,7 +151,6 @@ function About() {
               </ul>
             </div>
             <div className={classes.picture}>
-              <img src={IPhoneImage} alt="IPhone Image" />
               <div className={classes.arriving}>
                 <span className={classes.playIcon}>
                   <FaPlay />

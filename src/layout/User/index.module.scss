@@ -1,0 +1,31 @@
+.root {
+  @apply relative;
+  > .avatar {
+    @apply cursor-pointer flex flex-col;
+    > img {
+      @apply size-14;
+    }
+    > p {
+      @apply text-xs text-center -mt-2;
+    }
+  }
+  > .dropdown {
+    @apply absolute z-[150] py-3.5 transform left-5 w-32 -translate-x-1/2 translate-y-2.5 border-1 border-secondary bg-secondary rounded-md;
+    > li {
+      @apply py-0.5 hover:bg-success cursor-pointer px-4;
+    }
+  }
+}
+
+.header {
+  @apply text-3xl;
+}
+
+.mypage {
+  @apply px-8 py-6 flex gap-x-4;
+  > .avatar {
+    > img {
+      @apply size-32;
+    }
+  }
+}

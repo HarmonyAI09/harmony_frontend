@@ -12,6 +12,7 @@ interface IInputProps {
   required?: boolean;
   value?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  className?: string;
 }
 
 function Input({
@@ -23,6 +24,7 @@ function Input({
   required = false,
   value = '',
   onChange = () => {},
+  className = '',
 }: IInputProps) {
   const [isDirty, setIsDirty] = useState(false);
 
@@ -37,7 +39,13 @@ function Input({
         )}
         {isForgot && <Link to={forgotUrl}>Forgot your password?</Link>}
       </div>
-      <input type={type} name={name} value={value} onChange={onChange} />
+      <input
+        type={type}
+        name={name}
+        value={value}
+        onChange={onChange}
+        className={className}
+      />
     </div>
   );
 }

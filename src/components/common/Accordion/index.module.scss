@@ -1,7 +1,7 @@
 .root {
   @apply flex flex-col gap-y-1;
   .header {
-    @apply border-none py-2 px-4 flex justify-between items-center w-full cursor-pointer bg-primary bg-success;
+    @apply border-none py-2 px-4 flex justify-between items-center w-full cursor-pointer bg-secondary;
     > p {
       @apply text-lg font-medium;
     }
@@ -11,7 +11,7 @@
   }
 
   .body {
-    @apply border-none px-4 pt-8 pb-4 text-base bg-secondary;
+    @apply px-4 pt-8 pb-4 text-base bg-primary border-1 border-secondary;
     > p {
       @apply text-primary;
     }

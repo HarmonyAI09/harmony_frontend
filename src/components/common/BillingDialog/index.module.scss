@@ -1,0 +1,43 @@
+.header {
+  @apply text-3xl;
+}
+
+.billing {
+  @apply flex flex-col gap-y-4 py-4 px-8;
+
+  > .section {
+    @apply flex flex-col gap-y-2;
+
+    > .title {
+      @apply text-lg;
+    }
+
+    > .header {
+      @apply flex flex-col gap-y-2;
+      > .cardElement * {
+        @apply text-primary;
+      }
+      > p {
+        @apply text-lg;
+      }
+    }
+    > .content {
+      @apply flex flex-col gap-y-2;
+
+      > div {
+        > label {
+          @apply text-secondary;
+        }
+        > p {
+          @apply text-primary;
+        }
+      }
+    }
+    > .buttons {
+      @apply flex gap-x-2 justify-end;
+    }
+  }
+  .button {
+    @apply text-base px-4;
+  }
+}

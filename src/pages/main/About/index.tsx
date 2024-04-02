@@ -6,7 +6,6 @@ import { GrCheckmark, GrMagic } from 'react-icons/gr';
 
 import { FREE_FEATURES, PRO_FEATURES } from '@/constants/price';
 import Button from '@/components/forms/Button';
-import ParticleAnimation from '@/components/pages/about/ParticleAnimation';
 
 import DemoVideo from '@/assets/videos/demo.mp4';
 import classes from './index.module.scss';
@@ -14,7 +13,6 @@ import classes from './index.module.scss';
 function About() {
   return (
     <div className={classes.root}>
-      <ParticleAnimation />
       <div className={classes.blackback}>
         <div className={classes.container}>
           <div className={classes.analysis}>

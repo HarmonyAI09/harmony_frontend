@@ -1,7 +1,7 @@
 .root {
   @apply flex relative;
   > div {
-    @apply shrink-0 text-sm flex items-center justify-center max-h-24 overflow-y-auto;
+    @apply shrink-0 text-sm flex items-center justify-center max-h-24 overflow-y-auto px-2;
   }
   > div.clamp {
     > * {

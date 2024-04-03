@@ -52,7 +52,7 @@ function User() {
         onClick={() => setIsDropdown(false)}
         variants={{
           open: {
-            clipPath: 'inset(0% 0% 0% 0% round 10px)',
+            clipPath: 'inset(0% 0% 0% 0% round 0px)',
             transition: {
               type: 'spring',
               duration: 0.3,
@@ -62,7 +62,7 @@ function User() {
             },
           },
           closed: {
-            clipPath: 'inset(10% 50% 90% 10% round 10px)',
+            clipPath: 'inset(10% 50% 90% 10% round 0px)',
             transition: {
               type: 'spring',
               bounce: 0,

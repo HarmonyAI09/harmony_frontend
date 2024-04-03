@@ -1,11 +1,10 @@
 import { MdClose } from 'react-icons/md';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import clsx from 'clsx';
 
 import classes from './index.module.scss';
-import { AnimatePresence } from 'framer-motion';
 
-type MaxWidth = 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'screen';
+type MaxWidth = 'self' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'screen';
 
 interface IDialogProps {
   open?: Boolean;
@@ -14,6 +13,7 @@ interface IDialogProps {
   body: React.ReactNode;
   maxWidth?: MaxWidth;
   fullHeight?: boolean;
+  animate?: boolean;
 }
 
 function Dialog({
@@ -21,8 +21,9 @@ function Dialog({
   onClose = () => {},
   header,
   body,
-  maxWidth = 'screen',
+  maxWidth = 'self',
   fullHeight = true,
+  animate = true,
 }: IDialogProps) {
   const maxWidthClasses =
     maxWidth === 'screen'
@@ -37,13 +38,15 @@ function Dialog({
       ? classes.lgWidth
       : maxWidth === 'md'
       ? classes.mdWidth
-      : classes.smWidth;
+      : maxWidth === 'sm'
+      ? classes.smWidth
+      : classes.selfWidth;
 
   const fullHeightClasses = {
     [classes.fullHeight]: fullHeight,
   };
 
-  return (
+  return animate ? (
     <AnimatePresence mode="wait">
       {open && (
         <div className={classes.screen}>
@@ -51,6 +54,13 @@ function Dialog({
             className={clsx(classes.root, maxWidthClasses, fullHeightClasses)}
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
+            exit={{ scale: 0 }}
+            transition={{
+              duration: 0.3,
+              type: 'spring',
+              stiffness: 300,
+              damping: 24,
+            }}
           >
             <div className={classes.header}>
               <div>{header}</div>
@@ -63,6 +73,20 @@ function Dialog({
         </div>
       )}
     </AnimatePresence>
+  ) : (
+    open && (
+      <div className={classes.screen}>
+        <div className={clsx(classes.root, maxWidthClasses, fullHeightClasses)}>
+          <div className={classes.header}>
+            <div>{header}</div>
+            <span className={classes.close} onClick={onClose}>
+              <MdClose />
+            </span>
+          </div>
+          <div className={classes.body}>{body}</div>
+        </div>
+      </div>
+    )
   );
 }
 

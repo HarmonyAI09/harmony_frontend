@@ -8,3 +8,20 @@
     }
   }
 }
+
+.header {
+  @apply text-2xl;
+}
+
+.confirm {
+  @apply py-6 px-8 flex flex-col gap-y-2;
+  > .buttons {
+    @apply flex justify-end gap-x-4;
+    > .discard {
+      @apply px-2.5;
+    }
+    > .save {
+      @apply px-6;
+    }
+  }
+}

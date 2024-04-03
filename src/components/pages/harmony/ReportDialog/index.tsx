@@ -1,8 +1,4 @@
-import { FaDownload } from 'react-icons/fa6';
-
 import { ASSESSMENTS } from '@/constants/analysis';
-import { GENDERS } from '@/constants/gender';
-import { ETHNICITIES } from '@/constants/ethnicity';
 import Dialog from '@/components/forms/Dialog';
 import Table, { IColumn } from '@/components/forms/Table';
 import { useAppDispatch, useAppSelector } from '@/redux/store';
@@ -10,6 +6,8 @@ import { createProfile } from '@/redux/reducers/profile';
 import HttpService from '@/services/HttpService';
 
 import classes from './index.module.scss';
+import ImageDialog from '@/components/common/ImageDialog';
+import { useMemo, useState } from 'react';
 
 const getCursorStyle = (alias: string, score: number): object => {
   const analysis = (ASSESSMENTS as any)[alias];
@@ -33,6 +31,21 @@ function ReportDialog({ open, onClose }: IReportDialogProps) {
   const dispatch = useAppDispatch();
   const analysis = useAppSelector(state => state.analysis);
   const setting = useAppSelector(state => state.setting);
+  const subscribeID = useAppSelector(state => state.auth.account?.subscribeID);
+  const isPremiumUser = useMemo(() => !!subscribeID, [subscribeID]);
+
+  const [isImageDialog, openImageDialog] = useState(false);
+  const [imageID, setImageID] = useState('');
+  const imageData = useMemo(() => {
+    const activeRow = analysis.analyses.find(item => item.alias === imageID);
+    return activeRow
+      ? {
+          text: activeRow.label,
+          title: activeRow.name,
+          imageUrl: activeRow.image,
+        }
+      : {};
+  }, [imageID]);
 
   const columns: IColumn[] = [
     {
@@ -44,6 +57,10 @@ function ReportDialog({ open, onClose }: IReportDialogProps) {
           alt="Analysis image"
           src={row.image}
           className={classes.imageCell}
+          onClick={() => {
+            setImageID(row.alias);
+            openImageDialog(true);
+          }}
         />
       ),
     },
@@ -80,6 +97,7 @@ function ReportDialog({ open, onClose }: IReportDialogProps) {
       key: 'meaning',
       basis: '30%',
       scroll: true,
+      justify: 'left',
       row: (row: any) => <p className={classes.meaningCell}>{row.meaning}</p>,
     },
     {
@@ -104,23 +122,6 @@ function ReportDialog({ open, onClose }: IReportDialogProps) {
       })
     );
     onClose();
-  };
-
-  const onDownloadClick = () => {
-    const genderName = GENDERS.find(
-      item => item.value === setting.gender
-    )?.title;
-    const raceName = ETHNICITIES.find(
-      item => item.value === setting.race
-    )?.title;
-    HttpService.post('/profile/download', {
-      id: setting.profileID,
-      gender: genderName,
-      race: raceName,
-      features: analysis.analyses,
-    }).then(response => {
-      console.log(response);
-    });
   };
 
   return (
@@ -148,7 +149,21 @@ function ReportDialog({ open, onClose }: IReportDialogProps) {
           </p>
         </div>
       }
-      body={<Table columns={columns} rows={analysis.analyses} />}
+      body={
+        <>
+          <Table
+            columns={columns}
+            rows={analysis.analyses}
+            active={isPremiumUser}
+          />
+          <ImageDialog
+            open={isImageDialog}
+            onClose={() => openImageDialog(false)}
+            {...imageData}
+          />
+        </>
+      }
+      maxWidth="screen"
     />
   );
 }

@@ -154,6 +154,30 @@
       }
     }
   }
+  .whyharmony {
+    @apply flex flex-col gap-y-8 items-center mt-16;
+    > p {
+      @apply text-4xl;
+    }
+    > .sections {
+      @apply grid grid-cols-4 gap-4;
+      > .section {
+        @apply flex flex-col items-center gap-y-4;
+        > p {
+          @apply text-xl text-secondary;
+        }
+        > .text {
+          @apply text-sm text-primary text-center;
+        }
+        > ul {
+          @apply flex flex-col gap-y-2;
+          > li {
+            @apply text-sm flex gap-x-1.5 before:size-2 before:rounded-full before:bg-bright before:shrink-0 before:transform before:translate-y-1.5;
+          }
+        }
+      }
+    }
+  }
   .pricing {
     @apply flex flex-col items-center;
     > p.title {
@@ -162,44 +186,52 @@
     > p.subtitle {
       @apply text-secondary mb-8 text-center;
     }
-    > .plans {
-      @apply flex justify-center gap-8 flex-wrap;
-      > div {
-        @apply max-w-96 shrink-0 bg-secondary p-8;
-        > .name {
-          @apply mb-4;
-        }
-        > .price {
-          @apply text-4xl mb-3.5;
-          > span {
-            @apply text-sm;
-          }
-        }
-        > ul {
-          @apply flex flex-col gap-y-1.5 mb-4;
-          > li {
-            @apply flex gap-x-2;
-            > svg {
-              @apply shrink-0;
-            }
-          }
-        }
-        > .freeBtn,
-        > .proBtn {
-          @apply w-full;
+  }
+  .b2b {
+    @apply flex flex-col gap-y-4;
+    .content {
+      @apply grid grid-cols-2 gap-8;
+      > .integration {
+        > .title {
+          @apply text-4xl mb-4;
         }
       }
-      > div.free {
-        @apply self-end;
+      > .target {
+        @apply flex flex-col items-center gap-y-2;
+        > .title {
+          @apply text-2xl text-center;
+        }
+        > ul > li {
+          @apply text-center;
+        }
+      }
+    }
+    > .sender {
+      @apply self-end text-secondary flex flex-col gap-y-1 justify-end;
+
+      .email {
+        @apply self-end text-secondary;
       }
     }
   }
-  .b2b {
+  .surgeons {
+    @apply flex flex-col gap-y-8 items-center;
     > .title {
-      @apply text-4xl mb-4;
+      @apply text-center text-4xl;
     }
-    > .sender {
-      @apply text-right text-secondary;
+    > .content {
+      @apply text-center max-w-[600px];
+    }
+    > ul {
+      @apply flex gap-x-4 items-center;
+      > li {
+        @apply flex flex-col gap-y-4 items-center;
+        > span {
+          > svg {
+            @apply text-primary text-5xl;
+          }
+        }
+      }
     }
   }
   .emphasize {

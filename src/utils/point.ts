@@ -8,8 +8,8 @@ export type MappingPtType = {
 export const denormalizePts = (points: MappingPtType[], size: number) => {
   return points.map((pts: MappingPtType) =>
     pts.map((item: { x: number; y: number }) => ({
-      x: Math.floor((item.x * size) / NORMAL_IMAGE_SIZE),
-      y: Math.floor((item.y * size) / NORMAL_IMAGE_SIZE),
+      x: (item.x * size) / NORMAL_IMAGE_SIZE,
+      y: (item.y * size) / NORMAL_IMAGE_SIZE,
     }))
   );
 };
@@ -17,8 +17,8 @@ export const denormalizePts = (points: MappingPtType[], size: number) => {
 export const normalizePts = (points: MappingPtType[], size: number) => {
   return points.map((pts: MappingPtType) =>
     pts.map((item: { x: number; y: number }) => ({
-      x: Math.floor((item.x * NORMAL_IMAGE_SIZE) / size),
-      y: Math.floor((item.y * NORMAL_IMAGE_SIZE) / size),
+      x: (item.x * NORMAL_IMAGE_SIZE) / size,
+      y: (item.y * NORMAL_IMAGE_SIZE) / size,
     }))
   );
 };

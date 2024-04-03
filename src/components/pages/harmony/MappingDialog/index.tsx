@@ -1,4 +1,5 @@
 import {
+  DragEventHandler,
   MouseEvent,
   useEffect,
   useLayoutEffect,
@@ -105,8 +106,8 @@ function MappingDialog({
               ? pts.map((point: { x: number; y: number }, pos: number) =>
                   order === pos
                     ? {
-                        x: ev.pageX - mapperOffset.x - shiftX,
-                        y: ev.pageY - mapperOffset.y - shiftY,
+                        x: ev.pageX - mapperOffset.x,
+                        y: ev.pageY - mapperOffset.y,
                       }
                     : point
                 )
@@ -114,8 +115,8 @@ function MappingDialog({
           )
         );
         setMapperCursor({
-          x: ev.pageX - mapperOffset.x - shiftX,
-          y: ev.pageY - mapperOffset.y - shiftY,
+          x: ev.pageX - mapperOffset.x,
+          y: ev.pageY - mapperOffset.y,
         });
         setIsDragging(true);
       };
@@ -137,7 +138,6 @@ function MappingDialog({
     });
   };
 
-  useLayoutEffect(layoutCallback, []);
   useEffect(layoutCallback, [windowSize]);
 
   useEffect(() => {
@@ -150,13 +150,16 @@ function MappingDialog({
   }, []);
 
   useEffect(() => {
-    if (savingPts.length > 0)
+    if (savingPts.length > 0) {
       setWorkingPts(denormalizePts(savingPts, mapperSize));
-    else setWorkingPts(denormalizePts(autoDetecPts, mapperSize));
+    } else {
+      setWorkingPts(denormalizePts(autoDetecPts, mapperSize));
+    }
   }, [autoDetecPts, mapperSize]);
 
   return (
     <Dialog
+      animate={false}
       open={true}
       onClose={onMappingCloseBtnClick}
       header={<p className={classes.header}>Image Mapping</p>}
@@ -193,7 +196,11 @@ function MappingDialog({
                       style={{ left: landmarks[0].x, top: landmarks[0].y }}
                       className={classes.landmark}
                       onMouseDown={onLandmarkDown(index, 0)}
-                      onDragStart={() => false}
+                      onDragStart={(e: any) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        return false;
+                      }}
                       draggable="false"
                       hidden={index === 0}
                     />
@@ -244,6 +251,7 @@ function MappingDialog({
           </div>
         </div>
       }
+      maxWidth="screen"
     />
   );
 }

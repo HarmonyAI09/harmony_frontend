@@ -1,11 +1,17 @@
 import { Link } from 'react-router-dom';
 import { BiGridAlt, BiCloudUpload, BiQrScan } from 'react-icons/bi';
-import { FaPlay, FaRocket, FaScrewdriverWrench } from 'react-icons/fa6';
+import {
+  FaPlay,
+  FaRecycle,
+  FaRegCalendarCheck,
+  FaRocket,
+  FaScrewdriverWrench,
+} from 'react-icons/fa6';
 import { GiCheckMark } from 'react-icons/gi';
-import { GrCheckmark, GrMagic } from 'react-icons/gr';
+import { GrMagic } from 'react-icons/gr';
+import { RiMoneyDollarCircleLine } from 'react-icons/ri';
 
-import { FREE_FEATURES, PRO_FEATURES } from '@/constants/price';
-import Button from '@/components/forms/Button';
+import PricePlans from '@/components/pages/about/PricePlans';
 
 import DemoVideo from '@/assets/videos/demo.mp4';
 import classes from './index.module.scss';
@@ -186,6 +192,55 @@ function About() {
             </div>
           </div>
         </div>
+        <div className={classes.whyharmony}>
+          <p>Why use Harmony?</p>
+          <div className={classes.sections}>
+            <div className={classes.section}>
+              <p>Initial clinical consultation</p>
+              <ul>
+                <li>
+                  Travel (often significant distances depending on the location
+                  of the specialist)
+                </li>
+                <li>Lengthy consultation (1-3hrs).</li>
+                <li>Non-exhaustive facial analysis.</li>
+                <li>$100-500 consultation fee.</li>
+                <li>Potential booking fees.</li>
+                <li>Time consuming forms.</li>
+              </ul>
+            </div>
+            <div className={classes.section}>
+              <p>Other similar services</p>
+              <ul>
+                <li>Manually written reports.</li>
+                <li>2+ week turnaround.</li>
+                <li>$150-350 cost.</li>
+                <li>Analyze only one set of photos per report.</li>
+              </ul>
+            </div>
+            <div className={classes.section}>
+              <p>Harmony</p>
+              <ul>
+                <li>
+                  Report generation within seconds (instant turnaround times).
+                </li>
+                <li>$300+ of value in ONE report.</li>
+                <li>Create an unlimited amount of reports.</li>
+                <li>Analyze an unlimited amount of your photos.</li>
+                <li>Constant innovation and added features.</li>
+              </ul>
+            </div>
+            <div className={classes.section}>
+              <p>Disclaimer</p>
+              <p className={classes.text}>
+                Harmony is meant to assist you in addressing your surgical and
+                aesthetic concerns. A discussion of your medical history,
+                operation costs, expectations, risks, and physical examinations
+                must be done in person with a licensed practitioner.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
       <div className={classes.blackback}>
         <div className={classes.container}>
@@ -194,68 +249,75 @@ function About() {
             <p className={classes.subtitle}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.{' '}
             </p>
-            <div className={classes.plans}>
-              <div className={classes.free}>
-                <p className={classes.name}>Free</p>
-                <div className={classes.divider} />
-                <p className={classes.price}>
-                  $0<span>/month</span>
-                </p>
-                <ul>
-                  {FREE_FEATURES.map((feature: string, index: number) => (
-                    <li key={index}>
-                      <GrCheckmark />
-                      <p>{feature}</p>
-                    </li>
-                  ))}
-                </ul>
-                <Button
-                  variant="outlined"
-                  color="secondary"
-                  className={classes.freeBtn}
-                >
-                  Get started for free
-                </Button>
-              </div>
-              <div className={classes.premium}>
-                <p className={classes.name}>Pro</p>
-                <div className={classes.divider} />
-                <p className={classes.price}>
-                  $15
-                  <span>/month</span>
-                </p>
-                <ul>
-                  {PRO_FEATURES.map((feature: string, index: number) => (
-                    <li key={index}>
-                      <GrCheckmark />
-                      <p>{feature}</p>
-                    </li>
-                  ))}
-                </ul>
-                <Button
-                  variant="contained"
-                  color="success"
-                  className={classes.proBtn}
-                >
-                  Upgrade plan
-                </Button>
-              </div>
-            </div>
+            <PricePlans />
           </div>
         </div>
       </div>
       <div className={classes.container}>
         <div className={classes.b2b}>
-          <p className={classes.title}>
-            Tailored Integration Solutions for{' '}
-            <span className={classes.emphasize}>Businesses</span>
-          </p>
-          <p className={classes.content}>
-            We offer flexible API solutions to enhance your digital offerings,
-            with scalable pricing to match. Let's discuss how we can support
-            your business's growth and innovation.
-          </p>
-          <p className={classes.sender}>sales@harmonyapp.ai</p>
+          <div className={classes.content}>
+            <div className={classes.integration}>
+              <p className={classes.title}>
+                <span className={classes.emphasize}>
+                  Tailored Integration Solutions
+                </span>{' '}
+                for Businesses
+              </p>
+              <p className={classes.text}>
+                We offer flexible API solutions to enhance your digital
+                offerings, with scalable pricing to match. Let's discuss how we
+                can support your business's growth and innovation.
+              </p>
+            </div>
+            <div className={classes.target}>
+              <p className={classes.title}>Who's it for?</p>
+              <ul>
+                <li>Beauty apps (web & mobile)</li>
+                <li>Plastic surgery clinics</li>
+                <li>Aesthetic clinics</li>
+                <li>And more</li>
+              </ul>
+            </div>
+          </div>
+          <div className={classes.sender}>
+            <p className={classes.describe}>
+              Let's discuss how we support your business's growth and
+              innovation.
+            </p>
+            <p className={classes.email}>sales@harmonyapp.ai</p>
+          </div>
+        </div>
+      </div>
+      <div className={classes.blackback}>
+        <div className={classes.container}>
+          <div className={classes.surgeons}>
+            <p className={classes.title}>For Surgeons</p>
+            <p className={classes.content}>
+              Harmony intends to offer its services and third party licensing to
+              plastic surgeons around the world. We are developing features and
+              acquiring approval from the right entities to make that happen.
+            </p>
+            <ul>
+              <li>
+                <span>
+                  <FaRegCalendarCheck />
+                </span>
+                <p>Better planning</p>
+              </li>
+              <li>
+                <span>
+                  <FaRecycle />
+                </span>
+                <p>Better outcomes</p>
+              </li>
+              <li>
+                <span>
+                  <RiMoneyDollarCircleLine />
+                </span>
+                <p>Better earnings</p>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

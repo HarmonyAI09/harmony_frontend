@@ -33,7 +33,7 @@
 }
 
 .imageCell {
-  @apply size-16 rounded-full border-1 border-emphasize;
+  @apply size-16 rounded-full border-1 border-emphasize cursor-pointer;
 }
 
 .meaningCell {

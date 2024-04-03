@@ -46,6 +46,10 @@
   @apply max-w-screen-sm;
 }
 
+.selfWidth {
+  @apply w-fit;
+}
+
 .fullHeight {
   @apply h-4/5;
 }

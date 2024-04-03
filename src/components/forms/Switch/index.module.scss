@@ -1,0 +1,24 @@
+.root {
+  @apply flex items-center gap-x-1.5;
+  > .switch {
+    @apply rounded-full w-10 p-1 bg-secondary flex items-center cursor-pointer;
+    > .handle {
+      @apply size-4 bg-primary shrink-0 rounded-full;
+    }
+  }
+
+  > .switch.left {
+    @apply justify-start;
+  }
+
+  > .switch.right {
+    @apply justify-end;
+    > .handle {
+      @apply bg-bright;
+    }
+  }
+
+  > p {
+    @apply text-base;
+  }
+}

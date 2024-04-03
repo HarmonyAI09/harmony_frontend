@@ -14,9 +14,10 @@ export interface IColumn {
 interface ITableProps {
   columns: IColumn[];
   rows: any[];
+  active?: boolean;
 }
 
-function Table({ columns, rows }: ITableProps) {
+function Table({ columns, rows, active = false }: ITableProps) {
   return (
     <div className={classes.root}>
       <div className={classes.header}>
@@ -32,7 +33,7 @@ function Table({ columns, rows }: ITableProps) {
             key={index}
             columns={columns}
             row={row}
-            active={index < 7}
+            active={active || index < 7}
           />
         ))}
       </div>

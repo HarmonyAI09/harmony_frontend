@@ -4,40 +4,21 @@
 
 .billing {
   @apply flex flex-col gap-y-4 py-4 px-8;
-
-  > .section {
-    @apply flex flex-col gap-y-2;
-
-    > .title {
-      @apply text-lg;
+  > .header {
+    @apply flex items-center gap-x-2;
+    > p {
+      @apply text-xl;
     }
-
-    > .header {
-      @apply flex items-center gap-x-10;
-      > .cardElement {
-        @apply text-primary shrink-0 grow;
-      }
-      > p {
-        @apply text-lg;
-      }
-    }
-    > .content {
-      @apply flex flex-col gap-y-2;
-
-      > div {
-        > label {
-          @apply text-secondary;
-        }
-        > p {
-          @apply text-primary;
-        }
-      }
-    }
-    > .buttons {
-      @apply flex gap-x-2 justify-end;
+    > span {
+      @apply bg-blue-500 rounded-full px-2.5 text-xs;
     }
   }
-  .button {
-    @apply text-base px-4;
+  > .subscription {
+    > .buttons {
+      @apply flex items-center gap-x-8;
+      > .button {
+        @apply px-2.5;
+      }
+    }
   }
 }

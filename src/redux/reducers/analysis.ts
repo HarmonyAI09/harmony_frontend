@@ -9,9 +9,12 @@ interface IAnalysis {
   alias: string;
   value: string;
   score: number;
+  maxscore: number;
+  minscore: number;
   ideal: string;
   meaning: string;
   advice: string;
+  label: string;
 }
 
 interface IReqFeature {
@@ -50,12 +53,15 @@ export const analysisReducer = createSlice({
       state.analyses = action.payload.features.map(
         (feature: IReqFeature, index: number) => ({
           image: `${SERVER_URI}/img/feat/${action.payload.ID}/${index}`,
+          label: (ASSESSMENTS as any)[feature.measure].meaning,
           name: (ASSESSMENTS as any)[feature.measure].name,
           alias: feature.measure,
           value: `${feature.value} ${
             (ASSESSMENTS as any)[feature.measure].unit
           }`,
           score: (ASSESSMENTS as any)[feature.measure].scores[feature.index],
+          maxscore: (ASSESSMENTS as any)[feature.measure].scores[0],
+          minscore: (ASSESSMENTS as any)[feature.measure].scores.slice(-1)[0],
           ideal: feature.ideal,
           meaning: (ASSESSMENTS as any)[feature.measure].notes[feature.index],
           advice:

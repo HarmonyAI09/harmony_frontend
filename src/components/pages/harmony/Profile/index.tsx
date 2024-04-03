@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { ChangeEvent, useMemo, useState } from 'react';
 import { HiOutlinePencil } from 'react-icons/hi';
 import { GiCheckMark } from 'react-icons/gi';
@@ -8,12 +7,14 @@ import clsx from 'clsx';
 
 import { GENDERS } from '@/constants/gender';
 import { ETHNICITIES } from '@/constants/ethnicity';
+import Dialog from '@/components/forms/Dialog';
 import { saveProfile, updateName } from '@/redux/reducers/profile';
 import { useAppDispatch, useAppSelector } from '@/redux/store';
 import HttpService from '@/services/HttpService';
 
 import { SERVER_URI } from '@/config';
 import classes from './index.module.scss';
+import Button from '@/components/forms/Button';
 
 interface IProfile {
   ID: string;
@@ -73,11 +74,13 @@ function Profile({
       race: raceIndex,
       points: mappingPts,
     }).then(response => {
+      enqueueSnackbar('Profile saved.', { variant: 'success' });
       dispatch(saveProfile({ ID }));
     });
   };
 
-  const onDownClick = () => {
+  const onDownClick = (e: any) => {
+    e.stopPropagation();
     (async () => {
       const response = await fetch(`${SERVER_URI}/profile/download`, {
         method: 'POST',
@@ -114,47 +117,49 @@ function Profile({
   };
 
   return (
-    <div
-      className={clsx(classes.root, { [classes.active]: active })}
-      onClick={onClick}
-    >
-      <div className={classes.slide}>
-        <img alt="Front image" src={`${SERVER_URI}/img/${ID}/f`} />
-      </div>
-      <div className={classes.profile}>
-        {!isEditing ? (
-          <p>
-            {name}
-            <span onClick={() => setIsEditing(true)}>
-              <HiOutlinePencil />
+    <>
+      <div
+        className={clsx(classes.root, { [classes.active]: active })}
+        onClick={onClick}
+      >
+        <div className={classes.slide}>
+          <img alt="Front image" src={`${SERVER_URI}/img/${ID}/f`} />
+        </div>
+        <div className={classes.profile}>
+          {!isEditing ? (
+            <p>
+              {name}
+              <span onClick={() => setIsEditing(true)}>
+                <HiOutlinePencil />
+              </span>
+            </p>
+          ) : (
+            <input
+              value={nameInput}
+              onBlur={onEditingClose}
+              onChange={onNameChange}
+              className={classes.nameInput}
+              onKeyDown={(e: any) => e.keyCode === 13 && onEditingClose()}
+            />
+          )}
+          <span className={classes.gender}>{genderName}</span>
+          <p>{raceName}</p>
+          {isSaved ? (
+            <span className={classes.badge}>
+              <GiCheckMark />
+              Saved
             </span>
-          </p>
-        ) : (
-          <input
-            value={nameInput}
-            onBlur={onEditingClose}
-            onChange={onNameChange}
-            className={classes.nameInput}
-            onKeyDown={(e: any) => e.keyCode === 13 && onEditingClose()}
-          />
-        )}
-        <span className={classes.gender}>{genderName}</span>
-        <p>{raceName}</p>
-        {isSaved ? (
-          <span className={classes.badge}>
-            <GiCheckMark />
-            Saved
+          ) : (
+            <button className={classes.saveBtn} onClick={onSaveClick}>
+              Save
+            </button>
+          )}
+          <span className={classes.downBtn} onClick={onDownClick}>
+            <FaDownload />
           </span>
-        ) : (
-          <button className={classes.saveBtn} onClick={onSaveClick}>
-            Save
-          </button>
-        )}
-        <span className={classes.downBtn} onClick={onDownClick}>
-          <FaDownload />
-        </span>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -14,10 +14,10 @@
   .template {
     @apply relative;
     > .matchPt {
-      @apply absolute size-1.5 rounded-full bg-blue-500 transform -translate-x-1/2 -translate-y-1/2;
+      @apply absolute size-2 rounded-full bg-green-500 transform -translate-x-1/2 -translate-y-1/2;
     }
   }
-  
+
   .mapper {
     @apply relative;
     > .landmark {

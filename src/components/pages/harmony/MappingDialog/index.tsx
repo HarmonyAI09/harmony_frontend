@@ -10,11 +10,11 @@ import { useWindowSize } from '@react-hook/window-size';
 import clsx from 'clsx';
 
 import Dialog from '@/components/forms/Dialog';
+import HttpService from '@/services/HttpService';
 import { SAMPLE_LANDMARKS, SIDE_BLACK_PT_LIST } from '@/constants/landmark';
 import { NORMAL_IMAGE_SIZE, ORIGIN_IMAGE_SIZE, SERVER_URI } from '@/config';
 import { useAppDispatch, useAppSelector } from '@/redux/store';
 import { updateFrontPts, updateSidePts } from '@/redux/reducers/setting';
-import HttpService from '@/services/HttpService';
 import { MappingPtType, normalizePts, denormalizePts } from '@/utils/point';
 
 import frontModelSrc from '@/assets/images/points/front.jpg';
@@ -79,13 +79,11 @@ function MappingDialog({
 
   const onLandmarkDown =
     (index: number, order: number) => (e: MouseEvent<HTMLSpanElement>) => {
+      e.stopPropagation();
       const { width, height, left, top } =
         e.currentTarget.getBoundingClientRect();
       const shiftX = e.clientX - left - width / 2;
       const shiftY = e.clientY - top - height / 2;
-
-      console.log(index, order);
-      console.log(SAMPLE_LANDMARKS[index][order]);
 
       setMatchingPt({
         x: Math.floor(
@@ -121,9 +119,8 @@ function MappingDialog({
         });
         setIsDragging(true);
       };
-
       document.addEventListener('mousemove', onLandmarkMove);
-      document.addEventListener('mouseup', () => {
+      e.currentTarget.addEventListener('mouseup', () => {
         document.removeEventListener('mousemove', onLandmarkMove);
         document.onmousemove = null;
         setIsDragging(false);

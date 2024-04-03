@@ -75,10 +75,10 @@ function Register() {
           >
             Sign Up
           </Button>
-          <Button variant="contained" color="white">
+          {/* <Button variant="contained" color="white">
             <img alt="Google Button icon" src={GoogleIcon} />
             Sign Up with Google
-          </Button>
+          </Button> */}
         </div>
       </div>
       <p className={classes.signupLink}>

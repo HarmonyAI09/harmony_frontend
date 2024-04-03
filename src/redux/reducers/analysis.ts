@@ -52,9 +52,9 @@ export const analysisReducer = createSlice({
           image: `${SERVER_URI}/img/feat/${action.payload.ID}/${index}`,
           name: (ASSESSMENTS as any)[feature.measure].name,
           alias: feature.measure,
-          value: `${feature.value} (${
+          value: `${feature.value} ${
             (ASSESSMENTS as any)[feature.measure].unit
-          })`,
+          }`,
           score: (ASSESSMENTS as any)[feature.measure].scores[feature.index],
           ideal: feature.ideal,
           meaning: (ASSESSMENTS as any)[feature.measure].notes[feature.index],

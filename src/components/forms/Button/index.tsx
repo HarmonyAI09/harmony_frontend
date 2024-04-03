@@ -54,8 +54,7 @@ function Button({
         disabledClassName,
         className
       )}
-      whileHover={{ scale: 1.1 }}
-      transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+      whileTap={{ scale: 0.97 }}
     >
       {children}
     </motion.button>

@@ -2,6 +2,8 @@ export const ASSESSMENTS = {
   GonialAngle: {
     name: 'Gonial Angle',
     unit: '°',
+    meaning:
+      'This facial assessment is one of the key indicators of your jaw shape. It simply takes the angle formed between the rear/vertical portion of your jaw (Ramus) and the lower jaw (Mandible). Typically, higher angles will result in a softer and less angular jaw, while lower angles will result in a more angular and squared jaw. There is no one-size-fits all perfect angle, but generally staying away from either extreme is preferred.',
     scores: [40, 20, 10, 5, 0, -10, -20],
     notes: [
       'Your jaw has an ideal shape. Since your Gonial angle is neither too obtuse or acute, your jaw is likely neither too square or steep/rounded in shape.',
@@ -37,6 +39,10 @@ export const ASSESSMENTS = {
   NasofrontalAngle: {
     name: 'Nasofrontal Angle',
     unit: '°',
+    meaning: `This angle tells us the general shape of your upper nose and brow region. The indent formed between your nose and glabella (medial part of brow ridge) will determine the pleasantness of this angle.
+    Lower angles are masculinizing while higher angles are feminizing. This is because males typically have something called brow bossing, where their brow ridge is more protrusive. 
+    Lower angles also correlate with a lower brow position and deeper set eyes in the front profile, which are both masculinizing features. This distinction in facial morphology between the sexes is referred to as sexual dimorphism; it plays a large role in facial attractiveness and these parameters factor that in. 
+    There are many attractive faces that display a wide range of nasofrontal shapes, but generally staying away from the extremes is preferred.`,
     scores: [15, 7.5, 3.75, 1.875, 0, -5],
     notes: [
       'The angle formed between your brow ridge and nose is pleasant. Your brow region is neither too soft or harsh.',
@@ -64,6 +70,8 @@ export const ASSESSMENTS = {
   MandibularPlaneAngle: {
     name: 'Mandibular Plane Angle',
     unit: '°',
+    meaning: `This angle is another key indicator of the pleasantness of your jaw shape. Instead of factoring the Ramus, or back portion of your jaw, it just considers how steep or flat your lower jaw is. 
+    Usually a jaw that is neither too steep or flat is preferred. An abnormal angle may indicate hyper/hypo-divergent growth patterns and occlusal abnormalities (jaw misalignment). That may include retrognathia or severe class II occlusions where the jaw is weaker than preferred.`,
     scores: [12.5, 6.25, 3.125, 1.5625, -5, -10],
     notes: [
       'The slope of your mandible is harmonious, being neither too flat or downward grown. This is usually indicative of a healthy jaw and normal growth pattern.',
@@ -97,6 +105,8 @@ export const ASSESSMENTS = {
   RamusMandibleRatio: {
     name: 'Ramus To Mandible Ratio',
     unit: '',
+    meaning: `This proportion helps indicate the balance of your overall jaw complex/jawline. Usually a pleasant jaw has a sufficient vertical and forward growth dimension. This contributes to an overall greater jaw volume and more attractive appearance.
+    By taking the length of the jaw Ramus and dividing it by the mandibular length, we are assessing whether the Ramus or Mandible length is lacking. Neither should be in disproportion to the other. It is not preferable to have a Ramus that is too short or tall, or a Mandible that is too short or long. `,
     scores: [10, 5, 2.5, 1.25, -5, -10],
     notes: [
       'The length of your ramus relative your mandible is harmonious. Your ramus is neither too long or short.',
@@ -123,6 +133,10 @@ export const ASSESSMENTS = {
   FacialConvexityGlabella: {
     name: 'Facial Convexity (glabella)',
     unit: '°',
+    meaning: `This angle helps clue into any facial deficiencies. That could be deficiency of the upper (brow region), middle (maxillary region), or lower (mandibular region) parts of the face.
+    If the angle is too low, that indicates an overly rounded profile. An angle that is too high can indicate an overly flat or even concave profile (e.g., "moon face"). 
+    The reason this assessment is vital is because it also ties heavily into your occlusal relationship. Overly low angles typically clue into a severe overjet and overbite, while overly high angles can often clue into an underbite. 
+    Thus, having a harmonious angle somewhere in the middle suits most faces best. Within that middle ground there are variations based on ethnicity and other specific facial features.`,
     scores: [10, 5, 2.5, 0, -2.5, -5],
     notes: [
       'You have a pleasant shape of the side profile. Neither part of your face -- upper, middle, or lower are in disharmony to one another. You also likely have a pleasant dental occlusion with no severe overjet or underbite.',
@@ -156,6 +170,8 @@ export const ASSESSMENTS = {
   SubmentalCervicalAngle: {
     name: 'Submental Cervical Angle',
     unit: '°',
+    meaning:
+      'This angle formed between the neck (cervical region) and the chin/jaw (mental region) helps clue into the pleasantness of your jaw contour. Lower angles within reason lead to a taut and defined appearance, while very obtuse angles tend to make a jaw look weaker. This is commonly the case in older individuals. A combination of higher body fat and loose skin (jowls) will lead to the appearance of a weaker jaw.',
     scores: [10, 5, 2.5, 0, -5],
     notes: [
       'The angle between your neck and lower jaw is harmonious and defined.',
@@ -185,6 +201,8 @@ export const ASSESSMENTS = {
   NasoFacialAngle: {
     name: 'Nasofacial Angle',
     unit: '°',
+    meaning: `This is an important assessment that clues into the harmony between your nose and chin. When used in conjunction with other similar assessments, we can generally tell whether your profile has a deficiency in regards to your chin/lower jaw or nose projection.
+    The harmonious range for this assessment is quite standard across most faces. If the angle is too low that can indicate a nose that is too small and un-projected. Or, it can indicate an overly prominent chin. An angle that is too wide can indicate the opposite -- an overly retruded and weak jaw, or overly prominent nose. It can also indicate a combination of the two within each category (too low or too high).`,
     scores: [9, 4.5, 2.25, 1.125, -2, -5],
     notes: [
       "This angle indicates a harmonious balance between your nose and chin. This encompasses your nose shape and position, as well as your chin's position. It can indicate that you have a pleasant jaw position, but not always. It mainly indicates that your nose is harmonious relative to your chin, but doesn't provide additional information on whether your chin is harmonious relative to other parts of your face.",
@@ -219,6 +237,8 @@ export const ASSESSMENTS = {
   NasoLabialAngle: {
     name: 'Nasolabial Angle',
     unit: '°',
+    meaning: `This angle helps assess the harmony of the nose, namely how upturned it is. It is the angle formed between your upper lip and the inflection point near the nasal tip where the nose shape changes direction. Generally, a nose that is neither too upturned or droopy is preferred. This means an angle that is nietiher too low or high. 
+    The nasolabial angle is also contingent on the shape and projection of the philtrum. If the philtrum and upper lip are prominent, the angle will be lower. Thus, that would not indicate an issue with the nose itself. Ethnic variability is important to factor in as lip projection varies between the groups.`,
     scores: [7.5, 3.75, 1.875, 0.9375, -3, -5, -7.5],
     notes: [
       'Your nose has a pleasant and ideal shape. Your nose is likely not too upturned or droopy and your philtrum probably has a pleasant shape.',
@@ -242,6 +262,8 @@ export const ASSESSMENTS = {
   OrbitalVector: {
     name: 'Orbital Vector',
     unit: '',
+    meaning:
+      "This assessment provides insight into the underlying bone structure around your eyes, as well as the soft tissue (e.g., fat/skin) overlying it. It assesses the position of the infraorbital region relative to the foremost point of your eyeball. While there are many causes for periorbital hyperpigmentation (dark circles), hollowing of the infraorbital region can often be confused with POH. Infraorbital hollowing is when the tissue underneath the eyes is hollow, creating the appearance of a trough and overall leading to a less youthful and vibrant appearance. POH simply refers to the skin's color around the eyes. The orbital vector tells us if the tissue underneath the eye is inferior (in front) or posterior (behind) the eye. Usually the latter is not aesthetically pleasing.",
     scores: [7.5, 3.75, 0],
     notes: [
       'You have a positive orbital vector, indicating no infraorbital hollowing. This is a youthful feature that is generally considered attractive.',
@@ -265,6 +287,7 @@ export const ASSESSMENTS = {
   TotalFacialConvexity: {
     name: 'Total Facial Convexity',
     unit: '°',
+    meaning: `See notes for "Facial convexity(glabella)".This is a variation of the normal facial convexity assessment. The only difference is that it includes your nose. It is possible to have a less than ideal facial convexity angle while having an ideal total facial convexity angle. It depends how well your nose harmonizes with your facial profile. The same concept applies here, where you don't want a full (or total) profile that is too flat or too rounded. While this does still factor in the lower jaw, it also indicates whether your nose is too protrusive or too small.`,
     scores: [7.5, 3.75, 1.88, 0, -3.75, -5, -7.5],
     notes: [
       'The harmony of your lateral profile is pleasant when considering your nose. This means that your nose harmonizes well with the projection of your brow ridge and chin.',
@@ -301,6 +324,8 @@ export const ASSESSMENTS = {
   MentolabialAngle: {
     name: 'Mentolabial Angle',
     unit: '°',
+    meaning: `This is the angle formed between your lower lip and the foremost point of your chin (Pogonion). It provides valuable insight into the nature of your chin's shape and protrusion, as well as the protrusion of your lower lip.
+    A lower angle indicates a greater indent between the chin and lower lip. This could be due to a pouted lower lip or prominent chin. However, some degree of indent is desirable. In other words, you generally don't want an angle that is too high or low. A normal angle tends to form the most attractive and pleasant appearance.`,
     scores: [7.5, 3.75, 1.88, 0, -3.75, -7.5],
     notes: [
       'You have a pleasant contour of the chin. The indent formed between your chin is neither too deep or flat.',
@@ -329,6 +354,7 @@ export const ASSESSMENTS = {
   FacialConvexityNasion: {
     name: 'Facial Convexity (nasion)',
     unit: '°',
+    meaning: `See notes for "Facial convexity(glabella)". This measurement is simply a variation of that one. It seeks to eliminate the confounding variable of one's brow ridge (Glabella) and replace it with the Nasion. This provides useful insight because sometimes the regular facial convexity angle can be misleading if your brow ridge is quite protrusive, or non-protrusive for that matter.`,
     scores: [5, 2.5, 1.25, 0.625, 0, -5],
     notes: [
       'You have a pleasant shape of the side profile. Neither part of your face -- upper, middle, or lower are in disharmony to one another. You also likely have a pleasant dental occlusion with no severe overjet or underbite.',
@@ -363,6 +389,8 @@ export const ASSESSMENTS = {
   NasalProjection: {
     name: 'Nasal Projection',
     unit: '',
+    meaning: `This proportion helps gather whether your nose is too small or large in terms of projection. The projection of the nose simply refers to how much your nose sticks out from your face. 
+    Generally, a nose that is not too small or large is preferred because it creates the best overall facial balance.`,
     scores: [5, 2.5, 1.25, 0.625, 0, -5],
     notes: [
       'You have an ideal nasal projection. Your nose is not too pronounced or unprojected.',
@@ -387,6 +415,8 @@ export const ASSESSMENTS = {
   NasalWHRatio: {
     name: 'Nasal W to H',
     unit: '',
+    meaning: `This ratio helps determine whether the projection of your nose is proportional to its height. 
+    A more prominent nose may harmonize better with a longer nasal length, while a shorter nose will tend to harmonize better with less protrusion. A disbalance between the width and height of the nose in the side profile can potentially throw off facial harmony.`,
     scores: [5, 2.5, 1.25, 0.625, 0, -5],
     notes: [
       'You have an ideal Nasal WHR. The projection of your nose is proportionate relative to its height.',
@@ -411,6 +441,8 @@ export const ASSESSMENTS = {
   RickettsELine: {
     name: "Ricketts' E Line",
     unit: '',
+    meaning:
+      'This assessment provides insight into the relative positioning of your chin, lips, and nose. More specifically, the E line tells us how far back your upper and lower lip are relative to this line. If there is a disbalance between the upper or lower lip and its relation to the line, it can indicate a deficiency of jaw growth. Given the context of other facial assessments, it helps indicate whether the chin, lips, or nose pose any issue in terms of facial harmony.',
     scores: [5, 2.5, 0],
     notes: [
       'You have a pleasant harmony between your chin, lips, and nose according to this specific assessment.',
@@ -441,6 +473,8 @@ export const ASSESSMENTS = {
   HoldawayHLine: {
     name: 'Holdaway H Line',
     unit: '',
+    meaning:
+      'This assessment provides insight into the relative positioning of your chin and lips. More specifically, the H line determines whether your lower lip is too prominent or the opposite. It can also indicate whether your chin is too weak since that may also lead to a less favorable assessment.',
     scores: [5, 2.5, 0],
     notes: [
       'You have a pleasant harmony between your chin and lips according to this specific assessment.',
@@ -452,6 +486,8 @@ export const ASSESSMENTS = {
   SteinerSLine: {
     name: 'Steiner S Line',
     unit: '',
+    meaning:
+      'This assessment provides insight into the relative positioning of your chin, lips, and nose. More specifically, the S line takes the top point at the inflection point of the columella (column between nostrils). The line extending from the chin should make contact with the upper lip and columella. If not, it can indicate a less than ideal position of the upper lip. ',
     scores: [5, 2.5, 0],
     notes: [
       'You have a pleasant harmony between your chin, lips, and nose according to this specific assessment.',
@@ -463,6 +499,8 @@ export const ASSESSMENTS = {
   BurstoneLine: {
     name: 'Burstone Line',
     unit: '',
+    meaning:
+      'This assessment provides insight into the relative positioning of your chin and lips. More specifically, this assessment tells us how prominent your lips are relative to your chin. If your lips fall behind the line, it can mean that your lips are too thin and retruded. If they extent too far past the line, it can indicate overly prominent lips. Keep in mind, all of the lip assessments must factor in some degree of ethnic variation to account for differences in lip and nose size. In line with the concept of averageness, certain population groups may actually suit fuller lips that do not fully align with the standard EHSB lines.',
     scores: [5, 2.5, 0],
     notes: [
       'You have a pleasant harmony between your chin, lips, and nose according to this specific assessment.',
@@ -474,6 +512,8 @@ export const ASSESSMENTS = {
   NasomentalAngle: {
     name: 'Nasomental Angle',
     unit: '°',
+    meaning: `Reference notes on "Nasofacial angle". This measurement is a variation of the Nasofacial angle.
+    If the angle is too large, it can indicate an overly prominent chin or lower jaw. If the angle is too small, it can indicate a weaker than ideal chin. The angle also depends on the shape of the nose and how slanted it is from the nasal tip to Nasion. These assessments also help provide insight into malocclusion or unideal positioning of the jaws, especially within the context of the facial convexity angles. In other words, there may be a misalignment of the jaw leading to a less than favorable angle, or it could simply be your unique nose shape. The latter is less of an aesthetic concern.`,
     scores: [5, 2.5, 1.25, 0.625, 0, -5],
     notes: [
       "This angle indicates a harmonious balance between your nose and chin. This encompasses your nose shape and position as well as your chin's position. It can indicate that you have a pleasant jaw position, but not always. It mainly indicates that your nose is harmonious relative to your chin, but doesn't provide additional information on whether your chin is harmonious relative to other parts of your face.",
@@ -508,6 +548,8 @@ export const ASSESSMENTS = {
   GonionMouthRelationship: {
     name: 'Gonion To Mouth Relationship',
     unit: '',
+    meaning:
+      'This assessment provides insight into the vertical growth dimension of the jaw. To ensure sufficient vertical growth and jaw volume, we want to assess whether the jaw Gonion falls below the lateral oral commissure (outer mouth corner). If the jaw Gonion falls above the mouth, it can indicate a deficiency in Ramus length and overall give the appearance of a weaker jaw.',
     scores: [5, 1, 0, -5],
     notes: [
       'Your ramus has sufficient vertical growth.',
@@ -526,6 +568,8 @@ export const ASSESSMENTS = {
   RecessionRelativeFrankfortPlane: {
     name: 'Recession Relative to Frankfort Plane',
     unit: '',
+    meaning:
+      "This assessment helps determine whether the chin's projection is deficient relative to the Nasion (top of the nose). Given the context of other facial assessments like the facial convexity, we can determine whether the chin is indeed recessed. It may sometimes be the case that an individual has a very prominent brow ridge, which can lead to a poor assessment. However, it is important to not look at one facial assessment in isolation, but consider them all as a whole. To standardize the assessment across all faces and head positions, the Frankfort Horizontal plane is used as a reference line that cuts through the Tragus and orbital bone. ",
     scores: [5, 1, 0, -5],
     notes: [
       'According to this assessment, you have no notable recession regarding the position of your chin relative to your nasion.',
@@ -554,6 +598,8 @@ export const ASSESSMENTS = {
   BrowridgeInclinationAngle: {
     name: 'Browridge Inclincation Angle',
     unit: '°',
+    meaning:
+      'This assessment helps determine how slanted or inclined the forehead is. This can vary greatly depending on the projection of the brow bone as well. For males with significant brow bossing, the forehead will appear more slanted. In general, a forehead that is neither too flat or slanted provides the most aesthetically pleasing appearance. Males tend to have more slanted foreheads on average, while women tend to have flatter foreheads as a result of less brow projection. Women also tend to have a slight curvature towards the top of the frontal bone(forehead).  ',
     scores: [4, 2, 1, 0.5, -2, -6, -10],
     notes: [
       'Your forehead is not overly sloped back or flat. It is harmonious in shape.',
@@ -579,6 +625,8 @@ export const ASSESSMENTS = {
   NasalTipAngle: {
     name: 'Nasal Tip Angle',
     unit: '°',
+    meaning:
+      "This assessments help indicate the pleasantness of your nasal tip. Generally a nasal tip that is not too bulbous and droopy is preferred. However, a nasal tip that is too pointed is also not desirable. Somewhere in the middle harmonizes best with most people's faces.",
     scores: [4, 2, 1, 0.5, 0, -2],
     notes: [
       'You have a harmonious nasal tip that is not overly upturned or droopy.',
@@ -602,6 +650,8 @@ export const ASSESSMENTS = {
   EyeSeparationRatio: {
     name: 'Eye Separation Ratio',
     unit: '%',
+    meaning:
+      "This facial assessment is of high importance because the eyes are the first thing we tend to look at. The spacing of the eyes heavily influences how pleasant your eyes appear. This measurement divides the distance between your pupils by the bizygomatic width (zygion-zygion) distance. Both men and women favor measurements somewhere in the middle, also referred to as an averageness zone. Overly close set or wide set eyes relative to facial width can throw off facial balance. Within that zone, women's faces generally tend to favor higher ratios (wider set eyes), while male faces favor lower ratios (closer set eyes).",
     scores: [35, 17.5, 8.75, 4.38, 0, -4.38, -17.5],
     notes: [
       'Your eyes are harmoniously spaced relative to your facial width.',
@@ -627,6 +677,8 @@ export const ASSESSMENTS = {
   FacialThirds: {
     name: 'Facial Thirds',
     unit: '%',
+    meaning:
+      'Facial thirds are perhaps one of the most well known facial beauty canons. They assess the relative balance between the upper, middle, and lower portions of your face. The upper third is from the Trichion (middle hairline point) to the Glabella (foremost brow point usually around the mid-brow). The middle third is from the Glabella to the Nasal tip (or subnasale, whichever is lower). The lower third is from the Nasal tip to the Menton (lowermost point of the chin). All of these thirds should be approximately the same length. However, it is rarely the case that any person has perfectly balanced thirds. As long as no third is overly disproportionate, facial balance should be maximized. Males tend to suit slightly taller lower thirds, so that their favorable distribution is when the lower third is the tallest. It is the opposite for female faces, where a shorter lower third is favored. Again, this means shorter within reason and not overly short.',
     scores: [30, 15, 7.5, 3.75, 0, -7.5, -15],
     notes: [
       'Your facial thirds are harmoniously distributed, leading to a balanced appearance of the upper, middle, and lower parts of your face.',
@@ -657,6 +709,8 @@ export const ASSESSMENTS = {
   LateralCanthalTilt: {
     name: 'Lateral Canthal Tilt',
     unit: '°',
+    meaning:
+      'This angle helps determine how upturned your eyes are. It is also referred to as the palpebral axis or canthal tilt depending on the specific literature you are looking at. It assesses the angle between the inner corner of your eye (inner/medial canthus) and the outer corner (lateral canthus). Generally, eyes that are neither too upturned or droopy are favorable, but there are ethnic variations that allow for slightly more upturned eyes among East Asian and African subgroups. Female faces tend to have marginally more upturned eyes than male faces on average. ',
     scores: [25, 12.5, 6.25, 3.125, 0, -5, -12.5],
     notes: [
       'Your eyes have a harmonious tilt, meaning they are not overly droopy or upturned.',
@@ -687,6 +741,8 @@ export const ASSESSMENTS = {
   FacialWHRatio: {
     name: 'Facial Width To Height Ratio',
     unit: '',
+    meaning:
+      'This ratio provides insight into the shape of your midface region and its compactness. There are many variations in midface shape: elongated midfaces, short midfaces, and somewhere in between. Usually somewhere in between suits most faces. This ratio is contingent on a few factors. A higher eyebrow position can lead to the appearance of a longer midface, while a lower brow position can do the opposite. A longer philtrum can also tend to elongate the midface and lead to lower ratios. Similarly, a thin upper lip can lead to a longer midface -- a fuller upper lip can make the midface more compact. The ratio is also contingent on the width of your face, which depends on your bone structure and can also vary based on body fat. ',
     scores: [25, 12.5, 6.25, 3.13, 0, -3.13, -6.25],
     notes: [
       'You have an ideal FWHR, indicating a facial width and midface height that harmonize well with one another. Your midface region (i.e., FWHR) is not overly compact or elongated in shape.',
@@ -713,6 +769,8 @@ export const ASSESSMENTS = {
   JawFrontalAngle: {
     name: 'Jaw Frontal Angle',
     unit: '°',
+    meaning:
+      'This angle helps assess the shape and tapering of your jaw in the front view. This angle is heavily contingent on the Gonial angle and Mandibular plane angle in the side profile, both of which determine the jaw shape in the front. Your chin shape can also affect this angle since wider chins tend to lead to lower angles. Thus, males have slightly lower angles on average despite having wider jaws than females on average. The main takeaway from this angle is that your jaw ideally should not be too flat or steep in appearance. Larger angles can make the jaw look overly square and flat, while overly low angles can make the jaw look steep and long. ',
     scores: [25, 12.5, 6.25, 3.13, 0, -6.25, -12.5],
     notes: [
       'Your jaw has an ideal contour in the front profile, indicated by a harmonious angle in this assessment.',
@@ -748,6 +806,8 @@ export const ASSESSMENTS = {
   CheekBoneHeight: {
     name: 'Cheekbone Height',
     unit: '%',
+    meaning:
+      "This ratio helps assess the position of your cheekbones relative to your midface. The height of the cheekbones is determined as the most laterally  protrusive part of your zygion on either side of your face. In other words, it assesses where your cheekbones pop out at the sides of your face. The higher the position, the higher the ratio's value. Higher cheekbones are generally preferred and represent the standard of beauty across both sexes as they lead to a more youthful and robust appearance. Lower cheekbones can also be considered attractive, but are perhaps not the standard of beauty. ",
     scores: [20, 12.5, 6.25, 3.13, 0, -6.25, -12.5],
     notes: [
       'You have high cheekbones, which are generally preferred when it comes to facial aesthetics.',
@@ -776,6 +836,8 @@ export const ASSESSMENTS = {
   TotalFacialWHRatio: {
     name: 'Total Facial Width To Height Ratio',
     unit: '',
+    meaning:
+      'This proportion helps assess the shape of your face with regards to the length of your face divided by its width. This forms the distinction between a long face  vs. short face, or somewhere in the middle. Somewhere in the middle is preferred across both sexes. However, female faces tend to benefit from slightly shorter faces, while males tend to benefit from slightly longer faces.',
     scores: [15, 7.5, 3.75, 0, -3.75, -7.5, -15],
     notes: [
       "You have an ideal face shape when it comes to your face's height and width (Total FWHR/facial index). Your face is neither too long or compact.",
@@ -801,6 +863,8 @@ export const ASSESSMENTS = {
   BigonialWidth: {
     name: 'Bigonial Width',
     unit: '%',
+    meaning:
+      'This ratio indicates the width of your jaw as a percentage of your bizygomatic width (or total facial width). Bi-gonial width is also referred to as the inter-gonial width, or the distance between your two jaw gonion on either side of your face. In line with facial averageness, a jaw that is neither too wide or narrow is preferred. Within that framework, women do benefit from slightly narrower jaws, while men benefit from slightly wider jaws.',
     scores: [15, 7.5, 3.75, 1.88, 0, -3.75, -10],
     notes: [
       'You have an ideal jaw width. Your jaw is neither too wide or narrow relative to your total facial width.',
@@ -832,6 +896,8 @@ export const ASSESSMENTS = {
   ChinPhiltrumRatio: {
     name: 'Chin To Philtrum Ratio',
     unit: '',
+    meaning:
+      "This ratio is used to determine the harmony of your chin height. It helps clue into whether your chin is too tall or short. This uses the philtrum length as the determinant of your chin's harmony. A chin that is neither too tall or short is preferred. For males, slightly taller chins and higher ratios are preferred, while the opposite is true in female faces.",
     scores: [12.5, 6.25, 3.13, 1.56, 0, -3.13, -6.25],
     notes: [
       'Your chin is harmoniously proportioned relative to your philtrum. This indicates that neither your chin or philtrum are too long or short.',
@@ -863,6 +929,8 @@ export const ASSESSMENTS = {
   NeckWidth: {
     name: 'Neck Width',
     unit: '%',
+    meaning:
+      "This ratio helps determine whether your neck's width suits your face. While the neck is not technically part of your face, it does contribute to facial attractiveness. For males, a notably thin neck can disharmonize your facial appearance. This is less of an aesthetic concern for women, but an overly wide or narrow neck can still throw off facial balance.",
     scores: [10, 5, 1, 0, -2.5, -5, -7.5],
     notes: [
       'You have an ideal neck width that adds balance to your facial appearance.',
@@ -881,6 +949,8 @@ export const ASSESSMENTS = {
   MouthNoseWidthRatio: {
     name: 'Mouth Width To Nose Width Ratio',
     unit: '',
+    meaning: `This ratio is used to assess the relative harmony between your mouth width and inter-alar width, or nose width. Ideally, your nose or mouth will not be overly narrow or wide in relation to one another. 
+    Males tend to have wider noses and mouths, but their larger inter-alar width will lead to lower ratios on average. Females tend to have narrower noses so their ratio will tend to be higher on average.`,
     scores: [10, 5, 2.5, 1.25, 0, -2.5, -5],
     notes: [
       'Your mouth width harmonizes extremely well with your nose width.',
@@ -903,6 +973,8 @@ export const ASSESSMENTS = {
   MidfaceRatio: {
     name: 'Midface Ratio',
     unit: '',
+    meaning: `This ratio helps assess the compactness of your midface, but on a smaller scale than the FWHR. Instead of taking the entire midface width and height like the FWHR, the midface ratio is more central and localized in nature.
+    It basically takes the middle of your midface and assesses its harmony. The main facial features that affect this ratio are the interpupillary distance (distance between your pupils) and the length of your nose. The size of your upper lip can also affect your midface ratio much like the FWHR. Since males display longer nasal lengths than women, their ratio tends to be notably lower. Still, a midface that is neither too long or short is preferred.`,
     scores: [10, 5, 2.5, 1.25, 0, -5, -10],
     notes: [
       'You have a harmonious interior (or central) midface structure that is neither too compact or elongated.',
@@ -924,6 +996,8 @@ export const ASSESSMENTS = {
   EyebrowPositionRatio: {
     name: 'Eyebrow Position Ratio',
     unit: '',
+    meaning: `This ratio assesses the position of your eyebrows as a proportion of your palpebral height (or the height of your eye). Generally, a lower position of the brows is preferred, but this can vary slightly based on ethnicity. 
+    Males tend to have a lower brow position on average, while females have a slightly higher brow position. Relatively lower brow positions are still considered attractive on women. Extremely low brows are almost exclusively found on male faces and do not tend to harmonize with most female faces.`,
     scores: [10, 5, 2.5, 1, 0, -2.5, -5],
     notes: [
       'You have an ideal positioning of your eyebrows above your eyes. A lower position is typically preferred among younger demographics. Your eyebrows could generally be considered low-set, which typically leads to a more striking appearance.',
@@ -952,6 +1026,8 @@ export const ASSESSMENTS = {
   EyeSpacingRatio: {
     name: 'Eye Spacing Ratio',
     unit: '',
+    meaning:
+      "This ratio helps assess the spacing of your eyes. It is similar to the ESR in that respect. Typically, the eyes should be about one eye's width (palpebral width) apart, but it does not have to be precisely one eye as long as it is within a reasonable range. There are variations among ethnic groups. Unlike the ESR, there are no notable sexually dimorphic (male-female) differences in this measurement.",
     scores: [10, 5, 2.5, 1, 0, -5, -10],
     notes: [
       'Your eyes have a harmonious spacing relative to one another.',
@@ -972,6 +1048,8 @@ export const ASSESSMENTS = {
   EyeAspectRatio: {
     name: 'Eye Aspect Ratio',
     unit: '',
+    meaning:
+      "This ratio indicates how rounded or narrow your eye are. An aspect ratio simply refers to the width vs. height of a thing. Eyes that are not overly round or narrow are usually preferred because they harmonize best with most people's faces. Males tend to have higher ratios on average due to a lower palpebral height (eye height) than females. Female faces tend to have rounder eye shapes on average.",
     scores: [10, 5, 2.5, 1.25, 0, -2.5, -5],
     notes: [
       'Your eyes have an ideal shape in terms of their width and height. Your eyes are neither too narrow and elongated or round in shape.',
@@ -1000,6 +1078,8 @@ export const ASSESSMENTS = {
   LowerUpperLipRatio: {
     name: 'Lower Lip To Upper Lip Ratio',
     unit: '',
+    meaning:
+      'This assessment divides the height of your lower lip by that of your upper lip. There should generally be a balance between the two, with neither being overly full in proportion to the other. This can vary slightly based on ethnic group, but the same principle applies.',
     scores: [7.5, 3.75, 1.88, 0.94, 0, -3.75, -7.5],
     notes: [
       'Your lower and upper lip are ideally proportioned relative to one another.',
@@ -1028,6 +1108,8 @@ export const ASSESSMENTS = {
   DeviationOfIaaJfa: {
     name: 'Deviation of IAA & JFA',
     unit: '°',
+    meaning:
+      "This assesses the difference in angle value between the IAA and JFA in the report. Generally, there should be agreement between the two angles. An extreme deviation can indicate disharmony between the shape of one's jaw and their midface.",
     scores: [7, 3.75, 1.88, 0.94, 0, -3.75],
     notes: [
       'You have an ideal harmony between your JFA and IAA.',
@@ -1042,6 +1124,8 @@ export const ASSESSMENTS = {
   EyebrowTilt: {
     name: 'Eyebrow Tilt',
     unit: '°',
+    meaning:
+      'This angle measures the degree of tilt in the eyebrows from the interior portion to the brow peak around the lateral third of the brow. Harmonious eyebrows are neither too upturned or downturned. Generally, female faces tend to have slightly more upturned eyebrows on average than male faces.',
     scores: [6, 3, 1.5, 0, -3, -6],
     notes: [
       'Your eyebrows have an ideal tilt. They are neither too upturned or droopy when accounting for inter-sex variability.',
@@ -1068,6 +1152,8 @@ export const ASSESSMENTS = {
   BitemporalWidth: {
     name: 'Bitemporal Width',
     unit: '%',
+    meaning:
+      "This proportion assesses the width of the temporal region, or forehead, relative to one's total facial width. This provides valuable insight into the harmony of the upper face. Generally, the forehead should not be too narrow or wide. Your specific hairline shape can also contribute to this proportion, along with the actual structural shape of your upper head.",
     scores: [5, 2.5, 1.25, 0, -1.25, -2.5, -5],
     notes: [
       'Your forehead has an ideal width relative to your cheekbones. Your forehead is neither too narrow nor wide.',
@@ -1094,6 +1180,8 @@ export const ASSESSMENTS = {
   LowerThirdProportion: {
     name: 'Lower Third Proportion',
     unit: '%',
+    meaning:
+      'This proportion assesses the localized harmony of the lower portion of your face. More specifically, the line segment from your subnasale to mid-lip is divided by the distance from your subnasale to menton (bottom of chin). The ratio should not be too high, or it may indicate an overly elongated region above the mid-lip. If the ratio is too low, it may indicate an overly short region above the mid-lip. In the latter case, it could indicate a thin upper lip and short philtrum.',
     scores: [5, 2.5, 1.25, 0, -1.25, -2.5],
     notes: [
       'Your lower third has a harmonious spacing between its features.',
@@ -1123,6 +1211,8 @@ export const ASSESSMENTS = {
   IpsilateralAlarAngle: {
     name: 'Ipsilateral Alar Angle',
     unit: '°',
+    meaning:
+      'This is the angle formed between the subnasale (bottom of nose) and both outer eye corners. It generally helps assess the shape of the midface region. Angles that are overly high signify a midface that is too compact, and/or eyes that are too wide set. Low angles can signify the opposite, an elongated midface and/or close set eyes.',
     scores: [2.5, 1.25, 0.63, 0, -0.63, -1.25, -2.5],
     notes: [
       'Your midface structure retains a harmonious balance.',
@@ -1145,6 +1235,8 @@ export const ASSESSMENTS = {
   MedialCanthalAngle: {
     name: 'Medial Canthal Angle',
     unit: '°',
+    meaning:
+      'This angle assesses how sharp the inner corner of the eye (medial/inner canthus) is.  Generally sharper angles are more attractive because they give the eyes a jaguar-like appearance. Though, this is not a universal standard across all ethnic groups. For example, Korean faces may favor a higher angle and more rounded eye shape. Generally, somewhere in the middle is most attractive.',
     scores: [10, 5, 2.5, 0, -2.5, -5, -10],
     notes: [
       'The inner corner of your eye is harmonious. It has distinct shape and angularity, while not being overly angular.',

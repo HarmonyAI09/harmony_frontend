@@ -1,7 +1,9 @@
 import { MdClose } from 'react-icons/md';
+import { motion } from 'framer-motion';
 import clsx from 'clsx';
 
 import classes from './index.module.scss';
+import { AnimatePresence } from 'framer-motion';
 
 type MaxWidth = 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'screen';
 
@@ -42,19 +44,25 @@ function Dialog({
   };
 
   return (
-    open && (
-      <div className={classes.screen}>
-        <div className={clsx(classes.root, maxWidthClasses, fullHeightClasses)}>
-          <div className={classes.header}>
-            <div>{header}</div>
-            <span className={classes.close} onClick={onClose}>
-              <MdClose />
-            </span>
-          </div>
-          <div className={classes.body}>{body}</div>
+    <AnimatePresence mode="wait">
+      {open && (
+        <div className={classes.screen}>
+          <motion.div
+            className={clsx(classes.root, maxWidthClasses, fullHeightClasses)}
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+          >
+            <div className={classes.header}>
+              <div>{header}</div>
+              <span className={classes.close} onClick={onClose}>
+                <MdClose />
+              </span>
+            </div>
+            <div className={classes.body}>{body}</div>
+          </motion.div>
         </div>
-      </div>
-    )
+      )}
+    </AnimatePresence>
   );
 }
 

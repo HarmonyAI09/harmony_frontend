@@ -10,7 +10,7 @@
     }
   }
   > .dropdown {
-    @apply absolute z-[150] py-3.5 transform left-5 w-32 -translate-x-1/2 translate-y-2.5 border-1 border-secondary bg-secondary rounded-md;
+    @apply absolute z-[150] py-3.5 transform left-5 w-32 -translate-x-1/2 translate-y-2.5 border-1 border-secondary bg-secondary flex flex-col;
     > li {
       @apply py-0.5 hover:bg-success cursor-pointer px-4;
     }

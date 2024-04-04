@@ -48,6 +48,10 @@ const mainRoutes: RouteObject[] = [
     element: <Harmony />,
   },
   {
+    path: MAIN_ROUTES.CHECKOUT,
+    element: <></>,
+  },
+  {
     path: ALL_ROUTES.ROOT,
     element: <Navigate to={MAIN_ROUTES.ABOUT} />,
   },

@@ -2,8 +2,11 @@ import { useNavigate } from 'react-router-dom';
 import { GrCheckmark } from 'react-icons/gr';
 
 import Button from '@/components/forms/Button';
+import HttpService from '@/services/HttpService';
+import { STRIPE_CHECKOUT_SUCCESS_URL, STRIPE_PRICE_ID } from '@/config';
 import { FREE_FEATURES, PRO_FEATURES } from '@/constants/price';
 import { MAIN_ROUTES } from '@/constants/routes';
+import { useAppSelector } from '@/redux/store';
 
 import classes from './index.module.scss';
 
@@ -13,6 +16,26 @@ interface IPricePlansProps {
 
 function PricePlans({ isDialog = false }: IPricePlansProps) {
   const navigate = useNavigate();
+  const subscribeID = useAppSelector(state => state.auth.account?.subscribeID);
+
+  const onUpgradeClick = () => {
+    HttpService.post(
+      '/user/create-checkout-session',
+      {},
+      {
+        url: STRIPE_CHECKOUT_SUCCESS_URL,
+        price_id: STRIPE_PRICE_ID,
+      }
+    ).then(response => {
+      const stripeURL = response;
+      const link = document.createElement('a');
+      link.href = stripeURL;
+      link.target = '_blank';
+
+      link.click();
+      link.remove();
+    });
+  };
 
   return (
     <div className={classes.plans}>
@@ -35,6 +58,7 @@ function PricePlans({ isDialog = false }: IPricePlansProps) {
           color="secondary"
           className={classes.freeBtn}
           onClick={() => navigate(`/${MAIN_ROUTES.HARMONY}`)}
+          disabled={isDialog && !subscribeID}
         >
           Get started for free
         </Button>
@@ -54,7 +78,12 @@ function PricePlans({ isDialog = false }: IPricePlansProps) {
             </li>
           ))}
         </ul>
-        <Button variant="contained" color="success" className={classes.proBtn}>
+        <Button
+          variant="contained"
+          color="success"
+          className={classes.proBtn}
+          onClick={onUpgradeClick}
+        >
           Upgrade plan
         </Button>
       </div>

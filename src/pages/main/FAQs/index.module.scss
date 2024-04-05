@@ -14,9 +14,12 @@
     }
   }
   .contact {
-    @apply flex flex-col gap-y-4 items-center mb-10;
+    @apply flex flex-col items-center mb-10;
     .question {
-      @apply text-2xl font-bold;
+      @apply text-3xl font-bold mb-4;
+    }
+    > a {
+      @apply text-secondary hover:underline cursor-pointer;
     }
   }
 }

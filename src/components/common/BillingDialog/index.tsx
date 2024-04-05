@@ -55,7 +55,7 @@ function BillingDialog({
             <div className={classes.header}>
               <p>Current Subscription</p>
               {subscribeID ? (
-                <span className={classes.premium}>Premium</span>
+                <span className={classes.premium}>Pro</span>
               ) : (
                 <span className={classes.free}>Free</span>
               )}

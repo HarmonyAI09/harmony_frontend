@@ -20,11 +20,14 @@
 
   .mapper {
     @apply relative h-full;
+    > .tip {
+      @apply absolute left-4 top-4 text-red-500 font-medium select-none;
+    }
     > .landmark {
       @apply absolute size-1.5 rounded-full bg-red-500 cursor-pointer transform -translate-x-1/2 -translate-y-1/2;
     }
     > .magnifier {
-      @apply absolute -right-12 -bottom-12 size-24 transform -translate-x-1/2 -translate-y-1/2  border-1 border-emphasize flex items-center justify-center cursor-pointer rounded-full;
+      @apply absolute -right-24 -bottom-24 size-48 transform -translate-x-1/2 -translate-y-1/2  border-1 border-emphasize flex items-center justify-center cursor-pointer rounded-full;
 
       > span {
         @apply bg-red-500 size-1.5 rounded-full;

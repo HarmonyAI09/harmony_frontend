@@ -1,12 +1,12 @@
 import { ASSESSMENTS } from '@/constants/analysis';
+
 import Dialog from '@/components/forms/Dialog';
 import Table, { IColumn } from '@/components/forms/Table';
+import ImageDialog from '@/components/common/ImageDialog';
 import { useAppDispatch, useAppSelector } from '@/redux/store';
 import { createProfile } from '@/redux/reducers/profile';
-import HttpService from '@/services/HttpService';
 
 import classes from './index.module.scss';
-import ImageDialog from '@/components/common/ImageDialog';
 import { useMemo, useState } from 'react';
 
 const getCursorStyle = (alias: string, score: number): object => {
@@ -105,7 +105,7 @@ function ReportDialog({ open, onClose }: IReportDialogProps) {
       key: 'advice',
       scroll: true,
       basis: 'calc(35% - 80px)',
-      row: (row: any) => <p className={classes.adviceCell}>{row.advice}</p>,
+      row: (row: any) => <pre className={classes.adviceCell}>{row.advice}</pre>,
     },
   ];
 

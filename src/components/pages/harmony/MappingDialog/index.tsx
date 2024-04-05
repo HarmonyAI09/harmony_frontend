@@ -57,6 +57,7 @@ function MappingDialog({
   const [isDragging, setIsDragging] = useState(false);
 
   const mapperRef = useRef<HTMLDivElement>(null);
+  const isDraggingRef = useRef<boolean>(false);
 
   const isSamePt = (
     first: { x: number; y: number },
@@ -81,10 +82,6 @@ function MappingDialog({
   const onLandmarkDown =
     (index: number, order: number) => (e: MouseEvent<HTMLSpanElement>) => {
       e.stopPropagation();
-      const { width, height, left, top } =
-        e.currentTarget.getBoundingClientRect();
-      const shiftX = e.clientX - left - width / 2;
-      const shiftY = e.clientY - top - height / 2;
 
       setMatchingPt({
         x: Math.floor(
@@ -99,7 +96,11 @@ function MappingDialog({
         ),
       });
 
+      setIsDragging(true);
+      isDraggingRef.current = true;
+
       const onLandmarkMove = (ev: MouseEvent) => {
+        if (!isDraggingRef.current) return false;
         setWorkingPts(
           workingPts.map((pts: MappingPtType, id: number) =>
             id === index
@@ -118,15 +119,16 @@ function MappingDialog({
           x: ev.pageX - mapperOffset.x,
           y: ev.pageY - mapperOffset.y,
         });
-        setIsDragging(true);
       };
       document.addEventListener('mousemove', onLandmarkMove);
-      e.currentTarget.addEventListener('mouseup', () => {
-        document.removeEventListener('mousemove', onLandmarkMove);
-        document.onmousemove = null;
-        setIsDragging(false);
-      });
     };
+
+  const onLandmarkUp = () => {
+    if (!isDraggingRef.current) return;
+    setIsDragging(false);
+    isDraggingRef.current = false;
+    document.onmousemove = null;
+  };
 
   const layoutCallback = () => {
     if (!mapperRef.current) return;
@@ -147,6 +149,11 @@ function MappingDialog({
         setAutoDetecPts(points);
       }
     );
+    document.addEventListener('mouseup', onLandmarkUp);
+
+    return () => {
+      document.removeEventListener('mouseup', onLandmarkUp);
+    };
   }, []);
 
   useEffect(() => {
@@ -186,42 +193,51 @@ function MappingDialog({
               alt="Mapping image"
               onDragStart={e => e.preventDefault()}
             />
-            {workingPts.map((landmarks: any[], index: number) =>
-              type === 'side' && SIDE_BLACK_PT_LIST.includes(index) ? (
-                <></>
-              ) : (
-                <>
-                  {landmarks[0] && (
+            {type === 'side' && (
+              <p className={classes.tip}>
+                Side profile AI mapping coming soon. For now, you may manually
+                adjust the points
+              </p>
+            )}
+            {workingPts.map((landmarks: any[], index: number) => (
+              <>
+                {landmarks[0] && (
+                  <span
+                    style={{ left: landmarks[0].x, top: landmarks[0].y }}
+                    className={classes.landmark}
+                    onMouseDown={onLandmarkDown(index, 0)}
+                    onDragStart={(e: any) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      return false;
+                    }}
+                    draggable="false"
+                    hidden={
+                      (type === 'front' && index === 0) ||
+                      (type === 'side' && SIDE_BLACK_PT_LIST.includes(index))
+                    }
+                  />
+                )}
+                {type === 'front' &&
+                  landmarks[1] &&
+                  !isSamePt(
+                    SAMPLE_LANDMARKS[index][0],
+                    SAMPLE_LANDMARKS[index][1]
+                  ) && (
                     <span
-                      style={{ left: landmarks[0].x, top: landmarks[0].y }}
+                      style={{ left: landmarks[1].x, top: landmarks[1].y }}
                       className={classes.landmark}
-                      onMouseDown={onLandmarkDown(index, 0)}
+                      onMouseDown={onLandmarkDown(index, 1)}
                       onDragStart={(e: any) => {
                         e.preventDefault();
                         e.stopPropagation();
                         return false;
                       }}
                       draggable="false"
-                      hidden={index === 0}
                     />
                   )}
-                  {type === 'front' &&
-                    landmarks[1] &&
-                    !isSamePt(
-                      SAMPLE_LANDMARKS[index][0],
-                      SAMPLE_LANDMARKS[index][1]
-                    ) && (
-                      <span
-                        style={{ left: landmarks[1].x, top: landmarks[1].y }}
-                        className={classes.landmark}
-                        onMouseDown={onLandmarkDown(index, 1)}
-                        onDragStart={() => false}
-                        draggable="false"
-                      />
-                    )}
-                </>
-              )
-            )}
+              </>
+            ))}
             {isDragging && mapperSize && (
               <div
                 className={classes.magnifier}
@@ -231,9 +247,9 @@ function MappingDialog({
                     1
                   )})`,
                   backgroundPositionX:
-                    -(mapperCursor.x * NORMAL_IMAGE_SIZE * 2) / mapperSize + 48,
+                    -(mapperCursor.x * NORMAL_IMAGE_SIZE * 2) / mapperSize + 96,
                   backgroundPositionY:
-                    -(mapperCursor.y * NORMAL_IMAGE_SIZE * 2) / mapperSize + 48,
+                    -(mapperCursor.y * NORMAL_IMAGE_SIZE * 2) / mapperSize + 96,
                   backgroundSize: `${NORMAL_IMAGE_SIZE * 2}px ${
                     NORMAL_IMAGE_SIZE * 2
                   }px`,

@@ -83,6 +83,7 @@ function PricePlans({ isDialog = false }: IPricePlansProps) {
           color="success"
           className={classes.proBtn}
           onClick={onUpgradeClick}
+          disabled={!!subscribeID}
         >
           Upgrade plan
         </Button>

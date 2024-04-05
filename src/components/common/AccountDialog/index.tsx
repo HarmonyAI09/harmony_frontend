@@ -82,7 +82,7 @@ function AccountDialog({
             </div>
             <div className={classes.controls}>
               <div className={classes.generals}>
-                <p>Uesr Information</p>
+                <p>User Information</p>
                 <Input
                   type="email"
                   name="email"

@@ -11,9 +11,9 @@
   }
 
   .body {
-    @apply px-4 pt-8 pb-4 text-base bg-primary border-1 border-secondary;
-    > p {
-      @apply text-primary;
+    @apply px-4 pt-4 pb-4 text-base bg-primary border-1 border-secondary;
+    > pre {
+      @apply text-primary font-Poppins text-wrap;
     }
   }
 }

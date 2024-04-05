@@ -1,5 +1,7 @@
+import { useRef } from 'react';
 import { MdClose } from 'react-icons/md';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useOnClickOutside } from 'usehooks-ts';
 import clsx from 'clsx';
 
 import classes from './index.module.scss';
@@ -25,6 +27,8 @@ function Dialog({
   fullHeight = true,
   animate = true,
 }: IDialogProps) {
+  const dialogRef = useRef<HTMLDivElement>(null);
+
   const maxWidthClasses =
     maxWidth === 'screen'
       ? classes.screenWidth
@@ -46,6 +50,12 @@ function Dialog({
     [classes.fullHeight]: fullHeight,
   };
 
+  const onDialogCloseClick = (e: MouseEvent | FocusEvent | TouchEvent) => {
+    onClose();
+  };
+
+  useOnClickOutside(dialogRef, onDialogCloseClick, 'mousedown');
+
   return animate ? (
     <AnimatePresence mode="wait">
       {open && (
@@ -55,12 +65,7 @@ function Dialog({
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
-            transition={{
-              duration: 0.3,
-              type: 'spring',
-              stiffness: 300,
-              damping: 24,
-            }}
+            ref={dialogRef}
           >
             <div className={classes.header}>
               <div>{header}</div>
@@ -76,7 +81,10 @@ function Dialog({
   ) : (
     open && (
       <div className={classes.screen}>
-        <div className={clsx(classes.root, maxWidthClasses, fullHeightClasses)}>
+        <div
+          className={clsx(classes.root, maxWidthClasses, fullHeightClasses)}
+          ref={dialogRef}
+        >
           <div className={classes.header}>
             <div>{header}</div>
             <span className={classes.close} onClick={onClose}>

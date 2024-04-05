@@ -1,4 +1,4 @@
-import logoImage from '@/assets/images/logos/Logo-01.png';
+import logoImage from '@/assets/svgs/Logo-01.svg';
 import classes from './index.module.scss';
 
 function Logo() {

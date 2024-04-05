@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { GrCheckmark } from 'react-icons/gr';
 
 import Button from '@/components/forms/Button';
@@ -16,6 +16,8 @@ interface IPricePlansProps {
 
 function PricePlans({ isDialog = false }: IPricePlansProps) {
   const navigate = useNavigate();
+  const location = useLocation();
+  const pathname = location.pathname;
   const subscribeID = useAppSelector(state => state.auth.account?.subscribeID);
 
   const onUpgradeClick = () => {
@@ -23,7 +25,7 @@ function PricePlans({ isDialog = false }: IPricePlansProps) {
       '/user/create-checkout-session',
       {},
       {
-        url: STRIPE_CHECKOUT_SUCCESS_URL,
+        url: `${STRIPE_CHECKOUT_SUCCESS_URL}?redirect=${pathname}`,
         price_id: STRIPE_PRICE_ID,
       }
     ).then(response => {

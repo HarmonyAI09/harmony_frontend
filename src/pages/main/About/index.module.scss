@@ -162,7 +162,7 @@
     > .sections {
       @apply grid grid-cols-4 gap-4;
       > .section {
-        @apply flex flex-col items-center gap-y-4;
+        @apply flex flex-col items-center gap-y-4 bg-secondary px-4 py-6;
         > p {
           @apply text-xl text-secondary;
         }
@@ -208,9 +208,11 @@
     }
     > .sender {
       @apply self-end text-secondary flex flex-col gap-y-1 justify-end;
-
-      .email {
-        @apply self-end text-secondary;
+      > .describe {
+        @apply text-sm;
+      }
+      > .email {
+        @apply self-end text-secondary hover:underline cursor-pointer text-sm;
       }
     }
   }
@@ -223,13 +225,11 @@
       @apply text-center max-w-[600px];
     }
     > ul {
-      @apply flex gap-x-4 items-center;
+      @apply flex gap-x-8 items-center;
       > li {
         @apply flex flex-col gap-y-4 items-center;
-        > span {
-          > svg {
-            @apply text-primary text-5xl;
-          }
+        > img {
+          @apply size-20;
         }
       }
     }

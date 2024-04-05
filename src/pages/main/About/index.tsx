@@ -1,19 +1,15 @@
 import { Link } from 'react-router-dom';
 import { BiGridAlt, BiCloudUpload, BiQrScan } from 'react-icons/bi';
-import {
-  FaPlay,
-  FaRecycle,
-  FaRegCalendarCheck,
-  FaRocket,
-  FaScrewdriverWrench,
-} from 'react-icons/fa6';
+import { FaPlay, FaRocket, FaScrewdriverWrench } from 'react-icons/fa6';
 import { GiCheckMark } from 'react-icons/gi';
 import { GrMagic } from 'react-icons/gr';
-import { RiMoneyDollarCircleLine } from 'react-icons/ri';
 
 import PricePlans from '@/components/pages/about/PricePlans';
 
 import DemoVideo from '@/assets/videos/demo.mp4';
+import PlanIcon from '@/assets/svgs/planning.svg';
+import OutcomeIcon from '@/assets/svgs/outcome.svg';
+import MoneyIcon from '@/assets/svgs/money.svg';
 import classes from './index.module.scss';
 
 function About() {
@@ -265,8 +261,7 @@ function About() {
               </p>
               <p className={classes.text}>
                 We offer flexible API solutions to enhance your digital
-                offerings, with scalable pricing to match. Let's discuss how we
-                can support your business's growth and innovation.
+                offerings, with scalable pricing to match.
               </p>
             </div>
             <div className={classes.target}>
@@ -281,10 +276,10 @@ function About() {
           </div>
           <div className={classes.sender}>
             <p className={classes.describe}>
-              Let's discuss how we support your business's growth and
+              Let's discuss how we can support your business's growth and
               innovation.
             </p>
-            <p className={classes.email}>sales@harmonyapp.ai</p>
+            <a className={classes.email}>sales@harmonyapp.ai</a>
           </div>
         </div>
       </div>
@@ -299,21 +294,15 @@ function About() {
             </p>
             <ul>
               <li>
-                <span>
-                  <FaRegCalendarCheck />
-                </span>
+                <img src={PlanIcon} alt="Plan icon" />
                 <p>Better planning</p>
               </li>
               <li>
-                <span>
-                  <FaRecycle />
-                </span>
+                <img src={OutcomeIcon} alt="Outcome icon" />
                 <p>Better outcomes</p>
               </li>
               <li>
-                <span>
-                  <RiMoneyDollarCircleLine />
-                </span>
+                <img src={MoneyIcon} alt="Money icon" />
                 <p>Better earnings</p>
               </li>
             </ul>

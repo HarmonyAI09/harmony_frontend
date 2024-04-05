@@ -171,103 +171,111 @@ function MappingDialog({
       onClose={onMappingCloseBtnClick}
       header={<p className={classes.header}>Image Mapping</p>}
       body={
-        <div className={classes.images}>
-          <div className={clsx(classes.image, classes.template)}>
-            <img
-              src={type === 'front' ? frontModelSrc : sideModelSrc}
-              alt="Template image"
-            />
-            {isDragging && (
-              <span
-                className={classes.matchPt}
-                style={{
-                  left: matchingPt.x,
-                  top: matchingPt.y,
-                }}
+        <div className={classes.wrapper}>
+          {type === 'side' && (
+            <p className={classes.tip}>
+              Side profile AI mapping coming soon. For now, you may manually
+              adjust the points.
+            </p>
+          )}
+          <div className={classes.images}>
+            <div className={clsx(classes.image, classes.template)}>
+              <img
+                src={type === 'front' ? frontModelSrc : sideModelSrc}
+                alt="Template image"
               />
-            )}
-          </div>
-          <div className={clsx(classes.image, classes.mapper)} ref={mapperRef}>
-            <img
-              src={`${SERVER_URI}/img/${profileID}/${type.slice(0, 1)}`}
-              alt="Mapping image"
-              onDragStart={e => e.preventDefault()}
-            />
-            {type === 'side' && (
-              <p className={classes.tip}>
-                Side profile AI mapping coming soon. For now, you may manually
-                adjust the points
-              </p>
-            )}
-            {workingPts.map((landmarks: any[], index: number) => (
-              <>
-                {landmarks[0] && (
-                  <span
-                    style={{ left: landmarks[0].x, top: landmarks[0].y }}
-                    className={classes.landmark}
-                    onMouseDown={onLandmarkDown(index, 0)}
-                    onDragStart={(e: any) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      return false;
-                    }}
-                    draggable="false"
-                    hidden={
-                      (type === 'front' && index === 0) ||
-                      (type === 'side' && SIDE_BLACK_PT_LIST.includes(index))
-                    }
-                  />
-                )}
-                {type === 'front' &&
-                  landmarks[1] &&
-                  !isSamePt(
-                    SAMPLE_LANDMARKS[index][0],
-                    SAMPLE_LANDMARKS[index][1]
-                  ) && (
+              {isDragging && (
+                <span
+                  className={classes.matchPt}
+                  style={{
+                    left: matchingPt.x,
+                    top: matchingPt.y,
+                  }}
+                />
+              )}
+            </div>
+            <div
+              className={clsx(classes.image, classes.mapper)}
+              ref={mapperRef}
+            >
+              <img
+                src={`${SERVER_URI}/img/${profileID}/${type.slice(0, 1)}`}
+                alt="Mapping image"
+                onDragStart={e => e.preventDefault()}
+              />
+              {workingPts.map((landmarks: any[], index: number) => (
+                <>
+                  {landmarks[0] && (
                     <span
-                      style={{ left: landmarks[1].x, top: landmarks[1].y }}
+                      style={{ left: landmarks[0].x, top: landmarks[0].y }}
                       className={classes.landmark}
-                      onMouseDown={onLandmarkDown(index, 1)}
+                      onMouseDown={onLandmarkDown(index, 0)}
                       onDragStart={(e: any) => {
                         e.preventDefault();
                         e.stopPropagation();
                         return false;
                       }}
                       draggable="false"
+                      hidden={
+                        (type === 'front' && index === 0) ||
+                        (type === 'side' && SIDE_BLACK_PT_LIST.includes(index))
+                      }
                     />
                   )}
-              </>
-            ))}
-            {isDragging && mapperSize && (
-              <div
-                className={classes.magnifier}
-                style={{
-                  backgroundImage: `url(${SERVER_URI}/img/${profileID}/${type.slice(
-                    0,
-                    1
-                  )})`,
-                  backgroundPositionX:
-                    -(mapperCursor.x * NORMAL_IMAGE_SIZE * 2) / mapperSize + 96,
-                  backgroundPositionY:
-                    -(mapperCursor.y * NORMAL_IMAGE_SIZE * 2) / mapperSize + 96,
-                  backgroundSize: `${NORMAL_IMAGE_SIZE * 2}px ${
-                    NORMAL_IMAGE_SIZE * 2
-                  }px`,
-                }}
+                  {type === 'front' &&
+                    landmarks[1] &&
+                    !isSamePt(
+                      SAMPLE_LANDMARKS[index][0],
+                      SAMPLE_LANDMARKS[index][1]
+                    ) && (
+                      <span
+                        style={{ left: landmarks[1].x, top: landmarks[1].y }}
+                        className={classes.landmark}
+                        onMouseDown={onLandmarkDown(index, 1)}
+                        onDragStart={(e: any) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          return false;
+                        }}
+                        draggable="false"
+                      />
+                    )}
+                </>
+              ))}
+              {isDragging && mapperSize && (
+                <div
+                  className={classes.magnifier}
+                  style={{
+                    backgroundImage: `url(${SERVER_URI}/img/${profileID}/${type.slice(
+                      0,
+                      1
+                    )})`,
+                    backgroundPositionX:
+                      -(mapperCursor.x * NORMAL_IMAGE_SIZE * 2) / mapperSize +
+                      96,
+                    backgroundPositionY:
+                      -(mapperCursor.y * NORMAL_IMAGE_SIZE * 2) / mapperSize +
+                      96,
+                    backgroundSize: `${NORMAL_IMAGE_SIZE * 2}px ${
+                      NORMAL_IMAGE_SIZE * 2
+                    }px`,
+                  }}
+                >
+                  <span />
+                </div>
+              )}
+              <span
+                className={classes.autoDetectBtn}
+                onClick={onMappingResetBtnClick}
               >
-                <span />
-              </div>
-            )}
-            <span
-              className={classes.autoDetectBtn}
-              onClick={onMappingResetBtnClick}
-            >
-              <TbRefresh />
-            </span>
+                <TbRefresh />
+              </span>
+            </div>
           </div>
         </div>
       }
       maxWidth="screen"
+      fullHeight={true}
     />
   );
 }

@@ -2,41 +2,41 @@
   @apply text-3xl;
 }
 
-.images {
-  @apply flex items-center justify-center h-full;
-  .image {
-    @apply h-full aspect-square;
-    > img {
-      @apply w-full h-full select-none;
-    }
-  }
-
-  .template {
-    @apply relative;
-    > .matchPt {
-      @apply absolute size-2 rounded-full bg-green-500 transform -translate-x-1/2 -translate-y-1/2;
-    }
-  }
-
-  .mapper {
-    @apply relative h-full;
-    > .tip {
-      @apply absolute left-4 top-4 text-red-500 font-medium select-none;
-    }
-    > .landmark {
-      @apply absolute size-1.5 rounded-full bg-red-500 cursor-pointer transform -translate-x-1/2 -translate-y-1/2;
-    }
-    > .magnifier {
-      @apply absolute -right-24 -bottom-24 size-48 transform -translate-x-1/2 -translate-y-1/2  border-1 border-emphasize flex items-center justify-center cursor-pointer rounded-full;
-
-      > span {
-        @apply bg-red-500 size-1.5 rounded-full;
+.wrapper {
+  @apply flex flex-col h-full justify-center items-center;
+  > .images {
+    @apply flex items-center justify-center h-[95%];
+    > .image {
+      @apply h-full aspect-square;
+      > img {
+        @apply w-full h-full select-none;
       }
     }
-    > .autoDetectBtn {
-      @apply size-12 rounded-full bg-success absolute bottom-4 left-4 flex items-center justify-center cursor-pointer;
-      > svg {
-        @apply text-3xl;
+
+    > .template {
+      @apply relative;
+      > .matchPt {
+        @apply absolute size-2 rounded-full bg-green-500 transform -translate-x-1/2 -translate-y-1/2;
+      }
+    }
+
+    > .mapper {
+      @apply relative h-full;
+      > .landmark {
+        @apply absolute size-1.5 rounded-full bg-red-500 cursor-pointer transform -translate-x-1/2 -translate-y-1/2;
+      }
+      > .magnifier {
+        @apply absolute -right-24 -bottom-24 size-48 transform -translate-x-1/2 -translate-y-1/2  border-1 border-emphasize flex items-center justify-center cursor-pointer rounded-full;
+
+        > span {
+          @apply bg-red-500 size-1.5 rounded-full;
+        }
+      }
+      > .autoDetectBtn {
+        @apply size-12 rounded-full bg-success absolute bottom-4 left-4 flex items-center justify-center cursor-pointer;
+        > svg {
+          @apply text-3xl;
+        }
       }
     }
   }

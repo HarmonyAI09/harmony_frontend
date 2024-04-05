@@ -59,12 +59,25 @@ function Dialog({
   return animate ? (
     <AnimatePresence mode="wait">
       {open && (
-        <div className={classes.screen}>
+        <motion.div
+          className={classes.screen}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{
+            delayChildren: 0.3,
+          }}
+        >
           <motion.div
             className={clsx(classes.root, maxWidthClasses, fullHeightClasses)}
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            exit={{ scale: 0 }}
+            exit={{ scale: 0.3 }}
+            transition={{
+              type: 'spring',
+              bounce: 0,
+              duration: 0.5,
+            }}
             ref={dialogRef}
           >
             <div className={classes.header}>
@@ -75,7 +88,7 @@ function Dialog({
             </div>
             <div className={classes.body}>{body}</div>
           </motion.div>
-        </div>
+        </motion.div>
       )}
     </AnimatePresence>
   ) : (

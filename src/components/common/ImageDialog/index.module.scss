@@ -3,12 +3,12 @@
 }
 
 .image {
-  @apply flex items-center gap-x-8 py-6 px-8 h-64;
+  @apply flex flex-col items-center gap-x-8 gap-y-4 py-6 px-8;
   > img {
-    @apply h-full rounded-xl;
+    @apply size-[512px] rounded-xl;
   }
   > div {
-    @apply h-2/3 flex flex-col overflow-y-auto;
+    @apply max-h-64 flex flex-col overflow-y-auto;
     > p {
       @apply text-sm overflow-y-auto grow;
     }

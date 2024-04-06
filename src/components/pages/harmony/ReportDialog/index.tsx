@@ -8,6 +8,7 @@ import { createProfile } from '@/redux/reducers/profile';
 
 import classes from './index.module.scss';
 import { useMemo, useState } from 'react';
+import clsx from 'clsx';
 
 const getCursorStyle = (alias: string, score: number): object => {
   const analysis = (ASSESSMENTS as any)[alias];
@@ -134,11 +135,10 @@ function ReportDialog({ open, onClose }: IReportDialogProps) {
             <p>{analysis.score.total}% Facial Harmony</p>
             <div className={classes.badges}>
               <span>{analysis.score.front}% Front Score</span>
-              <span>{analysis.score.side}% Side Score</span>
+              <span className={clsx({ [classes.premium]: !subscribeID })}>
+                {analysis.score.side}% Side Score
+              </span>
             </div>
-            {/* <span className={classes.downloadBtn} onClick={onDownloadClick}>
-              <FaDownload />
-            </span> */}
           </div>
           <p>
             The advice provided by Harmony is for informational purposes only,

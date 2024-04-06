@@ -39,6 +39,7 @@ function Profile({
 }: IProfile) {
   const dispatch = useAppDispatch();
   const userID = useAppSelector(state => state.auth.account?.userID);
+  const subscribeID = useAppSelector(state => state.auth.account?.subscribeID);
   const analyses = useAppSelector(state => state.analysis.analyses);
 
   const [nameInput, setNameInput] = useState(name);
@@ -154,9 +155,11 @@ function Profile({
               Save
             </button>
           )}
-          <span className={classes.downBtn} onClick={onDownClick}>
-            <FaDownload />
-          </span>
+          {subscribeID && (
+            <span className={classes.downBtn} onClick={onDownClick}>
+              <FaDownload />
+            </span>
+          )}
         </div>
       </div>
     </>

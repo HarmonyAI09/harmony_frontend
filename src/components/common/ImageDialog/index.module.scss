@@ -5,10 +5,10 @@
 .image {
   @apply flex flex-col items-center gap-x-8 gap-y-4 py-6 px-8;
   > img {
-    @apply size-[300px] rounded-xl;
+    @apply size-[512px] rounded-xl;
   }
   > div {
-    @apply max-h-32 flex flex-col overflow-y-auto;
+    @apply max-h-64 flex flex-col overflow-y-auto;
     > p {
       @apply text-sm overflow-y-auto grow;
     }

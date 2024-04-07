@@ -7,14 +7,12 @@ import clsx from 'clsx';
 
 import { GENDERS } from '@/constants/gender';
 import { ETHNICITIES } from '@/constants/ethnicity';
-import Dialog from '@/components/forms/Dialog';
 import { saveProfile, updateName } from '@/redux/reducers/profile';
 import { useAppDispatch, useAppSelector } from '@/redux/store';
 import HttpService from '@/services/HttpService';
 
 import { SERVER_URI } from '@/config';
 import classes from './index.module.scss';
-import Button from '@/components/forms/Button';
 
 interface IProfile {
   ID: string;
@@ -151,7 +149,11 @@ function Profile({
               Saved
             </span>
           ) : (
-            <button className={classes.saveBtn} onClick={onSaveClick}>
+            <button
+              className={classes.saveBtn}
+              onClick={onSaveClick}
+              disabled={!subscribeID}
+            >
               Save
             </button>
           )}

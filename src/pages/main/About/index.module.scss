@@ -172,7 +172,7 @@
         > ul {
           @apply flex flex-col gap-y-2;
           > li {
-            @apply text-sm flex gap-x-1.5 before:size-2 before:rounded-full before:bg-bright before:shrink-0 before:transform before:translate-y-1.5;
+            @apply text-sm flex gap-x-2 before:size-2 before:rounded-full before:bg-bright before:shrink-0 before:transform before:translate-y-1.5;
           }
         }
       }

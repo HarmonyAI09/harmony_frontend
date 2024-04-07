@@ -24,6 +24,9 @@
     .saveBtn {
       @apply bg-blue-500 px-2.5 text-sm;
     }
+    .saveBtn:disabled {
+      @apply opacity-30 cursor-not-allowed;
+    }
 
     .downBtn {
       @apply size-6 absolute rounded-full right-0 top-0 flex items-center justify-center bg-green-500;

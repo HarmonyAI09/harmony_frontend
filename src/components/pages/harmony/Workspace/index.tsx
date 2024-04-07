@@ -1,11 +1,14 @@
 import ImageUploader from '@/components/pages/harmony/ImageUploader';
+import { useAppSelector } from '@/redux/store';
 
-import frontImgSrc from '@/assets/images/templates/front.jpg';
+import frontImgSrc from '@/assets/images/templates/front_male.jpg';
 import sideImgSrc from '@/assets/images/templates/side.jpg';
 
 import classes from './index.module.scss';
 
 function Workspace() {
+  const gender = useAppSelector(state => state.setting.gender);
+
   return (
     <div className={classes.root}>
       <div className={classes.template}>

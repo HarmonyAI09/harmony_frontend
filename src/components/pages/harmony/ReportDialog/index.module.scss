@@ -10,7 +10,7 @@
         @apply rounded-full px-4 py-0.5 bg-green-500 text-xs border-1 border-green-700;
       }
       > .premium {
-        @apply blur-sm;
+        @apply blur-sm select-none;
       }
     }
   }

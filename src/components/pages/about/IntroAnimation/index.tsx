@@ -1,9 +1,57 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import * as THREE from 'three';
-import { gsap } from 'gsap';
+import gsap from 'gsap';
+import { Back } from 'gsap';
 
-const Scene3D: React.FC = () => {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+// Make sure the path to your dotTexture.png is correct
+import dotTextureImage from '@/assets/images/texture/user.png';
+
+interface IAnimateDot {
+  (index: number, vector: THREE.Vector3): void;
+}
+
+interface IUpdateDot {
+  (index: number, vector: THREE.Vector3, positions: Float32Array): void;
+}
+
+const ThreeScene: React.FC = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  // You can define your shaders here as strings or import them from external files
+  const vertexShader = `vertex shader code`;
+  const fragmentShader = `fragment shader code`;
+
+  const render = useCallback(
+    (
+      renderer: THREE.WebGLRenderer,
+      scene: THREE.Scene,
+      camera: THREE.PerspectiveCamera
+    ) => {
+      console.log(renderer, scene, camera);
+      renderer.render(scene, camera);
+    },
+    []
+  );
+
+  const onResize = useCallback(
+    (camera: THREE.PerspectiveCamera, renderer: THREE.WebGLRenderer) => {
+      if (canvasRef.current) {
+        const width = canvasRef.current.offsetWidth;
+        const height = canvasRef.current.offsetHeight;
+
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
+      }
+    },
+    []
+  );
+
+  const updateDot: IUpdateDot = useCallback((index, vector, positions) => {
+    positions[index * 3] = vector.x;
+    positions[index * 3 + 1] = vector.y;
+    positions[index * 3 + 2] = vector.z;
+  }, []);
 
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -26,94 +74,75 @@ const Scene3D: React.FC = () => {
 
     const loader = new THREE.TextureLoader();
     loader.crossOrigin = 'Anonymous';
-    const dotTexture = loader.load('img/dotTexture.png');
+    const dotTexture = loader.load(dotTextureImage);
 
     const radius = 50;
     const sphereGeom = new THREE.IcosahedronGeometry(radius, 5);
-    const bufferDotsGeom = new THREE.BufferGeometry();
-    const positions = bufferDotsGeom.attributes.position.array;
-
-    // Assuming animateDot() can handle BufferAttribute or its raw array
-    for (let i = 0; i < positions.length; i += 3) {
-      let vector = new THREE.Vector3(
-        positions[i],
-        positions[i + 1],
-        positions[i + 2]
+    const positionAttribute = sphereGeom.attributes.position;
+    const positions = new Float32Array(positionAttribute.count * 3);
+    const vertices: THREE.Vector3[] = [];
+    for (let i = 0; i < positionAttribute.count; i++) {
+      const vertex = new THREE.Vector3().fromBufferAttribute(
+        positionAttribute,
+        i
       );
-      animateDot(vector); // You need to ensure that animateDot() can handle this input
-
-      // If animateDot() modifies the vector, reflect the changes in the positions array
-      positions[i] = vector.x;
-      positions[i + 1] = vector.y;
-      positions[i + 2] = vector.z;
+      vertices.push(vertex);
+      vertex.toArray(positions, i * 3);
     }
 
-    // Update the position attribute if needed
-    bufferDotsGeom.attributes.position.needsUpdate = true;
-
-    function animateDot(vector: THREE.Vector3) {
-      gsap.to(vector, {
-        x: 0,
-        z: 0,
-        duration: 4,
-        ease: 'back.out',
-        repeat: -1,
-        yoyo: true,
-        onUpdate: () => updateDot(vector),
-      });
-    }
-
-    function updateDot(vector: THREE.Vector3) {
-      positions[vector.index * 3] = vector.x;
-      positions[vector.index * 3 + 2] = vector.z;
-    }
-
-    const attributePositions = new THREE.BufferAttribute(positions, 3);
-    bufferDotsGeom.setAttribute('position', attributePositions);
+    const bufferDotsGeom = new THREE.BufferGeometry();
+    bufferDotsGeom.setAttribute(
+      'position',
+      new THREE.BufferAttribute(positions, 3)
+    );
     const shaderMaterial = new THREE.ShaderMaterial({
       uniforms: {
         texture: { value: dotTexture },
       },
-      vertexShader: document.getElementById('wrapVertexShader')!.textContent!,
-      fragmentShader:
-        document.getElementById('wrapFragmentShader')!.textContent!,
+      vertexShader,
+      fragmentShader,
       transparent: true,
     });
     const dots = new THREE.Points(bufferDotsGeom, shaderMaterial);
+    console.log(dots);
     scene.add(dots);
 
-    const render = () => {
-      renderer.render(scene, camera);
+    const animateDot: IAnimateDot = (index, vector) => {
+      gsap.to(vector, {
+        x: 0,
+        z: 0,
+        duration: 4,
+        ease: Back.easeOut,
+        delay: Math.abs(vector.y / radius) * 2,
+        repeat: -1,
+        yoyo: true,
+        yoyoEase: Back.easeOut,
+        onUpdate: () => updateDot(index, vector, positions),
+      });
     };
 
-    gsap.ticker.add(render);
+    vertices.forEach((vector: THREE.Vector3, i: number) => {
+      animateDot(i, vector);
+    });
 
-    window.addEventListener('resize', onResize);
+    const onTick = () => {
+      render(renderer, scene, camera);
+    };
 
-    function onResize() {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    }
+    gsap.ticker.add(onTick);
+    window.addEventListener('resize', () => onResize(camera, renderer));
 
+    // Clean up on unmount
     return () => {
-      gsap.ticker.remove(render);
-      window.removeEventListener('resize', onResize);
+      gsap.ticker.remove(onTick);
+      window.removeEventListener('resize', () => onResize(camera, renderer));
       scene.remove(dots);
       bufferDotsGeom.dispose();
       shaderMaterial.dispose();
     };
-  }, []);
+  }, [render, onResize, updateDot]);
 
-  return (
-    <div className="content">
-      <canvas className="scene scene--full" id="scene" ref={canvasRef}></canvas>
-      <div className="content__inner">
-        <h2 className="content__title">Spacetime</h2>
-        <h3 className="content__subtitle">Warp Drive</h3>
-      </div>
-    </div>
-  );
+  return <canvas ref={canvasRef} style={{ width: '100vw', height: '100vh' }} />;
 };
 
-export default Scene3D;
+export default ThreeScene;

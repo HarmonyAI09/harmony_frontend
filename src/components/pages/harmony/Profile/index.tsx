@@ -3,15 +3,16 @@ import { HiOutlinePencil } from 'react-icons/hi';
 import { GiCheckMark } from 'react-icons/gi';
 import { FaDownload } from 'react-icons/fa6';
 import { enqueueSnackbar } from 'notistack';
+import InputMask from 'react-input-mask';
 import clsx from 'clsx';
 
+import { SERVER_URI } from '@/config';
 import { GENDERS } from '@/constants/gender';
 import { ETHNICITIES } from '@/constants/ethnicity';
 import { saveProfile, updateName } from '@/redux/reducers/profile';
 import { useAppDispatch, useAppSelector } from '@/redux/store';
 import HttpService from '@/services/HttpService';
 
-import { SERVER_URI } from '@/config';
 import classes from './index.module.scss';
 
 interface IProfile {
@@ -42,6 +43,7 @@ function Profile({
 
   const [nameInput, setNameInput] = useState(name);
   const [isEditing, setIsEditing] = useState(false);
+  const [dateInput, setDateInput] = useState('');
 
   const genderName = useMemo(() => {
     const genderItem = GENDERS.find(item => item.value === gender);
@@ -60,6 +62,13 @@ function Profile({
   const onEditingClose = () => {
     dispatch(updateName({ ID, name: nameInput }));
     setIsEditing(false);
+  };
+
+  const onDateInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const dateStr = e.target.value;
+    const sections = dateStr.split('-');
+    if (Number(sections[0]) > 12 || Number(sections[1]) > 31) return;
+    setDateInput(dateStr);
   };
 
   const onSaveClick = () => {
@@ -143,6 +152,13 @@ function Profile({
           )}
           <span className={classes.gender}>{genderName}</span>
           <p>{raceName}</p>
+          <InputMask
+            type="text"
+            mask={'99-99-99'}
+            placeholder="MM-DD-YY"
+            value={dateInput}
+            onChange={onDateInputChange}
+          />
           {isSaved ? (
             <span className={classes.badge}>
               <GiCheckMark />

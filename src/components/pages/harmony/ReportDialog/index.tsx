@@ -1,5 +1,7 @@
-import { ASSESSMENTS } from '@/constants/analysis';
+import { useMemo, useState } from 'react';
+import clsx from 'clsx';
 
+import { ASSESSMENTS } from '@/constants/analysis';
 import Dialog from '@/components/forms/Dialog';
 import Table, { IColumn } from '@/components/forms/Table';
 import ImageDialog from '@/components/common/ImageDialog';
@@ -7,8 +9,6 @@ import { useAppDispatch, useAppSelector } from '@/redux/store';
 import { createProfile } from '@/redux/reducers/profile';
 
 import classes from './index.module.scss';
-import { useMemo, useState } from 'react';
-import clsx from 'clsx';
 
 const getCursorStyle = (alias: string, score: number): object => {
   const analysis = (ASSESSMENTS as any)[alias];
@@ -38,7 +38,9 @@ function ReportDialog({ open, onClose }: IReportDialogProps) {
   const [isImageDialog, openImageDialog] = useState(false);
   const [imageID, setImageID] = useState('');
   const imageData = useMemo(() => {
-    const activeRow = analysis.analyses.find(item => item.alias === imageID);
+    const activeRow = analysis.analyses.find(
+      (item: any) => item.alias === imageID
+    );
     return activeRow
       ? {
           text: activeRow.label,

@@ -10,6 +10,9 @@
     > p {
       @apply flex gap-x-2 items-center;
     }
+    > input {
+      @apply text-sm outline-none bg-transparent max-w-[100px];
+    }
     > .gender {
       @apply text-xs rounded-full bg-success px-2 self-start;
     }

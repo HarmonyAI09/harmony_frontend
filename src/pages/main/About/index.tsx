@@ -5,6 +5,7 @@ import { GiCheckMark } from 'react-icons/gi';
 import { GrMagic } from 'react-icons/gr';
 
 import PricePlans from '@/components/pages/about/PricePlans';
+import IntroAnimation from '@/components/pages/about/IntroAnimation';
 
 import DemoVideo from '@/assets/videos/demo.mp4';
 import PlanIcon from '@/assets/svgs/planning.svg';
@@ -15,6 +16,7 @@ import classes from './index.module.scss';
 function About() {
   return (
     <div className={classes.root}>
+      {/* <IntroAnimation /> */}
       <div className={classes.blackback}>
         <div className={classes.container}>
           <div className={classes.analysis}>

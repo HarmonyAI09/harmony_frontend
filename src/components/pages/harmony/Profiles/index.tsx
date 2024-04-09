@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { enqueueSnackbar } from 'notistack';
 import { FaPlus } from 'react-icons/fa6';
 
 import Button from '@/components/forms/Button';
@@ -11,7 +12,6 @@ import { createProfile, loadProfiles } from '@/redux/reducers/profile';
 import HttpService from '@/services/HttpService';
 
 import classes from './index.module.scss';
-import { enqueueSnackbar } from 'notistack';
 
 function Profiles() {
   const dispatch = useAppDispatch();

@@ -4,7 +4,9 @@ import {
   FaInstagram,
   FaLinkedin,
   FaXTwitter,
+  FaReddit,
   FaYoutube,
+  FaTiktok,
 } from 'react-icons/fa6';
 
 import Logo from '@/components/common/Logo';
@@ -17,19 +19,19 @@ function Footer() {
       <div className={classes.primary}>
         <Logo />
         <div className={classes.links}>
-          <Link to="">
-            <FaFacebookF />
-          </Link>
-          <Link to="">
-            <FaInstagram />
-          </Link>
-          <Link to="">
-            <FaXTwitter />
-          </Link>
-          <Link to="">
+          <Link to="https://www.linkedin.com/company/harmonyapp-ai/about/?viewAsMember=true">
             <FaLinkedin />
           </Link>
-          <Link to="">
+          <Link to="https://www.instagram.com/creatingattractive">
+            <FaInstagram />
+          </Link>
+          <Link to="https://www.tiktok.com/@creatingattractive">
+            <FaTiktok />
+          </Link>
+          <Link to="https://www.reddit.com/user/creatingattractive">
+            <FaReddit />
+          </Link>
+          <Link to="https://www.youtube.com/@creatingattractive">
             <FaYoutube />
           </Link>
         </div>

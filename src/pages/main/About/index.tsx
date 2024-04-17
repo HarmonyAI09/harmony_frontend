@@ -11,7 +11,7 @@ import {
 } from 'react-icons/fa6';
 import { GiCheckMark } from 'react-icons/gi';
 import { GrMagic } from 'react-icons/gr';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import PricePlans from '@/components/pages/about/PricePlans';
 
@@ -75,11 +75,20 @@ function About() {
             </div>
           </div>
           <div className={classes.animation}>
-            <motion.img
-              src={slides[slideIndex]}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.97 }}
-            />
+            {slides.map(
+              (image, index) =>
+                index === slideIndex && (
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      src={image}
+                      initial={{ opacity: 0.3 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0.7 }}
+                      transition={{ duration: 0.5 }}
+                    />
+                  </AnimatePresence>
+                )
+            )}
             <div className={classes.buttons}>
               <span
                 className={classes.prevBtn}

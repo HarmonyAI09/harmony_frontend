@@ -15,12 +15,7 @@ function ImageSlide({ images }: IImageSlideProps) {
     timeoutID = setTimeout(() => {
       setSlideIndex((slideIndex + 1) % 6);
     }, 3000);
-    return () => {
-      clearTimeout(timeoutID);
-    };
   }, [slideIndex]);
-
-  useEffect(() => {}, []);
 
   return (
     <div className={classes.root}>

@@ -118,26 +118,26 @@ function About() {
             <span className={classes.emphasize}>Novel</span> facial assessments
           </p>
           <div className={classes.assessments}>
-            <div className={classes.assess}>
+            <motion.div className={classes.assess} whileHover={{ scale: 1.05 }}>
               <span>
                 <FaRocket />
               </span>
               <p>10x+ more facial assessments than competitors</p>
-            </div>
-            <div className={classes.assess}>
+            </motion.div>
+            <motion.div className={classes.assess} whileHover={{ scale: 1.05 }}>
               <span>
                 <FaScrewdriverWrench />
               </span>
               <p>Robust ML algorithms catering to your specific face</p>
-            </div>
-            <div className={classes.assess}>
+            </motion.div>
+            <motion.div className={classes.assess} whileHover={{ scale: 1.05 }}>
               <span>
                 <BiGridAlt />
               </span>
               <p>
                 80 combined facial landmarks across the front and side profile
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
@@ -187,24 +187,24 @@ function About() {
             <Link to="/harmony">Try Harmony</Link>
           </div>
           <div className={classes.steps}>
-            <div>
+            <motion.div whileHover={{ scale: 1.05 }}>
               <span>
                 <BiCloudUpload />
               </span>
               <p>Upload your photo</p>
-            </div>
-            <div>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.05 }}>
               <span>
                 <GrMagic className={classes.landmark} />
               </span>
               <p>Map landmarks</p>
-            </div>
-            <div>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.05 }}>
               <span>
                 <BiQrScan />
               </span>
               <p>Analyze your face</p>
-            </div>
+            </motion.div>
           </div>
         </div>
         <div className={classes.whyharmony}>

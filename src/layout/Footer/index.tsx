@@ -1,9 +1,10 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  FaFacebookF,
+  // FaFacebookF,
   FaInstagram,
   FaLinkedin,
-  FaXTwitter,
+  // FaXTwitter,
   FaReddit,
   FaYoutube,
   FaTiktok,
@@ -12,8 +13,13 @@ import {
 import Logo from '@/components/common/Logo';
 
 import classes from './index.module.scss';
+import PrivatePolicyDialog from '@/components/common/PrivatePolicyDialog';
+import TermsOfServiceDialog from '@/components/common/TermsOfServiceDialog';
 
 function Footer() {
+  const [isPrivatePolicyOpen, openPrivatePolicyDialog] = useState(false);
+  const [isTermsOfServiceOpen, openTermsOfServiceDialog] = useState(false);
+
   return (
     <div className={classes.root}>
       <div className={classes.primary}>
@@ -40,11 +46,23 @@ function Footer() {
       <div className={classes.secondary}>
         <p className={classes.reserved}>&copy; 2024 All rights reserved.</p>
         <div className={classes.links}>
-          <Link to="">Privacy Policy</Link>
-          <Link to="">Terms of Service</Link>
-          <Link to="">Cookies Settings</Link>
+          <Link to="#" onClick={() => openPrivatePolicyDialog(true)}>
+            Privacy Policy
+          </Link>
+          <Link to="#" onClick={() => openTermsOfServiceDialog(true)}>
+            Terms of Service
+          </Link>
+          <Link to="#">Cookies Settings</Link>
         </div>
       </div>
+      <PrivatePolicyDialog
+        open={isPrivatePolicyOpen}
+        onClose={() => openPrivatePolicyDialog(false)}
+      />
+      <TermsOfServiceDialog
+        open={isTermsOfServiceOpen}
+        onClose={() => openTermsOfServiceDialog(false)}
+      />
     </div>
   );
 }

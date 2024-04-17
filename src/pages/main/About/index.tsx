@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Application } from '@splinetool/runtime';
 import { BiGridAlt, BiCloudUpload, BiQrScan } from 'react-icons/bi';
-import { FaRocket, FaScrewdriverWrench } from 'react-icons/fa6';
+import { FaPlay, FaRocket, FaScrewdriverWrench } from 'react-icons/fa6';
 import { GiCheckMark } from 'react-icons/gi';
 import { GrMagic } from 'react-icons/gr';
 import { motion } from 'framer-motion';
@@ -30,16 +30,6 @@ const videos = Array(4).fill(DemoVideo);
 const slides = [Slide1, Slide2, Slide3, Slide4, Slide5, Slide6];
 
 function About() {
-  const compareRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    if (compareRef.current) {
-      const canvas = compareRef.current;
-      const app = new Application(canvas);
-      app.load('https://prod.spline.design/jEGMCwG7r1cX108K/scene.splinecode');
-    }
-  }, []);
-
   return (
     <div className={classes.root}>
       <div className={classes.blackback}>
@@ -109,9 +99,7 @@ function About() {
               costly consultations with surgeons.
             </p>
           </div>
-          <div className={classes.compare}>
-            <canvas ref={compareRef} />
-          </div>
+          <div className={classes.compare}></div>
         </div>
         <div className={classes.facials}>
           <p className={classes.title}>
@@ -162,7 +150,7 @@ function About() {
                 {[
                   'Idealize',
                   'Facial Hotmap',
-                  'Facial dimrphism',
+                  'Facial dimorphism',
                   'Facial angularity',
                   'Health, skin, and hair',
                   'Facial coloring',
@@ -175,7 +163,10 @@ function About() {
               </ul>
             </div>
             <div className={classes.picture}>
-              <motion.img src={PhoneImage} whileHover={{ scale: 1.05 }} />
+              <span>
+                <FaPlay />
+              </span>
+              <p>Arriving soon in 2025</p>
             </div>
           </div>
         </div>
@@ -218,7 +209,7 @@ function About() {
               <ul>
                 <li>
                   Travel (often significant distances depending on the location
-                  of the specialist)
+                  of the specialist).
                 </li>
                 <li>Lengthy consultation (1-3hrs).</li>
                 <li>Non-exhaustive facial analysis.</li>

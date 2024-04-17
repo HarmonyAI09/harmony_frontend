@@ -105,10 +105,9 @@
       }
     }
     > .picture {
-      @apply flex items-center;
-
-      > img {
-        @apply w-full rounded-md;
+      @apply flex items-center flex-col gap-y-2;
+      > span {
+        @apply flex items-center justify-center size-12 rounded-full bg-secondary;
       }
     }
   }

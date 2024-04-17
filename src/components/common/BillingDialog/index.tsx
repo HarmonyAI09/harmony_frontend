@@ -24,6 +24,7 @@ function BillingDialog({
 }: IBillingDialogProps) {
   const dispatch = useAppDispatch();
   const userID = useAppSelector(state => state.auth.account?.userID);
+  const premiumPlan = useAppSelector(state => state.auth.account?.auth);
   const subscribeID = useAppSelector(state => state.auth.account?.subscribeID);
   const customerID = useAppSelector(state => state.auth.account?.customerID);
 
@@ -54,15 +55,16 @@ function BillingDialog({
           <div className={classes.billing}>
             <div className={classes.header}>
               <p>Current Subscription</p>
-              {subscribeID ? (
+              {premiumPlan === 0 ? (
+                <span className={classes.free}>Free</span>
+              ) : premiumPlan === 1 ? (
                 <span className={classes.premium}>Pro</span>
               ) : (
-                <span className={classes.free}>Free</span>
+                <span className={classes.platinum}>Platinum</span>
               )}
             </div>
-            {!subscribeID ? (
-              <PricePlans isDialog={true} />
-            ) : (
+            <PricePlans isDialog={true} />
+            {premiumPlan && (
               <div className={classes.subscription}>
                 <div className={classes.buttons}>
                   <Switch

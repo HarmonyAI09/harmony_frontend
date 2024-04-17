@@ -4,7 +4,11 @@ import { motion } from 'framer-motion';
 
 import Button from '@/components/forms/Button';
 import HttpService from '@/services/HttpService';
-import { STRIPE_CHECKOUT_SUCCESS_URL, STRIPE_PRICE_ID } from '@/config';
+import {
+  STRIPE_CHECKOUT_SUCCESS_URL,
+  STRIPE_PRO_PRICE_ID,
+  STRIPE_PLATINUM_PRICE_ID,
+} from '@/config';
 import {
   FREE_FEATURES,
   PLATINUM_FEATURES,
@@ -23,15 +27,16 @@ function PricePlans({ isDialog = false }: IPricePlansProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const pathname = location.pathname;
-  const subscribeID = useAppSelector(state => state.auth.account?.subscribeID);
+  const premiumPlan = useAppSelector(state => state.auth.account?.auth) || 0;
 
-  const onUpgradeClick = () => {
+  const onUpgradeClick = (plan: string) => () => {
     HttpService.post(
       '/user/create-checkout-session',
       {},
       {
         url: `${STRIPE_CHECKOUT_SUCCESS_URL}?redirect=${pathname}`,
-        price_id: STRIPE_PRICE_ID,
+        price_id:
+          plan === 'pro' ? STRIPE_PRO_PRICE_ID : STRIPE_PLATINUM_PRICE_ID,
       }
     ).then(response => {
       const stripeURL = response;
@@ -65,7 +70,7 @@ function PricePlans({ isDialog = false }: IPricePlansProps) {
           color="secondary"
           className={classes.freeBtn}
           onClick={() => navigate(`/${MAIN_ROUTES.HARMONY}`)}
-          disabled={isDialog && !subscribeID}
+          disabled={isDialog && !premiumPlan}
         >
           Get started for free
         </Button>
@@ -89,8 +94,8 @@ function PricePlans({ isDialog = false }: IPricePlansProps) {
           variant="contained"
           color="success"
           className={classes.proBtn}
-          onClick={onUpgradeClick}
-          disabled={!!subscribeID}
+          onClick={onUpgradeClick('pro')}
+          disabled={premiumPlan >= 1}
         >
           Upgrade plan
         </Button>
@@ -114,8 +119,8 @@ function PricePlans({ isDialog = false }: IPricePlansProps) {
           variant="contained"
           color="success"
           className={classes.proBtn}
-          onClick={onUpgradeClick}
-          disabled={!!subscribeID}
+          onClick={onUpgradeClick('platinum')}
+          disabled={premiumPlan === 2}
         >
           Upgrade plan
         </Button>

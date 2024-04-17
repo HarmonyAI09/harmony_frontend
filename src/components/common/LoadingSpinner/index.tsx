@@ -10,10 +10,10 @@ function LoadingSpinner() {
           cy="200"
           fill="none"
           r="100"
-          stroke-width="25"
+          strokeWidth="25"
           stroke="#E387FF"
-          stroke-dasharray="700 1400"
-          stroke-linecap="round"
+          strokeDasharray="700 1400"
+          strokeLinecap="round"
         />
       </svg>
     </div>

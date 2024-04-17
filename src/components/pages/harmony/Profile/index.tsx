@@ -46,7 +46,7 @@ function Profile({
   const [nameInput, setNameInput] = useState(name);
   const [isNameEditing, setIsNameEditing] = useState(false);
   const [isDateEditing, setIsDateEditing] = useState(false);
-  const [dateInput, setDateInput] = useState('');
+  const [dateInput, setDateInput] = useState(date || '__-__-__');
 
   const genderName = useMemo(() => {
     const genderItem = GENDERS.find(item => item.value === gender);
@@ -174,7 +174,7 @@ function Profile({
             />
           ) : (
             <p>
-              {date || 'date'}
+              {dateInput}
               <span onClick={() => setIsDateEditing(true)}>
                 <HiOutlinePencil />
               </span>

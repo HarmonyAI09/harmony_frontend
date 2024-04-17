@@ -12,6 +12,12 @@
     > span {
       @apply bg-blue-500 rounded-full px-2.5 text-xs;
     }
+    > span.premium {
+      @apply bg-green-500;
+    }
+    > span.platinum {
+      @apply bg-violet-500;
+    }
   }
   > .subscription {
     > .buttons {

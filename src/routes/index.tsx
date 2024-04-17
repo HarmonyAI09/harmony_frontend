@@ -83,6 +83,7 @@ export default function Routes() {
     ],
     [isLogin]
   );
+  const appRoutes = useRoutes(routes);
 
   useEffect(() => {
     if (isLogin) {
@@ -100,5 +101,5 @@ export default function Routes() {
       });
   }, []);
 
-  return isAuth ? <LoadingSpinner /> : useRoutes(routes);
+  return isAuth ? <LoadingSpinner /> : appRoutes;
 }

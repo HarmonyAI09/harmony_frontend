@@ -40,7 +40,7 @@ function Profile({
 }: IProfile) {
   const dispatch = useAppDispatch();
   const userID = useAppSelector(state => state.auth.account?.userID);
-  const subscribeID = useAppSelector(state => state.auth.account?.subscribeID);
+  const premiumPlan = useAppSelector(state => state.auth.account?.auth) || 0;
   const analyses = useAppSelector(state => state.analysis.analyses);
 
   const [nameInput, setNameInput] = useState(name);
@@ -128,11 +128,9 @@ function Profile({
     })();
   };
 
-  const onDateKeyDown = (e: KeyboardEvent) => {
-    if (e.keyCode === 13) {
-      dispatch(updateDate({ ID, date: dateInput }));
-      setIsDateEditing(false);
-    }
+  const onDateChange = () => {
+    dispatch(updateDate({ ID, date: dateInput }));
+    setIsDateEditing(false);
   };
 
   return (
@@ -169,8 +167,11 @@ function Profile({
               mask={'99-99-99'}
               placeholder="MM-DD-YY"
               value={dateInput}
+              onBlur={onDateChange}
               onChange={onDateInputChange}
-              onKeyDown={onDateKeyDown}
+              onKeyDown={(e: KeyboardEvent) =>
+                e.keyCode === 13 && onDateChange()
+              }
             />
           ) : (
             <p>
@@ -189,12 +190,12 @@ function Profile({
             <button
               className={classes.saveBtn}
               onClick={onSaveClick}
-              disabled={!subscribeID}
+              disabled={!premiumPlan}
             >
               Save
             </button>
           )}
-          {subscribeID && (
+          {premiumPlan && (
             <span className={classes.downBtn} onClick={onDownClick}>
               <FaDownload />
             </span>

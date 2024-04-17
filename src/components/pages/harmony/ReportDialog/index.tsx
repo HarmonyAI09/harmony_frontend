@@ -32,8 +32,7 @@ function ReportDialog({ open, onClose }: IReportDialogProps) {
   const dispatch = useAppDispatch();
   const analysis = useAppSelector(state => state.analysis);
   const setting = useAppSelector(state => state.setting);
-  const subscribeID = useAppSelector(state => state.auth.account?.subscribeID);
-  const isPremiumUser = useMemo(() => !!subscribeID, [subscribeID]);
+  const premiumPlan = useAppSelector(state => state.auth.account?.auth) || 0;
 
   const [isImageDialog, openImageDialog] = useState(false);
   const [imageID, setImageID] = useState('');
@@ -137,7 +136,7 @@ function ReportDialog({ open, onClose }: IReportDialogProps) {
             <p>{analysis.score.total}% Facial Harmony</p>
             <div className={classes.badges}>
               <span>{analysis.score.front}% Front Score</span>
-              <span className={clsx({ [classes.premium]: !subscribeID })}>
+              <span className={clsx({ [classes.free]: premiumPlan === 0 })}>
                 {analysis.score.side}% Side Score
               </span>
             </div>
@@ -156,7 +155,7 @@ function ReportDialog({ open, onClose }: IReportDialogProps) {
           <Table
             columns={columns}
             rows={analysis.analyses}
-            active={isPremiumUser}
+            active={premiumPlan >= 1}
           />
           <ImageDialog
             open={isImageDialog}

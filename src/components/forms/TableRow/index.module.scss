@@ -1,5 +1,5 @@
 .root {
-  @apply flex relative;
+  @apply flex relative min-h-[80px];
   > div {
     @apply shrink-0 text-sm flex items-center justify-center max-h-24 overflow-y-auto px-2;
   }

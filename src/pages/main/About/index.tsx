@@ -15,6 +15,11 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import PricePlans from '@/components/pages/about/PricePlans';
 
+import DemoVideo from '@/assets/videos/demo.mp4';
+import PlanIcon from '@/assets/svgs/planning.svg';
+import OutcomeIcon from '@/assets/svgs/outcome.svg';
+import MoneyIcon from '@/assets/svgs/money.svg';
+
 import Slide1 from '@/assets/images/slides/1.png';
 import Slide2 from '@/assets/images/slides/2.png';
 import Slide3 from '@/assets/images/slides/3.png';
@@ -22,12 +27,6 @@ import Slide4 from '@/assets/images/slides/4.png';
 import Slide5 from '@/assets/images/slides/5.png';
 import Slide6 from '@/assets/images/slides/6.png';
 import Slide7 from '@/assets/images/slides/7.png';
-
-import DemoVideo from '@/assets/videos/demo.mp4';
-import PlanIcon from '@/assets/svgs/planning.svg';
-import OutcomeIcon from '@/assets/svgs/outcome.svg';
-import MoneyIcon from '@/assets/svgs/money.svg';
-
 import classes from './index.module.scss';
 
 const videos = Array(4).fill(DemoVideo);

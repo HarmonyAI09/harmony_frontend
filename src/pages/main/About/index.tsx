@@ -75,21 +75,17 @@ function About() {
             </div>
           </div>
           <div className={classes.animation}>
-            {[...slides.slice(slideIndex), ...slides.slice(0, slideIndex)].map(
-              image => (
-                <motion.img
-                  src={image}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.97 }}
-                />
-              )
-            )}
+            <motion.img
+              src={slides[slideIndex]}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+            />
             <div className={classes.buttons}>
               <span
                 className={classes.prevBtn}
                 onClick={() =>
                   setSlideIndex(
-                    slideIndex === 0 ? slides.length : slideIndex - 1
+                    slideIndex === 0 ? slides.length - 1 : slideIndex - 1
                   )
                 }
               >
@@ -99,7 +95,7 @@ function About() {
                 className={classes.nextBtn}
                 onClick={() =>
                   setSlideIndex(
-                    slideIndex === slides.length ? 0 : slideIndex + 1
+                    slideIndex === slides.length - 1 ? 0 : slideIndex + 1
                   )
                 }
               >

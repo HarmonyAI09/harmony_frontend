@@ -174,7 +174,7 @@ function Profile({
             />
           ) : (
             <p>
-              {dateInput}
+              {date || 'date'}
               <span onClick={() => setIsDateEditing(true)}>
                 <HiOutlinePencil />
               </span>

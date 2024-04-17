@@ -1,4 +1,4 @@
-import { ChangeEvent, useMemo, useState } from 'react';
+import { ChangeEvent, KeyboardEvent, useMemo, useState } from 'react';
 import { HiOutlinePencil } from 'react-icons/hi';
 import { GiCheckMark } from 'react-icons/gi';
 import { FaDownload } from 'react-icons/fa6';
@@ -9,7 +9,7 @@ import clsx from 'clsx';
 import { SERVER_URI } from '@/config';
 import { GENDERS } from '@/constants/gender';
 import { ETHNICITIES } from '@/constants/ethnicity';
-import { saveProfile, updateName } from '@/redux/reducers/profile';
+import { saveProfile, updateDate, updateName } from '@/redux/reducers/profile';
 import { useAppDispatch, useAppSelector } from '@/redux/store';
 import HttpService from '@/services/HttpService';
 
@@ -20,6 +20,7 @@ interface IProfile {
   name: string;
   gender: string;
   race: string;
+  date: string;
   mappingPts: any[];
   active?: boolean;
   isSaved?: boolean;
@@ -31,6 +32,7 @@ function Profile({
   name = '',
   gender = '',
   race = '',
+  date = '',
   mappingPts = [],
   active = false,
   isSaved = false,
@@ -42,7 +44,8 @@ function Profile({
   const analyses = useAppSelector(state => state.analysis.analyses);
 
   const [nameInput, setNameInput] = useState(name);
-  const [isEditing, setIsEditing] = useState(false);
+  const [isNameEditing, setIsNameEditing] = useState(false);
+  const [isDateEditing, setIsDateEditing] = useState(false);
   const [dateInput, setDateInput] = useState('');
 
   const genderName = useMemo(() => {
@@ -61,7 +64,7 @@ function Profile({
 
   const onEditingClose = () => {
     dispatch(updateName({ ID, name: nameInput }));
-    setIsEditing(false);
+    setIsNameEditing(false);
   };
 
   const onDateInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -80,6 +83,7 @@ function Profile({
       name,
       gender: genderIndex,
       race: raceIndex,
+      date,
       points: mappingPts,
     }).then(response => {
       enqueueSnackbar('Profile saved.', { variant: 'success' });
@@ -124,6 +128,13 @@ function Profile({
     })();
   };
 
+  const onDateKeyDown = (e: KeyboardEvent) => {
+    if (e.keyCode === 13) {
+      dispatch(updateDate({ ID, date: dateInput }));
+      setIsDateEditing(false);
+    }
+  };
+
   return (
     <>
       <div
@@ -134,10 +145,10 @@ function Profile({
           <img alt="Front image" src={`${SERVER_URI}/img/${ID}/f`} />
         </div>
         <div className={classes.profile}>
-          {!isEditing ? (
+          {!isNameEditing ? (
             <p>
               {name}
-              <span onClick={() => setIsEditing(true)}>
+              <span onClick={() => setIsNameEditing(true)}>
                 <HiOutlinePencil />
               </span>
             </p>
@@ -152,13 +163,23 @@ function Profile({
           )}
           <span className={classes.gender}>{genderName}</span>
           <p>{raceName}</p>
-          <InputMask
-            type="text"
-            mask={'99-99-99'}
-            placeholder="MM-DD-YY"
-            value={dateInput}
-            onChange={onDateInputChange}
-          />
+          {isDateEditing ? (
+            <InputMask
+              type="text"
+              mask={'99-99-99'}
+              placeholder="MM-DD-YY"
+              value={dateInput}
+              onChange={onDateInputChange}
+              onKeyDown={onDateKeyDown}
+            />
+          ) : (
+            <p>
+              {dateInput}
+              <span onClick={() => setIsDateEditing(true)}>
+                <HiOutlinePencil />
+              </span>
+            </p>
+          )}
           {isSaved ? (
             <span className={classes.badge}>
               <GiCheckMark />

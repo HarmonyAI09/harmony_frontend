@@ -1,35 +1,40 @@
-import { useEffect, useRef } from 'react';
+import clsx from 'clsx';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Application } from '@splinetool/runtime';
 import { BiGridAlt, BiCloudUpload, BiQrScan } from 'react-icons/bi';
-import { FaPlay, FaRocket, FaScrewdriverWrench } from 'react-icons/fa6';
+import {
+  FaChevronLeft,
+  FaChevronRight,
+  FaPlay,
+  FaRocket,
+  FaScrewdriverWrench,
+} from 'react-icons/fa6';
 import { GiCheckMark } from 'react-icons/gi';
 import { GrMagic } from 'react-icons/gr';
 import { motion } from 'framer-motion';
 
 import PricePlans from '@/components/pages/about/PricePlans';
-import ImageSlide from '@/components/common/ImageSlide';
+
+import Slide1 from '@/assets/images/slides/1.png';
+import Slide2 from '@/assets/images/slides/2.png';
+import Slide3 from '@/assets/images/slides/3.png';
+import Slide4 from '@/assets/images/slides/4.png';
+import Slide5 from '@/assets/images/slides/5.png';
+import Slide6 from '@/assets/images/slides/6.png';
+import Slide7 from '@/assets/images/slides/7.png';
 
 import DemoVideo from '@/assets/videos/demo.mp4';
 import PlanIcon from '@/assets/svgs/planning.svg';
 import OutcomeIcon from '@/assets/svgs/outcome.svg';
 import MoneyIcon from '@/assets/svgs/money.svg';
 
-import Slide1 from '@/assets/images/slides/1.jpg';
-import Slide2 from '@/assets/images/slides/2.jpg';
-import Slide3 from '@/assets/images/slides/3.jpg';
-import Slide4 from '@/assets/images/slides/4.jpg';
-import Slide5 from '@/assets/images/slides/5.jpg';
-import Slide6 from '@/assets/images/slides/6.jpg';
-
-import PhoneImage from '@/assets/images/arriving/phone.png';
-
 import classes from './index.module.scss';
 
 const videos = Array(4).fill(DemoVideo);
-const slides = [Slide1, Slide2, Slide3, Slide4, Slide5, Slide6];
+const slides = [Slide1, Slide2, Slide3, Slide4, Slide5, Slide6, Slide7];
 
 function About() {
+  const [slideIndex, setSlideIndex] = useState(0);
   return (
     <div className={classes.root}>
       <div className={classes.blackback}>
@@ -43,9 +48,64 @@ function About() {
       </div>
       <div className={classes.container}>
         <div className={classes.harness}>
-          <p>Computer vision & Machine learning technology harnessed</p>
+          <div className={classes.detail}>
+            <p className={classes.title}>
+              Computer vision & Machine learning technology harnessed
+            </p>
+            <p className={classes.subtitle}>
+              View hyper-attractive variations of your face. Gain insight for
+              improvement or simply have fun and share your photos with your
+              friends.
+            </p>
+            <div className={classes.idealize}>
+              <span>Idealize coming soon.</span>
+              <div>
+                <p>
+                  <span></span>Ultra realistic AI photos.
+                </p>
+                <p>
+                  <span></span>Idealize retains your photo’s original
+                  background, with no uncanny changes in setting.
+                </p>
+                <p>
+                  <span></span>Retain your key distinguishing features (i.e.,
+                  ethnicity, hair type, hair style, and hair color).
+                </p>
+              </div>
+            </div>
+          </div>
           <div className={classes.animation}>
-            <ImageSlide images={slides} />
+            {[...slides.slice(slideIndex), ...slides.slice(0, slideIndex)].map(
+              image => (
+                <motion.img
+                  src={image}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.97 }}
+                />
+              )
+            )}
+            <div className={classes.buttons}>
+              <span
+                className={classes.prevBtn}
+                onClick={() =>
+                  setSlideIndex(
+                    slideIndex === 0 ? slides.length : slideIndex - 1
+                  )
+                }
+              >
+                <FaChevronLeft />
+              </span>
+              <span
+                className={classes.nextBtn}
+                onClick={() =>
+                  setSlideIndex(
+                    slideIndex === slides.length ? 0 : slideIndex + 1
+                  )
+                }
+              >
+                <FaChevronRight />
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -231,7 +291,7 @@ function About() {
               </ul>
             </motion.div>
             <motion.div
-              className={classes.section}
+              className={clsx(classes.section, classes.harmony)}
               whileHover={{ scale: 1.02 }}
             >
               <p>Harmony</p>

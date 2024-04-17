@@ -174,7 +174,7 @@ function MappingDialog({
         <div className={classes.wrapper}>
           {type === 'side' && (
             <p className={classes.tip}>
-              Side profile AI mapping coming soon. For now, you may manually
+              Side profile AI mapping is coming soon. For now, you may manually
               adjust the points.
             </p>
           )}

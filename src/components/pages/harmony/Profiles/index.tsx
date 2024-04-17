@@ -114,7 +114,7 @@ function Profiles() {
     <>
       <div className={classes.root}>
         {!subscribeID && (
-          <p className={classes.tip}>To save a profile, upgrade to Pro</p>
+          <p className={classes.tip}>To save a profile, upgrade to Pro.</p>
         )}
         {profiles.map((profile: IProfile, index: number) => (
           <Profile

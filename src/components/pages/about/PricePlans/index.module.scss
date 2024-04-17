@@ -29,4 +29,7 @@
   div.premium {
     @apply self-end;
   }
+  > div.platinum {
+    @apply border-1 border-secondary;
+  }
 }

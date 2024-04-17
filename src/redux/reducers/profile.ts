@@ -11,6 +11,7 @@ export interface IProfile {
   gender: string;
   race: string;
   mappingPts: any[];
+  date: string;
   isSaved?: boolean;
 }
 
@@ -48,6 +49,7 @@ export const profileReducer = createSlice({
         state.profiles.push({
           ...action.payload,
           name: 'Untitled',
+          date: '',
         });
       }
     },
@@ -59,6 +61,7 @@ export const profileReducer = createSlice({
         gender: GENDERS[profile.gender].value,
         mappingPts: profile.points,
         isSaved: true,
+        date: profile.date,
       }));
     },
     updateName: (
@@ -68,6 +71,16 @@ export const profileReducer = createSlice({
       state.profiles = state.profiles.map((item: IProfile) =>
         item.ID === action.payload.ID
           ? { ...item, name: action.payload.name }
+          : item
+      );
+    },
+    updateDate: (
+      state: ProfileState,
+      action: PayloadAction<{ ID: string; date: string }>
+    ) => {
+      state.profiles = state.profiles.map((item: IProfile) =>
+        item.ID === action.payload.ID
+          ? { ...item, date: action.payload.date }
           : item
       );
     },
@@ -83,7 +96,7 @@ export const profileReducer = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { loadProfiles, createProfile, saveProfile, updateName } =
+export const { loadProfiles, createProfile, saveProfile, updateName, updateDate } =
   profileReducer.actions;
 
 export default profileReducer.reducer;

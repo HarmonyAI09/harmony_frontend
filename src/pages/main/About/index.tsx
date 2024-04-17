@@ -1,32 +1,53 @@
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { Application } from '@splinetool/runtime';
 import { BiGridAlt, BiCloudUpload, BiQrScan } from 'react-icons/bi';
-import { FaPlay, FaRocket, FaScrewdriverWrench } from 'react-icons/fa6';
+import { FaRocket, FaScrewdriverWrench } from 'react-icons/fa6';
 import { GiCheckMark } from 'react-icons/gi';
 import { GrMagic } from 'react-icons/gr';
+import { motion } from 'framer-motion';
 
 import PricePlans from '@/components/pages/about/PricePlans';
-import IntroAnimation from '@/components/pages/about/IntroAnimation';
+import ImageSlide from '@/components/common/ImageSlide';
 
 import DemoVideo from '@/assets/videos/demo.mp4';
 import PlanIcon from '@/assets/svgs/planning.svg';
 import OutcomeIcon from '@/assets/svgs/outcome.svg';
 import MoneyIcon from '@/assets/svgs/money.svg';
+
+import Slide1 from '@/assets/images/slides/1.jpg';
+import Slide2 from '@/assets/images/slides/2.jpg';
+import Slide3 from '@/assets/images/slides/3.jpg';
+import Slide4 from '@/assets/images/slides/4.jpg';
+import Slide5 from '@/assets/images/slides/5.jpg';
+import Slide6 from '@/assets/images/slides/6.jpg';
+
+import PhoneImage from '@/assets/images/arriving/phone.png';
+
 import classes from './index.module.scss';
 
+const videos = Array(4).fill(DemoVideo);
+const slides = [Slide1, Slide2, Slide3, Slide4, Slide5, Slide6];
+
 function About() {
+  const compareRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    if (compareRef.current) {
+      const canvas = compareRef.current;
+      const app = new Application(canvas);
+      app.load('https://prod.spline.design/jEGMCwG7r1cX108K/scene.splinecode');
+    }
+  }, []);
+
   return (
     <div className={classes.root}>
-      {/* <IntroAnimation /> */}
       <div className={classes.blackback}>
         <div className={classes.container}>
-          <div className={classes.analysis}>
-            <div className={classes.text}>
-              <p className={classes.title}>Facial analysis reimagined</p>
-              <span className={classes.emphasize}>Satisfy your curiosity</span>
-            </div>
-            <div className={classes.video}>
-              <video src={DemoVideo} controls></video>
-            </div>
+          <div className={classes.video}>
+            {videos.map((video: string, index: number) => (
+              <video key={index} src={video} controls></video>
+            ))}
           </div>
         </div>
       </div>
@@ -34,18 +55,16 @@ function About() {
         <div className={classes.harness}>
           <p>Computer vision & Machine learning technology harnessed</p>
           <div className={classes.animation}>
-            <div>
-              <span>
-                <FaPlay />
-              </span>
-            </div>
+            <ImageSlide images={slides} />
           </div>
         </div>
       </div>
       <div className={classes.blackback}>
         <div className={classes.container}>
           <div className={classes.streamline}>
-            <div className={classes.assessments}></div>
+            <div className={classes.assessments}>
+              <p>How do I improve my face?</p>
+            </div>
             <div className={classes.instructions}>
               <p className={classes.primaryheader}>
                 Streamline your{' '}
@@ -89,6 +108,9 @@ function About() {
               offers access to the kind of information typically reserved for
               costly consultations with surgeons.
             </p>
+          </div>
+          <div className={classes.compare}>
+            <canvas ref={compareRef} />
           </div>
         </div>
         <div className={classes.facials}>
@@ -153,12 +175,7 @@ function About() {
               </ul>
             </div>
             <div className={classes.picture}>
-              <div className={classes.arriving}>
-                <span className={classes.playIcon}>
-                  <FaPlay />
-                </span>
-                <p>Arriving in 2025</p>
-              </div>
+              <motion.img src={PhoneImage} whileHover={{ scale: 1.05 }} />
             </div>
           </div>
         </div>
@@ -193,7 +210,10 @@ function About() {
         <div className={classes.whyharmony}>
           <p>Why use Harmony?</p>
           <div className={classes.sections}>
-            <div className={classes.section}>
+            <motion.div
+              className={classes.section}
+              whileHover={{ scale: 1.02 }}
+            >
               <p>Initial clinical consultation</p>
               <ul>
                 <li>
@@ -206,8 +226,11 @@ function About() {
                 <li>Potential booking fees.</li>
                 <li>Time consuming forms.</li>
               </ul>
-            </div>
-            <div className={classes.section}>
+            </motion.div>
+            <motion.div
+              className={classes.section}
+              whileHover={{ scale: 1.02 }}
+            >
               <p>Other similar services</p>
               <ul>
                 <li>Manually written reports.</li>
@@ -215,8 +238,11 @@ function About() {
                 <li>$150-350 cost.</li>
                 <li>Analyze only one set of photos per report.</li>
               </ul>
-            </div>
-            <div className={classes.section}>
+            </motion.div>
+            <motion.div
+              className={classes.section}
+              whileHover={{ scale: 1.02 }}
+            >
               <p>Harmony</p>
               <ul>
                 <li>
@@ -227,8 +253,11 @@ function About() {
                 <li>Analyze an unlimited amount of your photos.</li>
                 <li>Constant innovation and added features.</li>
               </ul>
-            </div>
-            <div className={classes.section}>
+            </motion.div>
+            <motion.div
+              className={classes.section}
+              whileHover={{ scale: 1.02 }}
+            >
               <p>Disclaimer</p>
               <p className={classes.text}>
                 Harmony is meant to assist you in addressing your surgical and
@@ -236,7 +265,7 @@ function About() {
                 operation costs, expectations, risks, and physical examinations
                 must be done in person with a licensed practitioner.
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
@@ -244,9 +273,7 @@ function About() {
         <div className={classes.container}>
           <div className={classes.pricing}>
             <p className={classes.title}>Pricing</p>
-            <p className={classes.subtitle}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.{' '}
-            </p>
+            <p className={classes.subtitle}></p>
             <PricePlans />
           </div>
         </div>

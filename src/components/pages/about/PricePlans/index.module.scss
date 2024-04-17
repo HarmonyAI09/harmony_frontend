@@ -25,7 +25,8 @@
       @apply w-full;
     }
   }
-  > div.free {
+  > div.free,
+  div.premium {
     @apply self-end;
   }
 }

@@ -1,11 +1,15 @@
-import { useCallback } from 'react';
+import { RefObject, useCallback } from 'react';
 import Particles from 'react-particles';
 import type { Container, Engine } from 'tsparticles-engine';
 import { loadSlim } from 'tsparticles-slim';
 
 import classes from './index.module.scss';
 
-function ParticleAnimation() {
+interface ParticleAnimationProps {
+  particleRef: RefObject<any>;
+}
+
+function ParticleAnimation({ particleRef }: ParticleAnimationProps) {
   const particlesInit = useCallback(async (engine: Engine) => {
     console.log(engine);
 

@@ -1,10 +1,15 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { GrCheckmark } from 'react-icons/gr';
+import { motion } from 'framer-motion';
 
 import Button from '@/components/forms/Button';
 import HttpService from '@/services/HttpService';
 import { STRIPE_CHECKOUT_SUCCESS_URL, STRIPE_PRICE_ID } from '@/config';
-import { FREE_FEATURES, PRO_FEATURES } from '@/constants/price';
+import {
+  FREE_FEATURES,
+  PLATINUM_FEATURES,
+  PRO_FEATURES,
+} from '@/constants/price';
 import { MAIN_ROUTES } from '@/constants/routes';
 import { useAppSelector } from '@/redux/store';
 
@@ -41,7 +46,7 @@ function PricePlans({ isDialog = false }: IPricePlansProps) {
 
   return (
     <div className={classes.plans}>
-      <div className={classes.free}>
+      <motion.div className={classes.free} whileHover={{ scale: 1.02 }}>
         <p className={classes.name}>Free</p>
         <div className={classes.divider} />
         <p className={classes.price}>
@@ -64,8 +69,8 @@ function PricePlans({ isDialog = false }: IPricePlansProps) {
         >
           Get started for free
         </Button>
-      </div>
-      <div className={classes.premium}>
+      </motion.div>
+      <motion.div className={classes.premium} whileHover={{ scale: 1.02 }}>
         <p className={classes.name}>Pro</p>
         <div className={classes.divider} />
         <p className={classes.price}>
@@ -89,7 +94,32 @@ function PricePlans({ isDialog = false }: IPricePlansProps) {
         >
           Upgrade plan
         </Button>
-      </div>
+      </motion.div>
+      <motion.div className={classes.platinum} whileHover={{ scale: 1.02 }}>
+        <p className={classes.name}>Platinum</p>
+        <div className={classes.divider} />
+        <p className={classes.price}>
+          $37
+          <span>/month</span>
+        </p>
+        <ul>
+          {PLATINUM_FEATURES.map((feature: string, index: number) => (
+            <li key={index}>
+              <GrCheckmark />
+              <p>{feature}</p>
+            </li>
+          ))}
+        </ul>
+        <Button
+          variant="contained"
+          color="success"
+          className={classes.proBtn}
+          onClick={onUpgradeClick}
+          disabled={!!subscribeID}
+        >
+          Upgrade plan
+        </Button>
+      </motion.div>
     </div>
   );
 }

@@ -29,7 +29,7 @@ export interface IReqAccount {
 }
 
 const initialState: AuthState = {
-  isLogin: false,
+  isLogin: true,
 };
 
 export const authReducer = createSlice({

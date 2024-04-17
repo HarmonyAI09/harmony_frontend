@@ -5,17 +5,8 @@
   .blackback {
     @apply bg-black;
   }
-  .analysis {
-    @apply flex gap-x-8 items-center;
-    > .text {
-      @apply basis-[450px] shrink-0;
-      > .title {
-        @apply text-4xl leading-[40px] lg:text-5xl text-primary mb-2 lg:leading-[60px];
-      }
-    }
-    > .video {
-      @apply grow;
-    }
+  .video {
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-4;
   }
   .harness {
     @apply grid grid-cols-1 lg:grid-cols-2 gap-8 place-items-center;
@@ -25,19 +16,17 @@
     > .animation {
       @apply bg-secondary aspect-square w-full relative flex items-center justify-center;
       > div {
-        @apply rounded-xl px-8 py-4 bg-primary;
-        > span {
-          @apply size-12 flex items-center justify-center rounded-full bg-bright cursor-pointer;
-          > svg {
-            @apply text-xl;
-          }
-        }
+        @apply rounded-xl p-2 bg-primary;
       }
     }
   }
   .streamline {
     @apply grid grid-cols-1 lg:grid-cols-2 gap-8 place-items-center;
     > .assessments {
+      @apply flex items-center;
+      > p {
+        @apply text-4xl;
+      }
     }
     > .instructions {
       > p.primaryheader {
@@ -64,6 +53,12 @@
     > .text {
       > .title {
         @apply text-4xl leading-[40px] lg:text-5xl mb-4 lg:leading-[60px];
+      }
+    }
+    > .compare {
+      @apply min-h-[400px] w-full;
+      > canvas {
+        @apply w-full;
       }
     }
   }
@@ -110,18 +105,10 @@
       }
     }
     > .picture {
-      @apply flex items-center justify-center;
+      @apply flex items-center;
+
       > img {
-        @apply max-h-[450px];
-      }
-      > .arriving {
-        @apply absolute flex flex-col items-center;
-        > span {
-          @apply size-12 flex items-center justify-center rounded-full bg-primary mb-2;
-        }
-        > p {
-          @apply max-w-40 text-center text-primary font-medium;
-        }
+        @apply w-full rounded-md;
       }
     }
   }

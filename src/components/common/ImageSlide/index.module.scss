@@ -1,0 +1,6 @@
+.root {
+  @apply flex items-center justify-center size-4/5;
+  > img {
+    @apply w-full h-full;
+  }
+}

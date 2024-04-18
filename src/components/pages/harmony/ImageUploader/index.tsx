@@ -75,7 +75,7 @@ function ImageUploader({ type = 'front' }: IImageUploaderProps) {
   );
   const uploadedImageSrc = useMemo(
     () => `${SERVER_URI}/img/${profileID}/${type.slice(0, 1)}`,
-    [profileID]
+    [profileID, type]
   );
 
   const onImageCrop = (res: PinturaDefaultImageWriterResult) => {
@@ -84,7 +84,6 @@ function ImageUploader({ type = 'front' }: IImageUploaderProps) {
         variant: 'warning',
       });
     } else {
-      console.log(res.dest);
       const imageData = new FormData();
       imageData.append('img', res.dest);
       HttpService.post(`/img/${profileID}/${type.slice(0, 1)}`, imageData).then(

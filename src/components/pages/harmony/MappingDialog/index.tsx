@@ -100,7 +100,7 @@ function MappingDialog({
       isDraggingRef.current = true;
 
       const onLandmarkMove = (ev: MouseEvent) => {
-        if (!isDraggingRef.current) return false;
+        if (!isDraggingRef.current) return;
         setWorkingPts(
           workingPts.map((pts: MappingPtType, id: number) =>
             id === index

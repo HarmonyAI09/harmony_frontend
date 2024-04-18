@@ -11,11 +11,14 @@ import {
 } from 'react-icons/fa6';
 import { GiCheckMark } from 'react-icons/gi';
 import { GrMagic } from 'react-icons/gr';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 import PricePlans from '@/components/pages/about/PricePlans';
 
-import DemoVideo from '@/assets/videos/demo.mp4';
+import Video1 from '@/assets/videos/video1.mp4';
+import Video2 from '@/assets/videos/video2.mp4';
+import Video3 from '@/assets/videos/video3.mp4';
+import Video4 from '@/assets/videos/video4.mp4';
 import PlanIcon from '@/assets/svgs/planning.svg';
 import OutcomeIcon from '@/assets/svgs/outcome.svg';
 import MoneyIcon from '@/assets/svgs/money.svg';
@@ -30,7 +33,38 @@ import Slide7 from '@/assets/images/slides/7.png';
 import classes from './index.module.scss';
 import ImageSlide from '@/components/common/ImageSlide';
 
-const videos = Array(4).fill(DemoVideo);
+const introductions = [
+  {
+    title: 'Upload photos and map facial  landmarks',
+    subtitles: [
+      'Upload photos of your choosing and adjust them with the cropping tool if needed.',
+      'AI will map your landmarks. However, during the beta you will have to manually adjust the points for precision. This is a 3-5 minute process depending on how experienced the user is. As we improve our model, manual mapping will become unnecessary.',
+    ],
+    video: Video1,
+  },
+  {
+    title: 'View your facial analysis report',
+    subtitles: [
+      'View images of each facial assessment, what they mean, and any improvement advice if applicable.',
+      'Make adjustments to your landmarks and instantly update your report.',
+    ],
+    video: Video2,
+  },
+  {
+    title: 'Save user profiles',
+    subtitles: [
+      'Quickly switch between up to 30 saved profiles and view old reports.',
+    ],
+    video: Video3,
+  },
+  {
+    title: 'Download an excel file of your report',
+    subtitles: [
+      "If you need an excel file of your results for whatever reason, we've got you covered. Download your report from your user profile and import it to google sheets or excel.",
+    ],
+    video: Video4,
+  },
+];
 const slides = [Slide1, Slide2, Slide3, Slide4, Slide5, Slide6, Slide7];
 
 function About() {
@@ -38,10 +72,23 @@ function About() {
     <div className={classes.root}>
       <div className={classes.blackback}>
         <div className={classes.container}>
-          <div className={classes.video}>
-            {videos.map((video: string, index: number) => (
-              <video key={index} src={video} controls></video>
-            ))}
+          <div className={classes.introduction}>
+            <p className={classes.title}>Facial analysis reimagined</p>
+            <div className={classes.videos}>
+              {introductions.map((item: any, index: number) => (
+                <div key={index} className={classes.video}>
+                  <div className={classes.description}>
+                    <p>{item.title}</p>
+                    <ul>
+                      {item.subtitles.map((item: string, index: number) => (
+                        <li key={index}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <video src={item.video} controls></video>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

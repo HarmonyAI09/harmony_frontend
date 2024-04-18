@@ -70,7 +70,7 @@ function PricePlans({ isDialog = false }: IPricePlansProps) {
           color="secondary"
           className={classes.freeBtn}
           onClick={() => navigate(`/${MAIN_ROUTES.HARMONY}`)}
-          disabled={isDialog && premiumPlan >= 1}
+          disabled={premiumPlan >= 1}
         >
           Get started for free
         </Button>

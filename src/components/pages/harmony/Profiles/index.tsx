@@ -16,7 +16,7 @@ import classes from './index.module.scss';
 function Profiles() {
   const dispatch = useAppDispatch();
   const userID = useAppSelector(state => state.auth.account?.userID);
-  const subscribeID = useAppSelector(state => state.auth.account?.subscribeID);
+  const premiumPlan = useAppSelector(state => state.auth.account?.auth) || 0;
   const profileID = useAppSelector(state => state.setting.profileID);
   const setting = useAppSelector(state => state.setting);
   const profiles = useAppSelector(state => state.profile.profiles);
@@ -113,7 +113,7 @@ function Profiles() {
   return (
     <>
       <div className={classes.root}>
-        {!subscribeID && (
+        {!premiumPlan && (
           <p className={classes.tip}>To save a profile, upgrade to Pro.</p>
         )}
         {profiles.map((profile: IProfile, index: number) => (

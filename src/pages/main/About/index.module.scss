@@ -35,21 +35,7 @@
       }
     }
     > .animation {
-      @apply flex gap-x-2 p-4 overflow-x-hidden relative;
-      > img {
-        @apply border-1 border-secondary;
-      }
-      > .buttons {
-        > span {
-          @apply rounded-full size-8 flex items-center justify-center absolute top-1/2 transform -translate-y-1/2 z-[30] cursor-pointer bg-success;
-        }
-        > span.prevBtn {
-          @apply left-6;
-        }
-        > span.nextBtn {
-          @apply right-8;
-        }
-      }
+      @apply flex p-4 w-full h-full items-center justify-center;
     }
   }
   .streamline {

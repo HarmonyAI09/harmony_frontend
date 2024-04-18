@@ -28,12 +28,12 @@ import Slide5 from '@/assets/images/slides/5.png';
 import Slide6 from '@/assets/images/slides/6.png';
 import Slide7 from '@/assets/images/slides/7.png';
 import classes from './index.module.scss';
+import ImageSlide from '@/components/common/ImageSlide';
 
 const videos = Array(4).fill(DemoVideo);
 const slides = [Slide1, Slide2, Slide3, Slide4, Slide5, Slide6, Slide7];
 
 function About() {
-  const [slideIndex, setSlideIndex] = useState(0);
   return (
     <div className={classes.root}>
       <div className={classes.blackback}>
@@ -74,42 +74,7 @@ function About() {
             </div>
           </div>
           <div className={classes.animation}>
-            {slides.map(
-              (image, index) =>
-                index === slideIndex && (
-                  <AnimatePresence mode="wait">
-                    <motion.img
-                      src={image}
-                      initial={{ opacity: 0.3 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0.7 }}
-                      transition={{ duration: 0.5 }}
-                    />
-                  </AnimatePresence>
-                )
-            )}
-            <div className={classes.buttons}>
-              <span
-                className={classes.prevBtn}
-                onClick={() =>
-                  setSlideIndex(
-                    slideIndex === 0 ? slides.length - 1 : slideIndex - 1
-                  )
-                }
-              >
-                <FaChevronLeft />
-              </span>
-              <span
-                className={classes.nextBtn}
-                onClick={() =>
-                  setSlideIndex(
-                    slideIndex === slides.length - 1 ? 0 : slideIndex + 1
-                  )
-                }
-              >
-                <FaChevronRight />
-              </span>
-            </div>
+            <ImageSlide images={slides} />
           </div>
         </div>
       </div>

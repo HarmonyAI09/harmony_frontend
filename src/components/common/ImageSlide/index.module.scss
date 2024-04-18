@@ -1,6 +1,15 @@
 .root {
-  @apply flex items-center justify-center size-4/5;
+  @apply relative flex items-center justify-center min-w-[450px];
   > img {
-    @apply w-full h-full;
+    @apply absolute h-auto;
+  }
+  > span {
+    @apply rounded-full size-8 bg-success flex items-center justify-center absolute top-1/2 transform -translate-y-1/2 cursor-pointer z-[50];
+  }
+  > span.leftBtn {
+    @apply left-4;
+  }
+  > span.rightBtn {
+    @apply right-4;
   }
 }

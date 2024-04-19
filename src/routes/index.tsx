@@ -90,7 +90,7 @@ export default function Routes() {
       setIsAuth(false);
       return;
     }
-    HttpService.post('/auth', {})
+    HttpService.post('/auth/', {})
       .then(response => {
         dispatch(authorize());
         dispatch(loadAccount(response));

@@ -18,6 +18,7 @@ interface IAccountDialogProps {
 
 const initialAccount: IAccount = {
   email: '',
+  auth: 0,
   username: '',
   firstname: '',
   lastname: '',

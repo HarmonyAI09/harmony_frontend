@@ -1,7 +1,7 @@
 import { enqueueSnackbar } from 'notistack';
 import clsx from 'clsx';
 
-import { STRIPE_PRICE_ID } from '@/config';
+import { STRIPE_PRO_PRICE_ID } from '@/config';
 import Dialog from '@/components/forms/Dialog';
 import Button from '@/components/forms/Button';
 import Switch from '@/components/forms/Switch';

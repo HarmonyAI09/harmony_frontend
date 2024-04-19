@@ -40,8 +40,8 @@ function Login() {
     HttpService.post('/auth/login', reqJson).then(response => {
       const { access_token, refresh_token } = response;
       setupToken(access_token, refresh_token);
-      dispatch(authorize());
       HttpService.get('/auth').then(response => {
+        dispatch(authorize());
         dispatch(loadAccount(response));
         enqueueSnackbar('Login success.', { variant: 'success' });
       });

@@ -195,7 +195,7 @@ function Profile({
               Save
             </button>
           )}
-          {premiumPlan && (
+          {premiumPlan > 0 && (
             <span className={classes.downBtn} onClick={onDownClick}>
               <FaDownload />
             </span>

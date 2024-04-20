@@ -15,7 +15,7 @@ function Checkout() {
       enqueueSnackbar('Subscription upgraded.', { variant: 'success' });
       navigate(redirectUrl);
     }
-  }, []);
+  }, [searchParams]);
 
   return <LoadingSpinner />;
 }

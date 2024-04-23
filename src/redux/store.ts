@@ -5,6 +5,7 @@ import authReducer from '@/redux/reducers/auth';
 import settingReducer from '@/redux/reducers/setting';
 import profileReducer from '@/redux/reducers/profile';
 import analysisReducer from '@/redux/reducers/analysis';
+import loadingReducer from '@/redux/reducers/loader';
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     setting: settingReducer,
     profile: profileReducer,
     analysis: analysisReducer,
+    loader: loadingReducer,
   },
 });
 

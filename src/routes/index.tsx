@@ -62,8 +62,9 @@ const mainRoutes: RouteObject[] = [
 export default function Routes() {
   const dispatch = useAppDispatch();
   const isLogin = useAppSelector(state => state.auth.isLogin);
+  const isLoading = useAppSelector(state => state.loader.isLoading);
 
-  const [isAuth, setIsAuth] = useState(true);
+  const [isInAuth, setIsInAuth] = useState(true);
 
   const routes: RouteObject[] = useMemo(
     () => [
@@ -86,19 +87,20 @@ export default function Routes() {
   const appRoutes = useRoutes(routes);
 
   useEffect(() => {
-    if (isLogin) {
-      setIsAuth(false);
-      return;
-    }
     HttpService.post('/auth/', {})
       .then(response => {
         dispatch(authorize());
         dispatch(loadAccount(response));
       })
       .finally(() => {
-        setIsAuth(false);
+        setIsInAuth(false);
       });
   }, []);
 
-  return isAuth ? <LoadingSpinner /> : appRoutes;
+  return (
+    <>
+      {!isInAuth && appRoutes}
+      {isLoading && <LoadingSpinner />}
+    </>
+  );
 }

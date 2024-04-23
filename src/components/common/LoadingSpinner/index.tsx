@@ -1,8 +1,14 @@
+import clsx from 'clsx';
+
 import classes from './index.module.scss';
 
-function LoadingSpinner() {
+interface ILoadingSpinerProps {
+  isPageLoading?: boolean;
+}
+
+function LoadingSpinner({ isPageLoading = false }: ILoadingSpinerProps) {
   return (
-    <div className={classes.screen}>
+    <div className={clsx(classes.screen, { [classes.page]: isPageLoading })}>
       <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
         <circle
           className={classes.spin}

@@ -57,6 +57,7 @@ function MappingDialog({
   const [isDragging, setIsDragging] = useState(false);
 
   const mapperRef = useRef<HTMLDivElement>(null);
+  const imagesRef = useRef<HTMLDivElement>(null);
   const isDraggingRef = useRef<boolean>(false);
 
   const isSamePt = (
@@ -123,7 +124,7 @@ function MappingDialog({
       document.addEventListener('mousemove', onLandmarkMove);
     };
 
-  const onLandmarkUp = () => {
+const onLandmarkUp = () => {
     if (!isDraggingRef.current) return;
     setIsDragging(false);
     isDraggingRef.current = false;
@@ -131,16 +132,27 @@ function MappingDialog({
   };
 
   const layoutCallback = () => {
-    if (!mapperRef.current) return;
-    const { height, left, top } = mapperRef.current.getBoundingClientRect();
-    setMapperSize(height);
-    setMapperOffset({
-      x: left,
-      y: top,
-    });
+    if (imagesRef.current) {
+      const rect = imagesRef.current.getBoundingClientRect();
+      const imagesWidth = rect.width;
+      const imagesHeight = rect.height * 0.95;
+      setMapperSize(
+        imagesWidth > imagesHeight * 2 ? imagesHeight : imagesWidth / 2
+      );
+    }
   };
 
   useEffect(layoutCallback, [windowSize]);
+
+  useEffect(() => {
+    if (mapperRef.current) {
+      const { left, top } = mapperRef.current.getBoundingClientRect();
+      setMapperOffset({
+        x: left,
+        y: top,
+      });
+    }
+  }, [mapperSize]);
 
   useEffect(() => {
     HttpService.post(`/auto/${type.slice(0, 1)}/${profileID}`, {}).then(
@@ -171,7 +183,7 @@ function MappingDialog({
       onClose={onMappingCloseBtnClick}
       header={<p className={classes.header}>Image Mapping</p>}
       body={
-        <div className={classes.wrapper}>
+        <div className={classes.wrapper} ref={imagesRef}>
           {type === 'side' && (
             <p className={classes.tip}>
               Side profile AI mapping is coming soon. For now, you may manually
@@ -179,7 +191,10 @@ function MappingDialog({
             </p>
           )}
           <div className={classes.images}>
-            <div className={clsx(classes.image, classes.template)}>
+            <div
+              className={clsx(classes.image, classes.template)}
+              style={{ width: mapperSize }}
+            >
               <img
                 src={type === 'front' ? frontModelSrc : sideModelSrc}
                 alt="Template image"
@@ -196,6 +211,7 @@ function MappingDialog({
             </div>
             <div
               className={clsx(classes.image, classes.mapper)}
+              style={{ width: mapperSize }}
               ref={mapperRef}
             >
               <img

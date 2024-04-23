@@ -1,19 +1,20 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, lazy } from 'react';
 import { Navigate, Outlet, RouteObject, useRoutes } from 'react-router-dom';
 
-import Layout from '@/layout/Layout';
-import About from '@/pages/main/About';
-import FAQs from '@/pages/main/FAQs';
-import Login from '@/pages/auth/Login';
-import Register from '@/pages/auth/Register';
-import Harmony from '@/pages/main/Harmony';
-import Checkout from '@/pages/main/Checkout';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import { ALL_ROUTES, AUTH_ROUTES, MAIN_ROUTES } from '@/constants/routes';
 
 import { authorize, loadAccount } from '@/redux/reducers/auth';
 import { useAppDispatch, useAppSelector } from '@/redux/store';
 import HttpService from '@/services/HttpService';
+
+const Layout = lazy(() => import('@/layout/Layout'));
+const About = lazy(() => import('@/pages/main/About'));
+const FAQs = lazy(() => import('@/pages/main/FAQs'));
+const Login = lazy(() => import('@/pages/auth/Login'));
+const Register = lazy(() => import('@/pages/auth/Register'));
+const Harmony = lazy(() => import('@/pages/main/Harmony'));
+const Checkout = lazy(() => import('@/pages/main/Checkout'));
 
 const authRoutes: RouteObject[] = [
   {

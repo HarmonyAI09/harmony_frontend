@@ -7,9 +7,9 @@
   > .images {
     @apply flex items-center justify-center h-[95%];
     > .image {
-      @apply h-full aspect-square;
+      @apply aspect-square;
       > img {
-        @apply w-full h-full select-none;
+        @apply w-full h-full select-none object-cover;
       }
     }
 
@@ -21,7 +21,7 @@
     }
 
     > .mapper {
-      @apply relative h-full;
+      @apply relative;
       > .landmark {
         @apply absolute size-1.5 rounded-full bg-red-500 cursor-pointer transform -translate-x-1/2 -translate-y-1/2;
       }

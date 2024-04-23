@@ -1,9 +1,13 @@
 .screen {
-  @apply w-screen h-screen fixed top-0 left-0 bg-primary flex items-center justify-center backdrop-blur-md z-[800];
+  @apply w-screen h-screen fixed top-0 left-0 bg-transparent flex items-center justify-center z-[1000];
 
   > svg {
     @apply size-24;
   }
+}
+
+.page {
+  @apply bg-primary;
 }
 
 @keyframes spin {

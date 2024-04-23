@@ -5,6 +5,7 @@ import { useOnClickOutside } from 'usehooks-ts';
 import clsx from 'clsx';
 
 import classes from './index.module.scss';
+import { useAppSelector } from '@/redux/store';
 
 type MaxWidth = 'self' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'screen';
 
@@ -27,6 +28,7 @@ function Dialog({
   fullHeight = true,
   animate = true,
 }: IDialogProps) {
+  const isLoading = useAppSelector(state => state.loader.isLoading);
   const dialogRef = useRef<HTMLDivElement>(null);
 
   const maxWidthClasses =
@@ -51,7 +53,7 @@ function Dialog({
   };
 
   const onDialogCloseClick = (e: MouseEvent | FocusEvent | TouchEvent) => {
-    onClose();
+    if (!isLoading) onClose();
   };
 
   useOnClickOutside(dialogRef, onDialogCloseClick, 'mousedown');

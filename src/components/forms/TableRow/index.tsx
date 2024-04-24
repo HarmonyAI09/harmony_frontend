@@ -33,6 +33,7 @@ function TableRow({ columns, row, active = true }: ITableRowProps) {
           key={index}
           style={{
             width: column.basis || 150,
+            userSelect: 'none',
           }}
           className={clsx(
             justifyClasses(column),

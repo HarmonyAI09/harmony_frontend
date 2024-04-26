@@ -88,14 +88,19 @@ export default function Routes() {
   const appRoutes = useRoutes(routes);
 
   useEffect(() => {
-    HttpService.post('/auth/', {})
-      .then(response => {
-        dispatch(authorize());
-        dispatch(loadAccount(response));
-      })
-      .finally(() => {
-        setIsInAuth(false);
-      });
+    const token = localStorage.getItem('token');
+    if (token) {
+      HttpService.post('/auth/', {})
+        .then(response => {
+          dispatch(authorize());
+          dispatch(loadAccount(response));
+        })
+        .finally(() => {
+          setIsInAuth(false);
+        });
+    } else {
+      setIsInAuth(false);
+    }
   }, []);
 
   return (

@@ -24,7 +24,7 @@ function TableRow({ columns, row, active = true }: ITableRowProps) {
 
   const clampClasses = (column: IColumn) => ({
     [classes.clamp]: column.clamp,
-  });
+  }); 
 
   return (
     <div className={classes.root}>

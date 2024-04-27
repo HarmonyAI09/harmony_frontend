@@ -39,7 +39,12 @@ setPlugins(plugin_crop);
 
 const editorDefaults = {
   imageReader: createDefaultImageReader(),
-  imageWriter: createDefaultImageWriter(),
+  imageWriter: createDefaultImageWriter({
+    targetSize: {
+      width: 512,
+      height: 512,
+    },
+  }),
   shapePreprocessor: createDefaultShapePreprocessor(),
   ...plugin_finetune_defaults,
   ...plugin_filter_defaults,

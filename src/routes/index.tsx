@@ -88,7 +88,7 @@ export default function Routes() {
   const appRoutes = useRoutes(routes);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('access_token');
     if (token) {
       HttpService.post('/auth/', {})
         .then(response => {

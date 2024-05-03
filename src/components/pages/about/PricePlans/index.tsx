@@ -14,7 +14,7 @@ import {
   PLATINUM_FEATURES,
   PRO_FEATURES,
 } from '@/constants/price';
-import { MAIN_ROUTES } from '@/constants/routes';
+import { AUTH_ROUTES, MAIN_ROUTES } from '@/constants/routes';
 import { useAppSelector } from '@/redux/store';
 
 import classes from './index.module.scss';
@@ -27,9 +27,23 @@ function PricePlans({ isDialog = false }: IPricePlansProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const pathname = location.pathname;
+
+  const isLogin = useAppSelector(state => state.auth.isLogin);
   const premiumPlan = useAppSelector(state => state.auth.account?.auth) || 0;
 
+  const onStartClick = () => {
+    if (!isLogin) {
+      navigate(`/${AUTH_ROUTES.ROOT}`);
+      return;
+    }
+    navigate(`/${MAIN_ROUTES.HARMONY}`)
+  }
+
   const onUpgradeClick = (plan: string) => () => {
+    if (!isLogin) {
+      navigate(`/${AUTH_ROUTES.ROOT}`)
+      return;
+    }
     HttpService.post(
       '/user/create-checkout-session',
       {},
@@ -69,7 +83,7 @@ function PricePlans({ isDialog = false }: IPricePlansProps) {
           variant="outlined"
           color="secondary"
           className={classes.freeBtn}
-          onClick={() => navigate(`/${MAIN_ROUTES.HARMONY}`)}
+          onClick={onStartClick}
           disabled={premiumPlan >= 1}
         >
           Get started for free

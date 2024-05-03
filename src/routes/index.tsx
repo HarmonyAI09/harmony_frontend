@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState, lazy } from 'react';
 import { Navigate, Outlet, RouteObject, useRoutes } from 'react-router-dom';
 
 import LoadingSpinner from '@/components/common/LoadingSpinner';
-import { ALL_ROUTES, AUTH_ROUTES, MAIN_ROUTES } from '@/constants/routes';
+import { ALL_ROUTES, AUTH_ROUTES, MAIN_ROUTES, PUBLIC_ROUTES } from '@/constants/routes';
 
 import { authorize, loadAccount } from '@/redux/reducers/auth';
 import { useAppDispatch, useAppSelector } from '@/redux/store';
@@ -23,7 +23,7 @@ const authRoutes: RouteObject[] = [
     children: [
       {
         index: true,
-        element: <Navigate to={AUTH_ROUTES.LOGIN} />,
+        element: <Navigate to={AUTH_ROUTES.LOGIN} />
       },
       {
         path: AUTH_ROUTES.LOGIN,
@@ -39,10 +39,6 @@ const authRoutes: RouteObject[] = [
 
 const mainRoutes: RouteObject[] = [
   {
-    path: MAIN_ROUTES.ABOUT,
-    element: <About />,
-  },
-  {
     path: MAIN_ROUTES.FAQS,
     element: <FAQs />,
   },
@@ -53,10 +49,6 @@ const mainRoutes: RouteObject[] = [
   {
     path: MAIN_ROUTES.CHECKOUT,
     element: <Checkout />,
-  },
-  {
-    path: ALL_ROUTES.ROOT,
-    element: <Navigate to={MAIN_ROUTES.ABOUT} />,
   },
 ];
 
@@ -75,9 +67,13 @@ export default function Routes() {
         children: [
           ...(isLogin ? mainRoutes : authRoutes),
           {
+            path: PUBLIC_ROUTES.ABOUT,
+            element: <About />
+          },
+          {
             path: ALL_ROUTES.ROOT,
             element: (
-              <Navigate to={isLogin ? MAIN_ROUTES.HARMONY : AUTH_ROUTES.ROOT} />
+              <Navigate to={PUBLIC_ROUTES.ABOUT} />
             ),
           },
         ],

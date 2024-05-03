@@ -5,10 +5,13 @@ export enum AUTH_ROUTES {
 }
 
 export enum MAIN_ROUTES {
-  ABOUT = 'about',
   FAQS = 'faqs',
   HARMONY = 'harmony',
   CHECKOUT = 'checkout-success',
+}
+
+export enum PUBLIC_ROUTES {
+  ABOUT = 'about',
 }
 
 export enum ALL_ROUTES {

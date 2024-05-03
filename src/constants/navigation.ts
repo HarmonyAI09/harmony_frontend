@@ -1,7 +1,11 @@
-import { AUTH_ROUTES, MAIN_ROUTES } from '@/constants/routes';
+import { AUTH_ROUTES, MAIN_ROUTES, PUBLIC_ROUTES } from '@/constants/routes';
 import { INavItem } from '@/interfaces/navigation';
 
 export const AUTH_NAV_ITEMS: INavItem[] = [
+  {
+    title: 'About',
+    path: `/${PUBLIC_ROUTES.ABOUT}`,
+  },
   {
     title: 'Log In',
     path: `/${AUTH_ROUTES.ROOT}/${AUTH_ROUTES.LOGIN}`,
@@ -15,7 +19,7 @@ export const AUTH_NAV_ITEMS: INavItem[] = [
 export const MAIN_NAV_ITEMS: INavItem[] = [
   {
     title: 'About',
-    path: `/${MAIN_ROUTES.ABOUT}`,
+    path: `/${PUBLIC_ROUTES.ABOUT}`,
   },
   {
     title: 'FAQs',

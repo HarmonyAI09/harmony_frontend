@@ -37,7 +37,7 @@ function Register() {
       password: account.password,
     }).then(response => {
       enqueueSnackbar('Account registered.', { variant: 'success' });
-      navigate(AUTH_ROUTES.LOGIN, { replace: true });
+      navigate(`/${AUTH_ROUTES.ROOT}/${AUTH_ROUTES.LOGIN}`, { replace: true });
     });
   };
 

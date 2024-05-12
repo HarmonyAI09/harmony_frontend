@@ -1,8 +1,7 @@
-import { ChangeEvent, SyntheticEvent, useMemo, useRef, useState } from 'react';
+import { ChangeEvent, SyntheticEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { BiCloudUpload } from 'react-icons/bi';
 import { TbFaceId } from 'react-icons/tb';
 import { enqueueSnackbar } from 'notistack';
-import { v4 as uuidv4 } from 'uuid';
 import { PinturaEditor } from '@pqina/react-pintura';
 import {
   // editor
@@ -24,10 +23,11 @@ import {
   markup_editor_locale_en_gb,
   PinturaDefaultImageWriterResult,
 } from '@pqina/pintura';
+import clsx from 'clsx';
 
 import { SERVER_URI } from '@/config';
+import { useAppSelector } from '@/redux/store';
 import MappingDialog from '@/components/pages/harmony/MappingDialog';
-import { useAppDispatch, useAppSelector } from '@/redux/store';
 import HttpService from '@/services/HttpService';
 
 import frontPHSrc from '@/assets/images/templates/front_placeholder.jpg';
@@ -64,23 +64,19 @@ interface IImageUploaderProps {
 }
 
 function ImageUploader({ type = 'front' }: IImageUploaderProps) {
-  const dispatch = useAppDispatch();
   const profileID = useAppSelector(state => state.setting.profileID);
 
   const [isEditing, setIsEditing] = useState(false);
   const [isMapping, openMappingDialog] = useState(false);
 
-  const [uploadImageSrc, setUploadImageSrc] = useState<string>('');
+  const [pinturaImageSrc, setPinturaImageSrc] = useState<string>('');
   const [cropImageSrc, setCropImageSrc] = useState<string>('');
+  const [uploadedImageSrc, setUploadedImageSrc] = useState<string>('');
   const editorRef = useRef<PinturaEditor>(null);
 
   const phImageSrc = useMemo(
     () => (type === 'front' ? frontPHSrc : sidePHSrc),
     [type]
-  );
-  const uploadedImageSrc = useMemo(
-    () => `${SERVER_URI}/img/${profileID}/${type.slice(0, 1)}`,
-    [profileID, type]
   );
 
   const onImageCrop = (res: PinturaDefaultImageWriterResult) => {
@@ -110,13 +106,18 @@ function ImageUploader({ type = 'front' }: IImageUploaderProps) {
 
   const onFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || !e.target.files.length) return;
-    setUploadImageSrc(URL.createObjectURL(e.target.files[0]));
+    setPinturaImageSrc(URL.createObjectURL(e.target.files[0]));
     setIsEditing(true);
   };
 
   const onMappingClick = () => {
     openMappingDialog(true);
   };
+
+  useEffect(() => {
+    setCropImageSrc('');
+    setUploadedImageSrc(`${SERVER_URI}/img/${profileID}/${type.slice(0, 1)}`);
+  }, [profileID]);
 
   return (
     <div className={classes.root}>
@@ -130,7 +131,7 @@ function ImageUploader({ type = 'front' }: IImageUploaderProps) {
         }}
         hidden={isEditing}
       />
-      <div className={classes.buttons}>
+      {!isEditing && <div className={classes.buttons}>
         <label htmlFor={`${type}-image-upload-input`}>
           <BiCloudUpload />
         </label>
@@ -143,11 +144,11 @@ function ImageUploader({ type = 'front' }: IImageUploaderProps) {
           onChange={onFileChange}
           hidden
         />
-      </div>
+      </div>}
       {isEditing && (
         <PinturaEditor
           {...editorDefaults}
-          src={uploadImageSrc}
+          src={pinturaImageSrc}
           ref={editorRef}
           util={'crop'}
           imageCropAspectRatio={1}

@@ -23,7 +23,6 @@ import {
   markup_editor_locale_en_gb,
   PinturaDefaultImageWriterResult,
 } from '@pqina/pintura';
-import clsx from 'clsx';
 
 import { SERVER_URI } from '@/config';
 import { useAppSelector } from '@/redux/store';

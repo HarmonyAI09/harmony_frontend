@@ -1,0 +1,21 @@
+.root {
+  @apply flex flex-col items-center py-10;
+  > .uploader {
+    @apply aspect-square overflow-hidden border-3 border-emphasize relative w-[400px];
+    > img {
+      @apply w-full;
+    }
+    > .buttons {
+      @apply flex gap-2 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+      > label,
+      span {
+        @apply rounded-full size-12 bg-success flex items-center justify-center cursor-pointer;
+        > svg {
+          @apply text-3xl;
+        }
+      }
+    }
+  }
+  > .output {
+  }
+}

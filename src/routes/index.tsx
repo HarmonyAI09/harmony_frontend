@@ -14,6 +14,7 @@ const FAQs = lazy(() => import('@/pages/main/FAQs'));
 const Login = lazy(() => import('@/pages/auth/Login'));
 const Register = lazy(() => import('@/pages/auth/Register'));
 const Harmony = lazy(() => import('@/pages/main/Harmony'));
+const Idealize = lazy(() => import('@/pages/main/Idealize'));
 const Checkout = lazy(() => import('@/pages/main/Checkout'));
 
 const authRoutes: RouteObject[] = [
@@ -45,6 +46,10 @@ const mainRoutes: RouteObject[] = [
   {
     path: MAIN_ROUTES.HARMONY,
     element: <Harmony />,
+  },
+  {
+    path: MAIN_ROUTES.IDEALIZE,
+    element: <Idealize />
   },
   {
     path: MAIN_ROUTES.CHECKOUT,

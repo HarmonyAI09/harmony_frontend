@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 
 import { AUTH_NAV_ITEMS, MAIN_NAV_ITEMS } from '@/constants/navigation';
-import { INavItem } from '@/interfaces/navigation';
 import { useAppSelector } from '@/redux/store';
+import { INavItem } from '@/interfaces/navigation';
 
 import classes from './index.module.scss';
 

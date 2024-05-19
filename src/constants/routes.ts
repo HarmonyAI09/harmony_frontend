@@ -6,6 +6,7 @@ export enum AUTH_ROUTES {
 
 export enum MAIN_ROUTES {
   FAQS = 'faqs',
+  IDEALIZE = 'idealize',
   HARMONY = 'harmony',
   CHECKOUT = 'checkout-success',
 }

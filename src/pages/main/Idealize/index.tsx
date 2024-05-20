@@ -1,6 +1,6 @@
 import { ChangeEvent, SyntheticEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { BiCloudUpload } from 'react-icons/bi';
-import { TbFaceId } from 'react-icons/tb';
+import { TbFaceId, TbVariableMinus } from 'react-icons/tb';
 import { v4 as UUID } from 'uuid';
 import { PinturaEditor } from '@pqina/react-pintura';
 import {
@@ -62,6 +62,7 @@ function Idealize() {
 	const [cropImageSrc, setCropImageSrc] = useState<string>('');
 	const [uploadedImageSrc, setUploadedImageSrc] = useState<string>('');
 	const [imageID, setImageID] = useState('');
+	const [outputImages, setOutputImages] = useState<string[]>([]);
 	const editorRef = useRef<PinturaEditor>(null);
 
 	const onImageCrop = (res: PinturaDefaultImageWriterResult) => {
@@ -72,14 +73,9 @@ function Idealize() {
 		} else {
 			const imageData = new FormData();
 			imageData.append('img', res.dest);
-			HttpService.post(`/img/${imageID}/f`, imageData).then(
-				response => {
-					const { success } = response;
-					if (success) {
-						enqueueSnackbar('Image uploaded.', { variant: 'success' });
-					}
-				}
-			);
+			HttpService.post(`/img/${imageID}/f`, imageData).then(response => {
+				enqueueSnackbar('Image uploaded.', { variant: 'success' });
+			})
 
 			setCropImageSrc(URL.createObjectURL(res.dest));
 		}
@@ -93,9 +89,15 @@ function Idealize() {
 	};
 
 	const onIdealizeClick = () => {
-		HttpService.get(`/img/ideal/${imageID}`).then(response => {
-			console.log(response);
-		})
+		// HttpService.get(`/img/ideal/${imageID}`).then(response => {
+		// 	console.log(response);
+		// 	setOutputImages(response);
+		// });
+		fetch(`http://192.168.130.216:8001/api/img/ideal/${imageID}`)
+			.then(response => response.json())
+			.then(response => {
+				setOutputImages(response);
+			})
 	}
 
 	useEffect(() => {
@@ -105,11 +107,8 @@ function Idealize() {
 	return <div className={classes.root}>
 		<div className={classes.uploader}>
 			<img
-				src={cropImageSrc}
+				src={cropImageSrc || frontPHSrc}
 				alt="Uploader image"
-				onError={(e: SyntheticEvent<HTMLImageElement, Event>) => {
-					e.currentTarget.src = frontPHSrc;
-				}}
 				hidden={isEditing}
 			/>
 			{!isEditing && <div className={classes.buttons}>
@@ -143,6 +142,10 @@ function Idealize() {
 			)}
 		</div>
 		<div className={classes.output}>
+			{
+				outputImages.map((imageSrc: string, index: number) =>
+					<img key={index} src={imageSrc} alt='Output image' />)
+			}
 		</div>
 	</div>
 }

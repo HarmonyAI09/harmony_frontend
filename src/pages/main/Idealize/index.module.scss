@@ -1,5 +1,5 @@
 .root {
-  @apply flex flex-col items-center py-10;
+  @apply flex flex-col items-center py-10 gap-y-4;
   > .uploader {
     @apply aspect-square overflow-hidden border-3 border-emphasize relative w-[400px];
     > img {
@@ -17,5 +17,9 @@
     }
   }
   > .output {
+    @apply flex gap-x-4;
+    > img {
+      @apply aspect-square max-w-[250px];
+    }
   }
 }

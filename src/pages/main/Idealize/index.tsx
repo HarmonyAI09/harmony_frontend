@@ -89,15 +89,10 @@ function Idealize() {
 	};
 
 	const onIdealizeClick = () => {
-		// HttpService.get(`/img/ideal/${imageID}`).then(response => {
-		// 	console.log(response);
-		// 	setOutputImages(response);
-		// });
-		fetch(`http://192.168.130.216:8001/api/img/ideal/${imageID}`)
-			.then(response => response.json())
-			.then(response => {
-				setOutputImages(response);
-			})
+		HttpService.get(`/img/ideal/${imageID}`).then(response => {
+			console.log(response);
+			setOutputImages(response);
+		});
 	}
 
 	useEffect(() => {

@@ -20,7 +20,7 @@ interface IAnalysis {
 interface IReqFeature {
   measure: string;
   value: string;
-  index: number;
+  index: number[];
   ideal: string;
 }
 
@@ -59,15 +59,16 @@ export const analysisReducer = createSlice({
           value: `${feature.value} ${
             (ASSESSMENTS as any)[feature.measure].unit
           }`,
-          score: (ASSESSMENTS as any)[feature.measure].scores[feature.index],
+          score: (ASSESSMENTS as any)[feature.measure].scores[feature.index[0]],
           maxscore: (ASSESSMENTS as any)[feature.measure].scores[0],
           minscore: (ASSESSMENTS as any)[feature.measure].scores.slice(-1)[0],
           ideal: feature.ideal,
-          meaning: (ASSESSMENTS as any)[feature.measure].notes[feature.index],
-          advice:
-            feature.index === 0
-              ? 'N/A'
-              : (ASSESSMENTS as any)[feature.measure].advice,
+          meaning: (ASSESSMENTS as any)[feature.measure].notes[
+            feature.index[0]
+          ][feature.index[1]],
+          advice: (ASSESSMENTS as any)[feature.measure].advice[
+            feature.index[1]
+          ],
         })
       );
 
@@ -78,7 +79,7 @@ export const analysisReducer = createSlice({
             total: tot.total + (ASSESSMENTS as any)[feature.measure].scores[0],
             score:
               tot.score +
-              (ASSESSMENTS as any)[feature.measure].scores[feature.index],
+              (ASSESSMENTS as any)[feature.measure].scores[feature.index[0]],
           }),
           { total: 0, score: 0 }
         );
@@ -89,7 +90,7 @@ export const analysisReducer = createSlice({
             total: tot.total + (ASSESSMENTS as any)[feature.measure].scores[0],
             score:
               tot.score +
-              (ASSESSMENTS as any)[feature.measure].scores[feature.index],
+              (ASSESSMENTS as any)[feature.measure].scores[feature.index[0]],
           }),
           { total: 0, score: 0 }
         );

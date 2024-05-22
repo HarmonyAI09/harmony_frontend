@@ -20,7 +20,7 @@ interface IBillingDialogProps {
 
 function BillingDialog({
   open = false,
-  onClose = () => {},
+  onClose = () => { },
 }: IBillingDialogProps) {
   const dispatch = useAppDispatch();
   const userID = useAppSelector(state => state.auth.account?.userID);
@@ -35,14 +35,14 @@ function BillingDialog({
   };
 
   const onCancelClick = () => {
-    // HttpService.post(
-    //   '/user/cancel_subscription',
-    //   {},
-    //   { subscription_id: subscribeID }
-    // ).then(response => {
-    //   dispatch(updateSubscribe(null));
-    //   enqueueSnackbar('Subscription canceled.', { variant: 'success' });
-    // });
+    HttpService.post(
+      '/user/cancel_subscription',
+      {},
+      { subscription_id: subscribeID }
+    ).then(response => {
+      dispatch(updateSubscribe(null));
+      enqueueSnackbar('Subscription canceled.', { variant: 'success' });
+    });
   };
 
   return (

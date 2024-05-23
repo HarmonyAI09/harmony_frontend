@@ -11,6 +11,9 @@ import { store } from './redux/store';
 
 import './index.css';
 
+const SEO_TITLE = 'Harmony';
+const SEO_DESCRIPTION = 'Harmony brings efficient workflow solutions to your business. Collaborate, organize, and track work seamlessly. Sign up now to enhance productivity.';
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <>
     <Helmet>
@@ -18,8 +21,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <title>Harmony</title>
       <link rel="icon" type="image/png" href="/favicon.png" sizes="16x16" />
       <meta
-        name="description"
-        content="Harmony brings efficient workflow solutions to your business. Collaborate, organize, and track work seamlessly. Sign up now to enhance productivity."
+        name={SEO_TITLE}
+        content={SEO_DESCRIPTION}
       />
     </Helmet>
     <React.StrictMode>

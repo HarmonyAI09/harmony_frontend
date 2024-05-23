@@ -361,8 +361,8 @@ export const ASSESSMENTS = {
         'Although not perfectly ideal, the angle between your neck and lower jaw is within a normal range. You may be lacking some jawline definition and tightness around the submental region.',
       ],
       [
-        'Although not ideal, the angle formed between your brow ridge and nose is within a reasonably normal range. Your brow region may begin to appear too soft.',
-        'Although not ideal, the angle formed between your brow ridge and nose is within a reasonably normal range. Your brow region may begin to appear too protrusive and harsh.',
+        'The angle between your neck and lower jaw is outside of the normal range and may indicate lacking jaw definition.',
+        'The angle between your neck and lower jaw is outside of the normal range and may indicate lacking jaw definition.',
       ],
       [
         'The angle between your neck and lower jaw is outside of the normal range and may indicate lacking jaw definition.',
@@ -375,7 +375,7 @@ export const ASSESSMENTS = {
       LIFESTYLE CHANGES
         1) Losing body-fat and reducing facial bloating can improve the definition and contour of your jawline.
         2) Improvements in posture can dramatically improve the appearance of your jawline.
-      
+            
       NON SURGICAL INTERVENTIONS
         3) Kybella is an FDA-approved injectable treatment that destroys fat cells under the chin, reducing fat and improving the contour of the neck and jawline.
         4) Radiofrequency (RF) Treatments: RF energy is used to tighten the skin and stimulate collagen production, which can improve skin laxity in the neck and submental area.
@@ -871,8 +871,8 @@ export const ASSESSMENTS = {
         'You have a normal Nasal WHR. The projection of your nose is generally proportionate relative to its height. Your nose may be slightly longer than ideal, less projected than ideal, or a combination of the two.',
       ],
       [
-        'Although not ideal, the angle formed between your brow ridge and nose is within a reasonably normal range. Your brow region may begin to appear too soft.',
-        'Although not ideal, the angle formed between your brow ridge and nose is within a reasonably normal range. Your brow region may begin to appear too protrusive and harsh.',
+        'You have a slightly abnormal Nasal WHR when comparing the projection or your nose to its height. Your nose may be shorter than ideal, more projected than ideal, or a combination of the two.',
+        'You have a slightly abnormal Nasal WHR when comparing the projection or your nose to its height. Your nose may be longer than ideal, less projected than ideal, or a combination of the two.',
       ],
       [
         'You have a slightly abnormal Nasal WHR when comparing the projection or your nose to its height. Your nose may be shorter than ideal, more projected than ideal, or a combination of the two.',

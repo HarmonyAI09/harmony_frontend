@@ -1,17 +1,13 @@
 import { enqueueSnackbar } from 'notistack';
-import clsx from 'clsx';
 
-import { STRIPE_PRO_PRICE_ID } from '@/config';
 import Dialog from '@/components/forms/Dialog';
 import Button from '@/components/forms/Button';
-import Switch from '@/components/forms/Switch';
 import PricePlans from '@/components/pages/about/PricePlans';
 import { useAppDispatch, useAppSelector } from '@/redux/store';
-import { loadAccount, updateSubscribe } from '@/redux/reducers/auth';
+import { updateSubscribe } from '@/redux/reducers/auth';
 import HttpService from '@/services/HttpService';
 
 import classes from './index.module.scss';
-import { useState } from 'react';
 
 interface IBillingDialogProps {
   open: boolean;
@@ -23,12 +19,8 @@ function BillingDialog({
   onClose = () => { },
 }: IBillingDialogProps) {
   const dispatch = useAppDispatch();
-  const userID = useAppSelector(state => state.auth.account?.userID);
   const premiumPlan = useAppSelector(state => state.auth.account?.auth) || 0;
   const subscribeID = useAppSelector(state => state.auth.account?.subscribeID);
-  const customerID = useAppSelector(state => state.auth.account?.customerID);
-
-  const [status, setStatus] = useState(true);
 
   const onBillingClose = () => {
     onClose();
@@ -67,11 +59,11 @@ function BillingDialog({
             {premiumPlan > 0 && (
               <div className={classes.subscription}>
                 <div className={classes.buttons}>
-                  <Switch
+                  {/* <Switch
                     checked={status}
                     onChange={setStatus}
                     label="Auto Renew"
-                  />
+                  /> */}
                   <Button
                     className={classes.button}
                     color="secondary"

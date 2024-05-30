@@ -1,6 +1,6 @@
-import { ChangeEvent, SyntheticEvent, useEffect, useMemo, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { BiCloudUpload } from 'react-icons/bi';
-import { TbFaceId, TbVariableMinus } from 'react-icons/tb';
+import { TbFaceId } from 'react-icons/tb';
 import { v4 as UUID } from 'uuid';
 import { PinturaEditor } from '@pqina/react-pintura';
 import {
@@ -25,7 +25,7 @@ import {
 } from '@pqina/pintura';
 import { enqueueSnackbar } from 'notistack';
 
-import HttpService from '@/services/HttpService';
+import HttpService, { Http2Service } from '@/services/HttpService';
 
 import frontPHSrc from '@/assets/images/templates/front_placeholder.jpg';
 import classes from './index.module.scss';
@@ -89,7 +89,7 @@ function Idealize() {
 	};
 
 	const onIdealizeClick = () => {
-		HttpService.get(`/img/ideal/${imageID}`).then(response => {
+		Http2Service.get(`/img/ideal/${imageID}`).then(response => {
 			console.log(response);
 			setOutputImages(response);
 		});

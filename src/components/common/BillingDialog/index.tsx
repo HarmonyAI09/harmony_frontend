@@ -32,8 +32,11 @@ function BillingDialog({
       {},
       { subscription_id: subscribeID }
     ).then(response => {
-      dispatch(updateSubscribe(null));
-      enqueueSnackbar('Subscription canceled.', { variant: 'success' });
+      const { status } = response;
+      if (status === 'success') {
+        dispatch(updateSubscribe(null));
+        enqueueSnackbar('Subscription canceled.', { variant: 'success' });
+      }
     });
   };
 

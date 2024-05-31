@@ -29,8 +29,8 @@ export const MAIN_NAV_ITEMS: INavItem[] = [
     title: 'Harmony',
     path: `/${MAIN_ROUTES.HARMONY}`,
   },
-  {
-    title: 'Idealize',
-    path: `/${MAIN_ROUTES.IDEALIZE}`,
-  },
+  // {
+  //   title: 'Idealize',
+  //   path: `/${MAIN_ROUTES.IDEALIZE}`,
+  // },
 ];
